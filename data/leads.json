@@ -3,7 +3,7 @@
     "project": "growthclaw",
     "version": "1.0",
     "last_updated": "2026-04-04T17:51:00Z",
-    "total_leads": 3
+    "total_leads": 7
   },
   "leads": [
     {
@@ -95,6 +95,70 @@
       "outreach_status": "drafted",
       "drafted_at": "2026-04-04T17:51:00Z",
       "status": "outreach-drafted"
+    },
+    {
+      "id": "ph-001",
+      "source": "producthunt",
+      "product_name": "Sleek Analytics",
+      "founder_name": "Abbas Aga",
+      "website_url": "https://getsleek.io",
+      "description": "Simple website analytics — paste one line of code and watch real visitors move through your site live. No cookie banners, no noise.",
+      "social_handles": {
+        "twitter": "@getsleekio",
+        "producthunt": "@uaghazade",
+        "linkedin": ""
+      },
+      "source_url": "https://www.producthunt.com/posts/sleek-analytics",
+      "found_at": "2026-04-04T10:45:00Z",
+      "status": "scouted"
+    },
+    {
+      "id": "ph-002",
+      "source": "producthunt",
+      "product_name": "Faahh",
+      "founder_name": "Tonino Catapano",
+      "website_url": "https://www.faahhh.fun",
+      "description": "Focus app that sits in your menu bar — slap your desk or unplug a device to trigger a loud alert and snap back to work. No blockers or dashboards.",
+      "social_handles": {
+        "twitter": "",
+        "producthunt": "@tonnoz",
+        "linkedin": ""
+      },
+      "source_url": "https://www.producthunt.com/posts/faahh",
+      "found_at": "2026-04-04T10:45:00Z",
+      "status": "scouted"
+    },
+    {
+      "id": "ph-003",
+      "source": "producthunt",
+      "product_name": "Donut Browser",
+      "founder_name": "Andy",
+      "website_url": "https://donutbrowser.com",
+      "description": "Open source anti-detect browser. Create unlimited local profiles with unique fingerprints, proxy support, and full browser automation.",
+      "social_handles": {
+        "twitter": "@zhomag",
+        "producthunt": "@zhom",
+        "linkedin": ""
+      },
+      "source_url": "https://www.producthunt.com/posts/donut-browser",
+      "found_at": "2026-04-04T10:45:00Z",
+      "status": "scouted"
+    },
+    {
+      "id": "ph-004",
+      "source": "producthunt",
+      "product_name": "APImage",
+      "founder_name": "Ole Mai",
+      "website_url": "https://apimage.org",
+      "description": "AI-powered image generation and editing platform. Generate, edit, and enhance images — studio-grade results in seconds for developers, designers, and creators.",
+      "social_handles": {
+        "twitter": "@apimageorg",
+        "producthunt": "@olemai",
+        "linkedin": ""
+      },
+      "source_url": "https://www.producthunt.com/posts/apimage",
+      "found_at": "2026-04-04T10:45:00Z",
+      "status": "scouted"
     }
   ]
 }
