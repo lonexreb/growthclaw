@@ -80,6 +80,28 @@
 | Emergent.sh     | AI landing page generator         | Demand capture + A/B testing    |
 | Landingsite.ai  | AI landing page generator         | Marketing consultant, not just gen |
 
+## Web Dashboard (Built ~1:30 PM CST)
+
+- **Stack:** Next.js 15 + shadcn/ui + Tailwind in `web/` subdirectory
+- **Features:** Lead cards with SVG score gauges, score breakdowns, collapsible outreach drafts with approve/skip, pipeline stepper (Scout→Score→Draft→Done), stats overview, activity log
+- **API:** `/api/leads` reads/writes `data/leads.json`, `/api/pipeline` spawns openclaw agent as child process
+- **Theme:** Dark, brand palette from banner.svg (#0f0f23, #ff6b35, #ff3864)
+- **Demo:** Optimized for projector — large fonts, high contrast, 1600px max width
+- **Run:** `cd web && pnpm dev` → http://localhost:3000
+
+### Code Review (11 Fixes Applied)
+1. Lead fields made optional for mid-pipeline polling (prevents React crashes)
+2. Path resolution uses `__dirname` not `process.cwd()` (works from any directory)
+3. Pipeline state persisted to `data/.pipeline-state.json` (survives HMR reloads)
+4. Null guards in all components for partial leads during stages 1-2
+5. Error bar in UI for pipeline/approve/skip failures
+6. ENOENT detection for missing openclaw binary
+7. Unified stdout stage detection with lowercase matching
+8. Composite React keys in activity log (not array index)
+9. `writeLeads()` auto-recalculates `total_leads` metadata
+10. Stale closure fix in fetchPipeline
+11. Added `.env.example` with required env vars
+
 ## Pipeline Status (Live as of 12:51 PM CST)
 
 ### First Successful Run

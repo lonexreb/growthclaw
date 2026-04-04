@@ -57,7 +57,7 @@ No new features. Only polish, testing, and demo prep.
 
 | Person | Task | Done? |
 |--------|------|-------|
-| **Shubh** | Run the full pipeline 3 times. Identify the single best lead (most impressive scoring + outreach). This is the "hero lead" for the live demo. Write the final `DEMO_SCRIPT.md` — every word of the 5-min pitch. Practice it once out loud. | [ ] (in progress — hero lead identified: Vincero 5/10) |
+| **Shubh** | Run the full pipeline 3 times. Identify the single best lead (most impressive scoring + outreach). This is the "hero lead" for the live demo. Write the final `DEMO_SCRIPT.md` — every word of the 5-min pitch. Practice it once out loud. | [x] (hero lead: Vincero 5/10. Web dashboard built + reviewed.) |
 | **Gopal** | Pre-cache 5 scored leads as backup. If live demo fails, we show these. Make sure `leads.json` has clean, impressive data. Help Shubh debug any pipeline issues. | [ ] |
 | **Manu** | Review all outreach drafts for quality. Rewrite any that sound generic or spammy. Prepare 2-3 "killer lines" that reference real Crowdstake pain points (no PH launch, SEO crypto residue, 5 FB likes). These go in the pitch narrative. | [ ] |
 | **Viren** | Final Slack channel cleanup — pin the best messages. Dashboard should look clean and impressive on screen. Set up screen sharing / demo display. Test: can we trigger the agent live and show it browsing in real-time? If browser is too slow for live, pre-record a 30s clip as backup. | [ ] |
@@ -110,6 +110,8 @@ No new features. Only polish, testing, and demo prep.
 [x] Full pipeline runs end-to-end
 [ ] ≥5 real leads scored and drafted (3 so far)
 [x] Dashboard looks good
+[x] Web dashboard built (Next.js + shadcn/ui)
+[x] Code review fixes applied (11 issues resolved)
 [ ] Demo script finalized
 [ ] Demo practiced once
 [ ] Backup leads cached

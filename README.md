@@ -40,7 +40,7 @@ GrowthClaw runs a 3-stage autonomous pipeline:
          ▼                       ▼                        ▼
                         data/leads.json
                         data/dashboard.md
-                     Slack: #growthclaw-leads
+                      Slack: #all-growthclaw
 ```
 
 **One command. Zero intervention. Real leads in under 2 minutes.**
@@ -68,9 +68,20 @@ openclaw agent --agent growthclaw --local --thinking medium \
   --message "Run the GrowthClaw pipeline. Read skills/growthclaw-pipeline/SKILL.md and execute all stages."
 ```
 
-### Results
+### Web Dashboard
 
-Check `data/dashboard.md` for a formatted view of all leads, scores, and outreach drafts.
+```bash
+cd web
+pnpm install
+pnpm dev
+# Open http://localhost:3000
+```
+
+The dashboard shows lead cards with score gauges, gap analysis, outreach drafts with approve/skip actions, and a live pipeline progress stepper. Click "Run Pipeline" to trigger a new scouting run.
+
+### CLI Results
+
+Check `data/dashboard.md` for a formatted CLI view of all leads, scores, and outreach drafts.
 
 ## Project Structure
 
@@ -82,6 +93,11 @@ growthclaw/
 │   ├── enrich-qualify/SKILL.md      # Stage 2: Website scoring + gap analysis
 │   ├── outreach-draft/SKILL.md      # Stage 3: Personalized message generation
 │   └── growthclaw-pipeline/SKILL.md # Master orchestrator (chains all 3)
+├── web/                             # Next.js + shadcn/ui dashboard
+│   ├── app/page.tsx                 # Main dashboard (lead cards, stats, pipeline)
+│   ├── app/api/leads/route.ts       # Read/update leads.json
+│   ├── app/api/pipeline/route.ts    # Trigger + track OpenClaw pipeline
+│   └── components/                  # ScoreGauge, LeadCard, PipelineStatus, etc.
 ├── config/
 │   ├── cron.yaml                    # Scheduled run configuration
 │   └── channels.yaml               # Slack/Telegram webhook config
