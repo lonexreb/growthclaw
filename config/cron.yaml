@@ -1,0 +1,30 @@
+# GrowthClaw Cron Configuration
+# Heartbeat schedule for autonomous operation
+
+schedules:
+  # Daily scout run — finds new founders from all sources
+  daily-scout:
+    cron: "0 9 * * *"  # 9 AM daily
+    skill: skills/founder-scout/SKILL.md
+    description: "Daily founder scouting from PH, IH, Reddit"
+
+  # Enrich & qualify new leads
+  daily-enrich:
+    cron: "30 9 * * *"  # 9:30 AM daily (after scout completes)
+    skill: skills/enrich-qualify/SKILL.md
+    description: "Score and qualify scouted leads"
+
+  # Draft outreach for qualified leads
+  daily-outreach:
+    cron: "0 10 * * *"  # 10 AM daily (after enrich completes)
+    skill: skills/outreach-draft/SKILL.md
+    description: "Generate outreach drafts and post to Slack"
+
+  # Demo mode — run full pipeline on demand
+  demo-trigger:
+    cron: "manual"
+    skills:
+      - skills/founder-scout/SKILL.md
+      - skills/enrich-qualify/SKILL.md
+      - skills/outreach-draft/SKILL.md
+    description: "Full pipeline run for demo"

@@ -1,0 +1,22 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# Node
+node_modules/
+
+# Secrets
+*.pem
+*.key
+credentials.json
+
+# IDE
+.vscode/
+.idea/
+
+# Claude Code
+.claude/

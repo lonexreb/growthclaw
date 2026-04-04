@@ -1,0 +1,23 @@
+# GrowthClaw Channel Configuration
+# Slack/Telegram webhook config for lead delivery
+
+channels:
+  # Primary: Slack
+  slack:
+    enabled: true
+    channel: "#growthclaw-leads"
+    webhook_url: "${SLACK_WEBHOOK_URL}"  # Set in environment
+    format: "rich"  # Use Slack block kit formatting
+
+  # Fallback: Telegram
+  telegram:
+    enabled: false
+    bot_token: "${TELEGRAM_BOT_TOKEN}"
+    chat_id: "${TELEGRAM_CHAT_ID}"
+    format: "markdown"
+
+  # Always-on: Local dashboard
+  dashboard:
+    enabled: true
+    path: "data/dashboard.md"
+    format: "markdown"
