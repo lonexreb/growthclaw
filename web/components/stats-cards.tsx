@@ -29,37 +29,41 @@ export function StatsCards({ leads }: { leads: Lead[] }) {
       label: "Total Leads",
       value: total,
       icon: Users,
-      color: "text-gc-accent",
+      iconBg: "bg-red-50",
+      color: "text-gc-red",
     },
     {
       label: "Qualified",
       value: qualified,
       icon: Target,
-      color: "text-emerald-400",
+      iconBg: "bg-emerald-50",
+      color: "text-gc-green",
     },
     {
       label: "Avg Score",
       value: `${avgScore}/10`,
       icon: BarChart3,
+      iconBg: "bg-cyan-50",
       color: "text-gc-cyan",
     },
     {
       label: "Drafts Ready",
       value: draftsReady,
       icon: FileText,
+      iconBg: "bg-violet-50",
       color: "text-gc-purple",
     },
   ];
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      {stats.map(({ label, value, icon: Icon, color }) => (
+      {stats.map(({ label, value, icon: Icon, iconBg, color }) => (
         <Card
           key={label}
-          className="bg-gc-bg-secondary/50 border-gc-muted/10"
+          className="bg-white border-gray-200/80"
         >
           <CardContent className="p-4 flex items-center gap-4">
-            <div className={`p-2.5 rounded-lg bg-gc-bg ${color}`}>
+            <div className={`p-2.5 rounded-lg ${iconBg} ${color}`}>
               <Icon className="h-5 w-5" />
             </div>
             <div>

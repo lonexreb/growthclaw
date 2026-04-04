@@ -31,7 +31,7 @@ export function PipelineStatus({
     stage !== "idle" && stage !== "done" && stage !== "error";
 
   return (
-    <div className="w-full bg-gc-bg-secondary/30 border-b border-gc-muted/10 px-6 py-3">
+    <div className="w-full bg-gc-red-light/50 border-b border-red-100 px-6 py-3">
       <div className="max-w-[1600px] mx-auto">
         <div className="flex items-center gap-3">
           {/* Steps */}
@@ -40,7 +40,6 @@ export function PipelineStatus({
               const StepIcon = step.icon;
               const isComplete = currentIdx > i;
               const isCurrent = currentIdx === i;
-              const isFuture = currentIdx < i;
 
               return (
                 <div key={step.id} className="flex items-center flex-1">
@@ -49,10 +48,10 @@ export function PipelineStatus({
                     <div
                       className={`relative w-8 h-8 rounded-full flex items-center justify-center transition-all ${
                         isComplete
-                          ? "bg-gc-accent text-white"
+                          ? "bg-gc-red text-white"
                           : isCurrent
-                            ? "bg-gc-accent/20 text-gc-accent border-2 border-gc-accent"
-                            : "bg-gc-bg-secondary text-gc-muted border border-gc-muted/30"
+                            ? "bg-red-50 text-gc-red border-2 border-gc-red"
+                            : "bg-gray-100 text-gray-400 border border-gray-200"
                       }`}
                     >
                       {isComplete ? (
@@ -61,14 +60,14 @@ export function PipelineStatus({
                         <StepIcon className="h-4 w-4" />
                       )}
                       {isCurrent && isRunning && (
-                        <span className="absolute inset-0 rounded-full border-2 border-gc-accent animate-ping opacity-30" />
+                        <span className="absolute inset-0 rounded-full border-2 border-gc-red animate-ping opacity-30" />
                       )}
                     </div>
                     <span
                       className={`text-xs font-medium ${
                         isComplete || isCurrent
                           ? "text-gc-text"
-                          : "text-gc-muted/50"
+                          : "text-gray-400"
                       }`}
                     >
                       {step.label}
@@ -80,8 +79,8 @@ export function PipelineStatus({
                       <div
                         className={`h-0.5 rounded-full transition-all ${
                           currentIdx > i
-                            ? "bg-gc-accent"
-                            : "bg-gc-muted/20"
+                            ? "bg-gc-red"
+                            : "bg-gray-200"
                         }`}
                       />
                     </div>
@@ -93,7 +92,7 @@ export function PipelineStatus({
 
           {/* Status message */}
           {isRunning && (
-            <p className="text-xs text-gc-muted animate-pulse shrink-0">
+            <p className="text-xs text-gc-red font-medium animate-pulse shrink-0">
               {message}
             </p>
           )}

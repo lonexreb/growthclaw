@@ -34,14 +34,14 @@ export function OutreachDraft({
         />
         <span>View Outreach Draft</span>
         {status === "approved" && (
-          <Badge className="ml-auto bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
+          <Badge className="ml-auto bg-emerald-50 text-emerald-700 border-emerald-200">
             Approved
           </Badge>
         )}
         {status === "skipped" && (
           <Badge
             variant="secondary"
-            className="ml-auto bg-gc-muted/20 text-gc-muted"
+            className="ml-auto bg-gray-100 text-gray-500"
           >
             Skipped
           </Badge>
@@ -49,7 +49,7 @@ export function OutreachDraft({
       </CollapsibleTrigger>
       <CollapsibleContent className="mt-3">
         <div
-          className={`border-l-2 border-gc-accent pl-4 py-2 text-sm leading-relaxed whitespace-pre-line ${
+          className={`border-l-2 border-gc-red pl-4 py-2 text-sm leading-relaxed whitespace-pre-line ${
             status === "skipped" ? "opacity-50" : "text-gc-text/90"
           }`}
         >
@@ -60,7 +60,7 @@ export function OutreachDraft({
             <Button
               size="sm"
               onClick={onApprove}
-              className="bg-emerald-600 hover:bg-emerald-500 text-white"
+              className="bg-gc-green hover:bg-emerald-700 text-white"
             >
               <Check className="h-4 w-4 mr-1" />
               Approve

@@ -1,10 +1,10 @@
 "use client";
 
 function getScoreColor(score: number): string {
-  if (score <= 3) return "#ff3864";
-  if (score <= 6) return "#ff6b35";
-  if (score <= 8) return "#36c5f0";
-  return "#6b5bff";
+  if (score <= 3) return "#dc2626";  // crab red — severe
+  if (score <= 6) return "#d97706";  // amber — moderate
+  if (score <= 8) return "#059669";  // green — decent
+  return "#7c3aed";                   // purple — strong
 }
 
 export function ScoreGauge({ score }: { score: number }) {
@@ -37,7 +37,7 @@ export function ScoreGauge({ score }: { score: number }) {
         <path
           d={`M ${bgStartX} ${bgStartY} A ${radius} ${radius} 0 1 1 ${bgEndX} ${bgEndY}`}
           fill="none"
-          stroke="#1a1a3e"
+          stroke="#f3f4f6"
           strokeWidth="8"
           strokeLinecap="round"
         />
@@ -66,7 +66,7 @@ export function ScoreGauge({ score }: { score: number }) {
           x={cx}
           y={cy + 12}
           textAnchor="middle"
-          fill="#8888aa"
+          fill="#9ca3af"
           fontSize="10"
         >
           /10

@@ -25,8 +25,8 @@ function formatTime(iso: string): string {
 }
 
 const typeConfig = {
-  scout: { icon: Search, color: "bg-gc-accent" },
-  score: { icon: BarChart3, color: "bg-gc-red" },
+  scout: { icon: Search, color: "bg-gc-red" },
+  score: { icon: BarChart3, color: "bg-gc-amber" },
   draft: { icon: FileText, color: "bg-gc-purple" },
 };
 
@@ -37,7 +37,6 @@ export function ActivityLog({
   leads: Lead[];
   pipelineStage: PipelineStage;
 }) {
-  // Build log entries from lead timestamps
   const entries: LogEntry[] = [];
   for (const lead of leads) {
     if (lead.found_at) {
@@ -66,7 +65,6 @@ export function ActivityLog({
     }
   }
 
-  // Sort most recent first
   entries.sort(
     (a, b) => new Date(b.time).getTime() - new Date(a.time).getTime()
   );
@@ -77,7 +75,7 @@ export function ActivityLog({
     pipelineStage !== "error";
 
   return (
-    <Card className="bg-gc-bg-secondary/30 border-gc-muted/10">
+    <Card className="bg-white border-gray-200/80">
       <CardHeader className="pb-3">
         <CardTitle className="text-sm font-medium text-gc-muted flex items-center gap-2">
           <Clock className="h-4 w-4" />
@@ -88,10 +86,10 @@ export function ActivityLog({
         <div className="space-y-3">
           {/* Current stage indicator */}
           {isRunning && (
-            <div className="flex items-start gap-3 pb-3 border-b border-gc-muted/10">
-              <div className="mt-0.5 w-2 h-2 rounded-full bg-gc-accent animate-pulse shrink-0" />
+            <div className="flex items-start gap-3 pb-3 border-b border-gray-100">
+              <div className="mt-0.5 w-2 h-2 rounded-full bg-gc-red animate-pulse shrink-0" />
               <div>
-                <p className="text-sm text-gc-accent font-medium">
+                <p className="text-sm text-gc-red font-medium">
                   {pipelineStage === "scouting" && "Scouting founders..."}
                   {pipelineStage === "scoring" && "Scoring websites..."}
                   {pipelineStage === "drafting" && "Drafting outreach..."}
@@ -101,9 +99,8 @@ export function ActivityLog({
             </div>
           )}
 
-          {/* Log entries */}
           {entries.length === 0 && !isRunning && (
-            <p className="text-sm text-gc-muted/60 text-center py-8">
+            <p className="text-sm text-gray-400 text-center py-8">
               No activity yet. Run the pipeline to start.
             </p>
           )}
@@ -118,7 +115,7 @@ export function ActivityLog({
                   <p className="text-sm text-gc-text/80 leading-snug">
                     {entry.message}
                   </p>
-                  <p className="text-xs text-gc-muted/60 mt-0.5">
+                  <p className="text-xs text-gray-400 mt-0.5">
                     {formatTime(entry.time)}
                   </p>
                 </div>

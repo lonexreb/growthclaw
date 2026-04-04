@@ -16,10 +16,10 @@ const dimensions = [
 ] as const;
 
 function getBarColor(score: number): string {
-  if (score <= 3) return "bg-[#ff3864]";
-  if (score <= 6) return "bg-[#ff6b35]";
-  if (score <= 8) return "bg-[#36c5f0]";
-  return "bg-[#6b5bff]";
+  if (score <= 3) return "bg-red-500";
+  if (score <= 6) return "bg-amber-500";
+  if (score <= 8) return "bg-emerald-500";
+  return "bg-violet-500";
 }
 
 export function ScoreBreakdown({
@@ -43,7 +43,7 @@ export function ScoreBreakdown({
                 </p>
               </TooltipContent>
             </Tooltip>
-            <div className="flex-1 h-1.5 bg-gc-bg-secondary rounded-full overflow-hidden">
+            <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
               <div
                 className={`h-full rounded-full transition-all ${getBarColor(score)}`}
                 style={{ width: `${score * 10}%` }}

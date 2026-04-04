@@ -44,7 +44,6 @@ export default function Dashboard() {
     }
   }, []);
 
-  // Initial fetch
   useEffect(() => {
     fetchLeads();
     fetchPipeline();
@@ -55,7 +54,6 @@ export default function Dashboard() {
     pipeline.stage !== "done" &&
     pipeline.stage !== "error";
 
-  // Poll while running
   useEffect(() => {
     if (isRunning) {
       intervalRef.current = setInterval(async () => {
@@ -68,7 +66,6 @@ export default function Dashboard() {
             status.stage === "idle")
         ) {
           if (intervalRef.current) clearInterval(intervalRef.current);
-          // One final fetch to get all leads
           await fetchLeads();
         }
       }, 2000);
@@ -137,7 +134,6 @@ export default function Dashboard() {
     }
   };
 
-  // Sort: lowest score first (highest priority), unscored at bottom
   const sortedLeads = [...leads].sort((a, b) => {
     const scoreA = a.marketing_score ?? 99;
     const scoreB = b.marketing_score ?? 99;
@@ -151,14 +147,14 @@ export default function Dashboard() {
 
       {/* Error bar */}
       {(error || pipeline.stage === "error") && (
-        <div className="bg-gc-red/10 border-b border-gc-red/20 px-6 py-2">
+        <div className="bg-red-50 border-b border-red-200 px-6 py-2">
           <div className="max-w-[1600px] mx-auto flex items-center justify-between">
-            <p className="text-sm text-gc-red">
+            <p className="text-sm text-red-700">
               {error || pipeline.message}
             </p>
             <button
               onClick={() => setError(null)}
-              className="text-gc-red/60 hover:text-gc-red text-sm"
+              className="text-red-400 hover:text-red-600 text-sm"
             >
               Dismiss
             </button>
@@ -174,8 +170,8 @@ export default function Dashboard() {
           <div className="space-y-4">
             {sortedLeads.length === 0 ? (
               <div className="text-center py-20">
-                <p className="text-gc-muted text-lg">No leads yet</p>
-                <p className="text-gc-muted/60 text-sm mt-1">
+                <p className="text-gray-500 text-lg">No leads yet</p>
+                <p className="text-gray-400 text-sm mt-1">
                   Click &quot;Run Pipeline&quot; to scout founders
                 </p>
               </div>
@@ -201,15 +197,15 @@ export default function Dashboard() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gc-muted/10 mt-12 py-4 px-6">
-        <div className="max-w-[1600px] mx-auto flex items-center justify-between text-xs text-gc-muted/50">
+      <footer className="border-t border-gray-100 mt-12 py-4 px-6">
+        <div className="max-w-[1600px] mx-auto flex items-center justify-between text-xs text-gray-400">
           <span>
             Built for{" "}
             <a
               href="https://crowdstake.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gc-accent/60 hover:text-gc-accent"
+              className="text-gc-red/60 hover:text-gc-red"
             >
               Crowdstake AI
             </a>{" "}

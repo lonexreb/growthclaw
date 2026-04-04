@@ -9,18 +9,18 @@ import { ExternalLink } from "lucide-react";
 import type { Lead } from "@/lib/types";
 
 const sourceConfig: Record<string, { label: string; color: string }> = {
-  reddit: { label: "Reddit", color: "bg-orange-500/20 text-orange-400 border-orange-500/30" },
-  producthunt: { label: "Product Hunt", color: "bg-red-500/20 text-red-400 border-red-500/30" },
-  indiehackers: { label: "Indie Hackers", color: "bg-blue-500/20 text-blue-400 border-blue-500/30" },
+  reddit: { label: "Reddit", color: "bg-orange-50 text-orange-700 border-orange-200" },
+  producthunt: { label: "Product Hunt", color: "bg-red-50 text-red-700 border-red-200" },
+  indiehackers: { label: "Indie Hackers", color: "bg-blue-50 text-blue-700 border-blue-200" },
 };
 
 const statusConfig: Record<string, { label: string; color: string }> = {
-  scouted: { label: "Scouted", color: "bg-gc-cyan/20 text-gc-cyan border-gc-cyan/30" },
-  qualified: { label: "Qualified", color: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" },
-  "qualified-low": { label: "Low Priority", color: "bg-gc-accent/20 text-gc-accent border-gc-accent/30" },
-  "outreach-drafted": { label: "Draft Ready", color: "bg-gc-purple/20 text-gc-purple border-gc-purple/30" },
-  skipped: { label: "Skipped", color: "bg-gc-muted/20 text-gc-muted border-gc-muted/30" },
-  error: { label: "Error", color: "bg-gc-red/20 text-gc-red border-gc-red/30" },
+  scouted: { label: "Scouted", color: "bg-cyan-50 text-cyan-700 border-cyan-200" },
+  qualified: { label: "Qualified", color: "bg-emerald-50 text-emerald-700 border-emerald-200" },
+  "qualified-low": { label: "Low Priority", color: "bg-amber-50 text-amber-700 border-amber-200" },
+  "outreach-drafted": { label: "Draft Ready", color: "bg-violet-50 text-violet-700 border-violet-200" },
+  skipped: { label: "Skipped", color: "bg-gray-100 text-gray-500 border-gray-200" },
+  error: { label: "Error", color: "bg-red-50 text-red-700 border-red-200" },
 };
 
 interface LeadCardProps {
@@ -30,14 +30,14 @@ interface LeadCardProps {
 }
 
 export function LeadCard({ lead, onApprove, onSkip }: LeadCardProps) {
-  const source = sourceConfig[lead.source] || { label: lead.source, color: "bg-gc-muted/20 text-gc-muted" };
-  const status = statusConfig[lead.status] || { label: lead.status, color: "bg-gc-muted/20 text-gc-muted" };
+  const source = sourceConfig[lead.source] || { label: lead.source, color: "bg-gray-100 text-gray-600" };
+  const status = statusConfig[lead.status] || { label: lead.status, color: "bg-gray-100 text-gray-600" };
   const hasScore = lead.marketing_score != null;
   const hasBreakdown = lead.score_breakdown != null;
   const hasGaps = lead.top_gaps && lead.top_gaps.length > 0;
 
   return (
-    <Card className="bg-gc-bg-secondary/30 border-gc-muted/10 hover:border-gc-muted/20 transition-colors">
+    <Card className="bg-white border-gray-200/80 hover:border-gc-red/30 hover:shadow-md hover:shadow-red-50 transition-all">
       <CardContent className="p-5">
         {/* Header row */}
         <div className="flex items-start justify-between gap-4">
@@ -50,7 +50,7 @@ export function LeadCard({ lead, onApprove, onSkip }: LeadCardProps) {
                 {status.label}
               </Badge>
               {hasScore && lead.marketing_score! <= 5 && (
-                <Badge className="bg-gc-red/20 text-gc-red border-gc-red/30">
+                <Badge className="bg-red-600 text-white border-red-600">
                   HIGH PRIORITY
                 </Badge>
               )}
@@ -60,14 +60,14 @@ export function LeadCard({ lead, onApprove, onSkip }: LeadCardProps) {
                 href={lead.website_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-gc-accent transition-colors"
+                className="hover:text-gc-red transition-colors"
               >
                 {lead.product_name}
               </a>
-              <ExternalLink className="h-3.5 w-3.5 text-gc-muted" />
+              <ExternalLink className="h-3.5 w-3.5 text-gray-400" />
             </h3>
             <p className="text-sm text-gc-muted">by {lead.founder_name}</p>
-            <p className="text-sm text-gc-muted/80 mt-1 line-clamp-2">
+            <p className="text-sm text-gray-500 mt-1 line-clamp-2">
               {lead.description}
             </p>
           </div>
@@ -93,7 +93,7 @@ export function LeadCard({ lead, onApprove, onSkip }: LeadCardProps) {
                   key={`${lead.id}-gap-${i}`}
                   className="text-sm text-gc-text/80 flex items-start gap-2"
                 >
-                  <span className="text-gc-accent mt-1 shrink-0">&#8226;</span>
+                  <span className="text-gc-red mt-1 shrink-0">&#8226;</span>
                   <span>{gap}</span>
                 </li>
               ))}
@@ -103,14 +103,14 @@ export function LeadCard({ lead, onApprove, onSkip }: LeadCardProps) {
 
         {/* Scouted-only state */}
         {!hasScore && (
-          <div className="mt-4 py-3 text-center text-sm text-gc-muted/60">
+          <div className="mt-4 py-3 text-center text-sm text-gray-400">
             Awaiting scoring...
           </div>
         )}
 
         {/* Outreach — only after Stage 3 */}
         {lead.outreach_draft && (
-          <div className="mt-4 pt-4 border-t border-gc-muted/10">
+          <div className="mt-4 pt-4 border-t border-gray-100">
             <OutreachDraft
               draft={lead.outreach_draft}
               status={lead.outreach_status || "drafted"}
