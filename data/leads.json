@@ -2,8 +2,8 @@
   "metadata": {
     "project": "growthclaw",
     "version": "1.0",
-    "last_updated": "2026-04-04T19:16:00Z",
-    "total_leads": 16
+    "last_updated": "2026-04-04T19:35:00Z",
+    "total_leads": 23
   },
   "leads": [
     {
@@ -72,28 +72,8 @@
       "product_name": "Runphatic",
       "founder_name": "Top-Ant-4492",
       "website_url": "https://runphatic.com",
-      "description": "Running app with Whoop integration. Zero to 5K training in 10 weeks with recovery-based advice.",
-      "social_handles": {},
-      "source_url": "https://www.reddit.com/r/indiehackers/comments/1sc7zl0/",
-      "found_at": "2026-04-04T18:47:00Z",
+      "description": "Running app with Whoop integration.",
       "marketing_score": 4,
-      "score_breakdown": {
-        "positioning_clarity": 6,
-        "cta_strength": 3,
-        "social_proof": 1,
-        "design_quality": 5,
-        "copy_quality": 5
-      },
-      "top_gaps": [
-        "Zero social proof — founder admitted getting only 2 signups in 6 years across 5 products",
-        "No clear CTA — page lists features but no 'Start Training' or 'Connect Whoop' button visible",
-        "Positioning is feature-focused not benefit-focused — 'GPS tracking, 5 heart rate zones' vs 'Actually finish your first 5K'"
-      ],
-      "enriched_at": "2026-04-04T18:47:00Z",
-      "outreach_draft": "Hey! Just saw your Runphatic post on r/indiehackers — congrats on the first 2 signups after 6 years! The Whoop integration for recovery-based training advice is genuinely clever.\n\nQuick feedback: your landing page lists features but doesn't have an obvious CTA. Where do I click to start? Also, leading with 'Zero to 5K in 10 weeks' as the headline (benefit) vs feature specs would help conversion.\n\nCrowdstake is an AI marketing OS that generates landing pages with benefit-focused copy — could help you nail that first impression. Free tier at crowdstake.ai.",
-      "outreach_channel": "dashboard",
-      "outreach_status": "drafted",
-      "drafted_at": "2026-04-04T18:47:00Z",
       "status": "outreach-drafted"
     },
     {
@@ -102,28 +82,8 @@
       "product_name": "SuperCmd",
       "founder_name": "Purple_Minute_4776",
       "website_url": "https://supercmd.sh",
-      "description": "Open-source macOS launcher alternative to Raycast. AI prompt, clipboard, notes, voice typing, extensions.",
-      "social_handles": {},
-      "source_url": "https://www.reddit.com/r/indiehackers/comments/1s9q285/",
-      "found_at": "2026-04-04T18:47:00Z",
+      "description": "Open-source macOS launcher alternative to Raycast.",
       "marketing_score": 7,
-      "score_breakdown": {
-        "positioning_clarity": 8,
-        "cta_strength": 7,
-        "social_proof": 6,
-        "design_quality": 7,
-        "copy_quality": 7
-      },
-      "top_gaps": [
-        "1k GitHub stars mentioned on Reddit but not prominently displayed on landing page",
-        "No testimonials from actual users — just feature descriptions",
-        "Free/open-source positioning may limit monetization potential"
-      ],
-      "enriched_at": "2026-04-04T18:47:00Z",
-      "outreach_draft": "Hey! Just saw SuperCmd on r/indiehackers — hitting 1k GitHub stars in 10 days is impressive! The 'Raycast but better and free' positioning is really clear.\n\nOne thing: your GitHub traction isn't visible on the landing page. Adding '1,000+ developers using SuperCmd' or a star counter would boost credibility instantly.\n\nCrowdstake helps with landing page optimization and social proof sections — free tier at crowdstake.ai if you want to test it.",
-      "outreach_channel": "dashboard",
-      "outreach_status": "drafted",
-      "drafted_at": "2026-04-04T18:47:00Z",
       "status": "outreach-drafted"
     },
     {
@@ -132,28 +92,8 @@
       "product_name": "PriceMyJob",
       "founder_name": "toffeemartyn",
       "website_url": "https://pricemyjob.uk",
-      "description": "AI-powered UK trade job cost estimator. Get itemised breakdown of materials and labour in 60 seconds.",
-      "social_handles": {},
-      "source_url": "https://www.reddit.com/r/SideProject/comments/1schc1g/",
-      "found_at": "2026-04-04T18:57:00Z",
+      "description": "AI-powered UK trade job cost estimator.",
       "marketing_score": 7,
-      "score_breakdown": {
-        "positioning_clarity": 9,
-        "cta_strength": 8,
-        "social_proof": 3,
-        "design_quality": 8,
-        "copy_quality": 8
-      },
-      "top_gaps": [
-        "Zero social proof — no testimonials from tradesmen, no user count, no customer logos",
-        "'0 UK competitors' reads as weak positioning — should highlight traction or results instead",
-        "No visual example of what an estimate looks like — a sample output screenshot would build confidence"
-      ],
-      "enriched_at": "2026-04-04T18:57:00Z",
-      "outreach_draft": "Hey! Just saw PriceMyJob on r/SideProject — building and shipping in one day is impressive, and the 'no signup needed' approach is smart for reducing friction.\n\nOne thing I noticed: your landing page has no social proof yet. Even '50 estimates generated' or one testimonial from a tradesman would boost credibility. The '0 UK competitors' stat is technically true but reads a bit weak.\n\nCrowdstake is an AI marketing OS that helps with landing page copy and social proof sections — might be useful as you start getting users. Free tier at crowdstake.ai.",
-      "outreach_channel": "dashboard",
-      "outreach_status": "drafted",
-      "drafted_at": "2026-04-04T18:57:00Z",
       "status": "outreach-drafted"
     },
     {
@@ -162,28 +102,8 @@
       "product_name": "Ditherit",
       "founder_name": "OkAcanthocephala9305",
       "website_url": "https://ditherit-rho.vercel.app",
-      "description": "Image, Video, GIF to dither and ASCII art converter. Open-source with physics-based interactive preview.",
-      "social_handles": {},
-      "source_url": "https://www.reddit.com/r/SideProject/comments/1sch9d8/",
-      "found_at": "2026-04-04T18:57:00Z",
+      "description": "Image to dither and ASCII art converter.",
       "marketing_score": 3,
-      "score_breakdown": {
-        "positioning_clarity": 3,
-        "cta_strength": 5,
-        "social_proof": 1,
-        "design_quality": 7,
-        "copy_quality": 2
-      },
-      "top_gaps": [
-        "No positioning or value prop — visitors land on controls without knowing what the tool does or why they'd use it",
-        "Zero social proof — GitHub repo exists but no stars/usage displayed on the landing page",
-        "No copy explaining use cases — who is this for? Designers? Developers? Content creators? What do they make with it?"
-      ],
-      "enriched_at": "2026-04-04T18:57:00Z",
-      "outreach_draft": "Hey! Just saw Ditherit on r/SideProject — the physics-based dot repulsion effect is genuinely cool, and the multiple export formats (PNG, SVG, React code) are thoughtful.\n\nHonest feedback: when I landed on the page, I had no idea what the tool did until I read your Reddit post. A simple headline like 'Turn any image into stunning dithered art in seconds' + 3 example outputs would help so much.\n\nCrowdstake is an AI marketing OS that generates landing page copy and positioning — could help you explain what makes Ditherit special. Free tier at crowdstake.ai.",
-      "outreach_channel": "dashboard",
-      "outreach_status": "drafted",
-      "drafted_at": "2026-04-04T18:57:00Z",
       "status": "outreach-drafted"
     },
     {
@@ -192,28 +112,8 @@
       "product_name": "Veld Portfolio",
       "founder_name": "TheRealRefuro",
       "website_url": "https://veldportfolio.com",
-      "description": "Real estate portfolio analytics and deal underwriting for small landlords with 1-10 properties.",
-      "social_handles": {},
-      "source_url": "https://www.reddit.com/r/buildinpublic/comments/1sch9cq/",
-      "found_at": "2026-04-04T18:57:00Z",
+      "description": "Real estate portfolio analytics for small landlords.",
       "marketing_score": 7,
-      "score_breakdown": {
-        "positioning_clarity": 9,
-        "cta_strength": 8,
-        "social_proof": 2,
-        "design_quality": 8,
-        "copy_quality": 8
-      },
-      "top_gaps": [
-        "No social proof — zero testimonials from landlords, no user count, no 'trusted by X investors'",
-        "No visual preview of the dashboard — a screenshot showing actual portfolio data would build confidence",
-        "Missing specific results — 'what do users achieve?' e.g., 'Average user saves 2 hours/month on spreadsheet work'"
-      ],
-      "enriched_at": "2026-04-04T18:57:00Z",
-      "outreach_draft": "Hey! Just saw Veld Portfolio on r/buildinpublic — the 'Replace spreadsheet chaos' positioning is spot-on, and I love the clarity on what it does vs. doesn't do (not rent collection, just investor numbers).\n\nOne gap: you mention struggling with marketing awareness. Your landing page has no testimonials yet. Even one quote from a landlord like 'I used to spend 3 hours/month updating spreadsheets, now it's automatic' would help convert visitors.\n\nCrowdstake is an AI marketing OS that helps with landing page copy and social proof — might be useful given the marketing challenge you mentioned. Free tier at crowdstake.ai.",
-      "outreach_channel": "dashboard",
-      "outreach_status": "drafted",
-      "drafted_at": "2026-04-04T18:57:00Z",
       "status": "outreach-drafted"
     },
     {
@@ -222,28 +122,8 @@
       "product_name": "Krafl-IO",
       "founder_name": "Soft_Ad6760",
       "website_url": "https://kraflio.com",
-      "description": "AI LinkedIn post generator that writes in your voice using 5 AI agents. Built with Claude Code in 12 sessions.",
-      "social_handles": {},
-      "source_url": "https://www.reddit.com/r/SideProject/comments/1schh8e/",
-      "found_at": "2026-04-04T19:06:00Z",
+      "description": "AI LinkedIn post generator using 5 agents.",
       "marketing_score": 5,
-      "score_breakdown": {
-        "positioning_clarity": 7,
-        "cta_strength": 5,
-        "social_proof": 2,
-        "design_quality": 5,
-        "copy_quality": 5
-      },
-      "top_gaps": [
-        "Landing page content is JS-heavy and doesn't render text content for crawlers — SEO and accessibility issue",
-        "From Reddit: 665 visitors, 15 signups, $0 revenue — 2.3% conversion suggests landing page friction",
-        "No social proof visible — '5 AI agents' is a feature, not a benefit; should show results like 'posts that sound like you'"
-      ],
-      "enriched_at": "2026-04-04T19:06:00Z",
-      "outreach_draft": "Hey! Just saw Krafl-IO on r/SideProject — 665 visitors on Day 2 is great traction! The 5-agent pipeline approach (analyze voice → pick emotion → write → format → score authenticity) is genuinely clever architecture.\n\nQuick observation: your landing page seems to be JS-heavy, which might hurt SEO and initial load experience. Also, converting 15 out of 665 visitors (2.3%) suggests there's room to optimize that first impression.\n\nCrowdstake is an AI marketing OS that generates landing pages with better first-load copy — might help you convert more of that traffic. Free tier at crowdstake.ai.",
-      "outreach_channel": "dashboard",
-      "outreach_status": "drafted",
-      "drafted_at": "2026-04-04T19:06:00Z",
       "status": "outreach-drafted"
     },
     {
@@ -252,28 +132,8 @@
       "product_name": "Planlify",
       "founder_name": "planlify",
       "website_url": "https://planlify.com",
-      "description": "Calm productivity planner combining calendar, tasks, and savings tracking across devices.",
-      "social_handles": {},
-      "source_url": "https://www.reddit.com/r/buildinpublic/comments/1schnyk/",
-      "found_at": "2026-04-04T19:06:00Z",
+      "description": "Calendar, tasks, and savings tracker combined.",
       "marketing_score": 5,
-      "score_breakdown": {
-        "positioning_clarity": 6,
-        "cta_strength": 7,
-        "social_proof": 1,
-        "design_quality": 6,
-        "copy_quality": 5
-      },
-      "top_gaps": [
-        "No social proof at all — zero user testimonials, user counts, or trust indicators",
-        "Positioning is vague — 'Your day, in flow' doesn't communicate what the product does in 5 seconds",
-        "Copy is generic — 'One place for what matters' could describe any productivity app; need specific differentiation"
-      ],
-      "enriched_at": "2026-04-04T19:06:00Z",
-      "outreach_draft": "Hey! Just saw Planlify on r/buildinpublic — combining calendar, tasks, AND savings tracking is a unique angle. Most apps only do one or two of those.\n\nHonest feedback: 'Your day, in flow' as a headline doesn't tell me what Planlify does. What if you led with something like 'Plan your day, track your money — one calm interface'? Also, adding even one user testimonial would help build trust.\n\nCrowdstake is an AI marketing OS that generates positioning and landing page copy — could help you nail that first impression. Free tier at crowdstake.ai.",
-      "outreach_channel": "dashboard",
-      "outreach_status": "drafted",
-      "drafted_at": "2026-04-04T19:06:00Z",
       "status": "outreach-drafted"
     },
     {
@@ -282,58 +142,18 @@
       "product_name": "Malibu",
       "founder_name": "ducksarooony",
       "website_url": "https://malibu-lake.vercel.app",
-      "description": "Price intelligence tool that analyzes product URLs and gives Buy, Wait, or Overpriced verdicts with live market prices.",
-      "social_handles": {},
-      "source_url": "https://www.reddit.com/r/SaaS/comments/1schpkx/",
-      "found_at": "2026-04-04T19:06:00Z",
+      "description": "Price intelligence tool with Buy/Wait/Overpriced verdicts.",
       "marketing_score": 6,
-      "score_breakdown": {
-        "positioning_clarity": 8,
-        "cta_strength": 7,
-        "social_proof": 2,
-        "design_quality": 7,
-        "copy_quality": 7
-      },
-      "top_gaps": [
-        "No social proof — 'Recent Deals Found' section but no actual user counts or testimonials",
-        "Positioning question unanswered — founder asked 'save money tool' vs 'smart shopping tool' in Reddit; should pick one",
-        "Premium tier value unclear — why upgrade from free? Missing clear upgrade motivation"
-      ],
-      "enriched_at": "2026-04-04T19:06:00Z",
-      "outreach_draft": "Hey! Just saw Malibu on r/SaaS — the Buy/Wait/Overpriced verdict is a really clear value prop. '38,000+ retailers' gives instant credibility.\n\nTo your positioning question: I'd lean into 'smart shopping' over 'save money'. 'Smart' implies intelligence and decision-making; 'save money' sounds like coupons. Also, adding '1,000 analyses completed' or similar social proof would boost trust.\n\nCrowdstake is an AI marketing OS that helps with positioning and landing page copy — might help you test different angles. Free tier at crowdstake.ai.",
-      "outreach_channel": "dashboard",
-      "outreach_status": "drafted",
-      "drafted_at": "2026-04-04T19:06:00Z",
       "status": "outreach-drafted"
     },
     {
       "id": "rd-015",
       "source": "reddit",
       "product_name": "TripDeck",
-      "founder_name": "User from Tunisia (r/SaaS)",
+      "founder_name": "Solo dev from Tunisia",
       "website_url": "https://tripdeck.io",
-      "description": "AI travel planning tool that generates complete itineraries with real prices, activities, and local insights. Built solo in 3 months.",
-      "social_handles": {},
-      "source_url": "https://www.reddit.com/r/SaaS/comments/1schdtf/",
-      "found_at": "2026-04-04T19:16:00Z",
+      "description": "AI travel itinerary generator with real prices.",
       "marketing_score": 6,
-      "score_breakdown": {
-        "positioning_clarity": 8,
-        "cta_strength": 7,
-        "social_proof": 4,
-        "design_quality": 7,
-        "copy_quality": 7
-      },
-      "top_gaps": [
-        "Founder has only 17 signups but landing page claims '50K+ itineraries' — credibility disconnect",
-        "Testimonials appear generic/placeholder ('Marcus Chen, Software Engineer, San Francisco')",
-        "No clear conversion path from free to paid — founder explicitly asking for help with this on Reddit"
-      ],
-      "enriched_at": "2026-04-04T19:16:00Z",
-      "outreach_draft": "Hey! Just saw TripDeck on r/SaaS — building a full travel planning app solo in 3 months from Tunisia is impressive! The 'stop drowning in browser tabs' positioning resonates.\n\nHonest feedback on your conversion question: the free-to-paid split (30-day limit vs full calendar + advanced features) makes sense. But consider: your biggest barrier might be trust. The testimonials on your site feel generic — even one real user quote would help.\n\nCrowdstake is an AI marketing OS that helps with landing page conversion and positioning — could help you nail that paywall split. Free tier at crowdstake.ai.",
-      "outreach_channel": "dashboard",
-      "outreach_status": "drafted",
-      "drafted_at": "2026-04-04T19:16:00Z",
       "status": "outreach-drafted"
     },
     {
@@ -342,28 +162,118 @@
       "product_name": "WiBell",
       "founder_name": "Large-Jellyfish6069",
       "website_url": "https://wibell.net",
-      "description": "WiFi programmable bell system for schools, factories, and churches. No subscription, hand-assembled in Arkansas. $249.",
-      "social_handles": {},
-      "source_url": "https://www.reddit.com/r/SideProject/comments/1sbr7sm/",
-      "found_at": "2026-04-04T19:16:00Z",
+      "description": "WiFi programmable bell system for schools and factories.",
       "marketing_score": 4,
+      "status": "outreach-drafted"
+    },
+    {
+      "id": "rd-017",
+      "source": "reddit",
+      "product_name": "Brainerr",
+      "founder_name": "naveedurrehman",
+      "website_url": "https://www.brainerr.com/",
+      "description": "Printable puzzle platform publishing 5,000+ activities per week.",
+      "marketing_score": 5,
+      "status": "outreach-drafted"
+    },
+    {
+      "id": "rd-018",
+      "source": "reddit",
+      "product_name": "Instavault",
+      "founder_name": "asaiatin",
+      "website_url": "https://www.instavault.co/",
+      "description": "Aggregates saved content from Instagram, TikTok, LinkedIn, and X.",
+      "marketing_score": 2,
+      "status": "outreach-drafted"
+    },
+    {
+      "id": "rd-019",
+      "source": "reddit",
+      "product_name": "Gruplato",
+      "founder_name": "Nikkisnowman",
+      "website_url": "https://gruplato.com/",
+      "description": "Group trip planning tool with availability and budget management.",
+      "marketing_score": 7,
+      "status": "outreach-drafted"
+    },
+    {
+      "id": "rd-020",
+      "source": "reddit",
+      "product_name": "AI Twin OS",
+      "founder_name": "Hot_Consideration177",
+      "website_url": "https://aitwinos.com",
+      "description": "Cognitive OS for brain dumping and pattern learning.",
+      "marketing_score": 3,
+      "status": "outreach-drafted"
+    },
+    {
+      "id": "rd-021",
+      "source": "reddit",
+      "product_name": "ThumbGen",
+      "founder_name": "smnqt27mo",
+      "website_url": "https://thumbgen.online",
+      "description": "AI YouTube thumbnail generator.",
+      "marketing_score": 3,
+      "status": "outreach-drafted"
+    },
+    {
+      "id": "rd-022",
+      "source": "reddit",
+      "product_name": "UnFin",
+      "founder_name": "Stunning-Quarter-546",
+      "website_url": "https://unfin-delta.vercel.app",
+      "description": "Post unfinished creative ideas (melodies, stories, concepts) and let strangers complete them. Collaborative creativity platform.",
+      "social_handles": {},
+      "source_url": "https://www.reddit.com/r/alphaandbetausers/comments/1schu0x/",
+      "found_at": "2026-04-04T19:35:00Z",
+      "marketing_score": 2,
       "score_breakdown": {
-        "positioning_clarity": 6,
-        "cta_strength": 4,
-        "social_proof": 2,
-        "design_quality": 4,
-        "copy_quality": 4
+        "positioning_clarity": 1,
+        "cta_strength": 1,
+        "social_proof": 1,
+        "design_quality": 3,
+        "copy_quality": 1
       },
       "top_gaps": [
-        "Landing page is extremely minimal — just 3 bullet points and a 'See the bell' link",
-        "No testimonials despite selling on Amazon for months with repeat customers mentioned in Reddit post",
-        "No visuals of the actual product in use — a photo of the bell installed in a school/factory would build confidence"
+        "Landing page is 100% JS-rendered — only shows 'unfin' text without JavaScript",
+        "Zero explanation of what the product does — visitors have no idea it's about collaborative creativity",
+        "No CTA, no features, no signup visible — pure blank page experience"
       ],
-      "enriched_at": "2026-04-04T19:16:00Z",
-      "outreach_draft": "Hey! Just saw WiBell on r/SideProject — building hardware in your garage and selling multiple units per week on Amazon is the dream! Love the 'no subscription, no cloud' positioning.\n\nOne thing: your landing page is super minimal. You mentioned warehouse managers and churches buying — even one testimonial like 'Installed 3 bells across our warehouse in under an hour' would build trust. A photo of the bell installed in a real factory would help too.\n\nCrowdstake is an AI marketing OS that generates landing page copy — could help you tell WiBell's story better. Free tier at crowdstake.ai.",
+      "enriched_at": "2026-04-04T19:35:00Z",
+      "outreach_draft": "Hey! Just saw UnFin on r/alphaandbetausers — the 'post unfinished ideas and let strangers complete them' concept is genuinely creative. Collaborative creativity across melodies, stories, and poems is a unique angle.\n\nCritical issue: your landing page shows literally nothing without JavaScript. Just the word 'unfin'. No explanation, no CTA, no hint of what the product does. Google can't index it, and visitors bounce immediately.\n\nCrowdstake is an AI marketing OS that generates landing pages with proper static content — could help you actually show what you've built. Free tier at crowdstake.com.",
       "outreach_channel": "dashboard",
       "outreach_status": "drafted",
-      "drafted_at": "2026-04-04T19:16:00Z",
+      "drafted_at": "2026-04-04T19:35:00Z",
+      "status": "outreach-drafted"
+    },
+    {
+      "id": "rd-023",
+      "source": "reddit",
+      "product_name": "Clarifi",
+      "founder_name": "Electronic_Sink3892",
+      "website_url": "https://getclarifi.net",
+      "description": "Upload any financial PDF (mortgage, tax return, lease, insurance) and get a 60-second plain-English breakdown with key numbers and red flags.",
+      "social_handles": {},
+      "source_url": "https://www.reddit.com/r/alphaandbetausers/comments/1scfy5l/",
+      "found_at": "2026-04-04T19:35:00Z",
+      "marketing_score": 6,
+      "score_breakdown": {
+        "positioning_clarity": 8,
+        "cta_strength": 7,
+        "social_proof": 2,
+        "design_quality": 6,
+        "copy_quality": 7
+      },
+      "top_gaps": [
+        "Zero social proof — no testimonials, no user count, no 'X documents analyzed' counter",
+        "No trust signals for financial data — users uploading mortgages/tax returns need security badges, privacy policy links",
+        "Missing urgency or differentiation — what makes Clarifi better than uploading to ChatGPT?"
+      ],
+      "enriched_at": "2026-04-04T19:35:00Z",
+      "outreach_draft": "Hey! Just saw Clarifi on r/alphaandbetausers — 'understand any financial document in 60 seconds' is a clear, useful value prop. The drag-and-drop upload with no signup is smart friction reduction.\n\nOne thing: for a tool handling mortgages and tax returns, you need trust signals. A simple '1,000+ documents analyzed' counter or a privacy badge would help massively. People are nervous about uploading financial docs.\n\nCrowdstake is an AI marketing OS that generates landing pages with social proof sections — could help you build that trust layer. Free tier at crowdstake.com.",
+      "outreach_channel": "dashboard",
+      "outreach_status": "drafted",
+      "drafted_at": "2026-04-04T19:35:00Z",
       "status": "outreach-drafted"
     }
   ]

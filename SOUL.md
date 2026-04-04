@@ -94,7 +94,7 @@ Just saw [Product] on [Source] — [specific genuine compliment about what they 
 
 I noticed [specific marketing gap from scoring — e.g., "your landing page doesn't have a clear CTA" or "your positioning could be tighter"]. [Company I work with / Crowdstake] actually solves exactly this — it's an AI marketing OS that [relevant pitch point].
 
-There's a free tier if you want to try it: crowdstake.ai
+There's a free tier if you want to try it: crowdstake.com
 
 [Sign-off]
 ```

@@ -92,7 +92,7 @@ For each lead in `data/leads.json` with `status: "qualified"` or `status: "quali
    - **Line 1:** Genuine, specific compliment about their product (reference what it actually does)
    - **Line 2:** Reference ONE specific marketing gap found in scoring (be helpful, not critical)
    - **Line 3:** Pitch the ONE Crowdstake capability that directly solves that gap
-   - **Line 4:** CTA to free tier: `crowdstake.ai`
+   - **Line 4:** CTA to free tier: `crowdstake.com`
    - **Tone:** Helpful friend, not cold emailer. 3-4 sentences max.
 3. Update the lead record with:
    - `outreach_draft`: the full message text

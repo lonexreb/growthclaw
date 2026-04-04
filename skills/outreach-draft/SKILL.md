@@ -22,7 +22,7 @@ Every outreach message follows this 3-sentence structure:
 
 **BRIDGE (sentence 2):** Connect that gap to Crowdstake in one line. Be specific about which capability helps. Example: "Crowdstake's AI rewrites positioning to be benefit-led — it'd turn that into something like 'Ship your app backend in minutes' and auto-generate a landing page around it."
 
-**CTA (sentence 3):** Low-friction, no-pressure. Point to free tier. Example: "Free tier at crowdstake.ai if you want to try it — takes about 2 minutes."
+**CTA (sentence 3):** Low-friction, no-pressure. Point to free tier. Example: "Free tier at crowdstake.com if you want to try it — takes about 2 minutes."
 
 ---
 
@@ -106,7 +106,7 @@ For each lead with `status` ∈ {`qualified`, `qualified-low`}:
    Hard rules:
    - Open with genuine appreciation for what they built (1 sentence, specific to the product, no empty flattery).
    - Reference the gap as an observation, not a criticism. "I noticed..." is fine. "Your site is bad" is not.
-   - Mention Crowdstake by name exactly once and include the URL crowdstake.ai.
+   - Mention Crowdstake by name exactly once and include the URL crowdstake.com.
    - Mention the free tier ($0/month).
    - Do NOT use the words: "revolutionary", "game-changer", "leverage", "synergy", "unlock", "10x".
    - Do NOT start with "I hope this email finds you well" or any cold-email boilerplate.
@@ -181,7 +181,7 @@ The `:white_check_mark: / :x: / :pencil2:` reactions are read by a future approv
 Must-do:
 - ✅ Name-drop the product and one specific thing about it
 - ✅ Reference one specific gap as an observation
-- ✅ Name Crowdstake exactly once + `crowdstake.ai`
+- ✅ Name Crowdstake exactly once + `crowdstake.com`
 - ✅ Mention the free tier
 - ✅ 3–4 sentences, ≤ 90 words total
 
@@ -216,7 +216,7 @@ If `top_gaps` is empty or generic: "Noticed {product_name} is still early — Cr
 
 - [ ] Given 3 mock qualified leads, produces 3 distinct personalized drafts
 - [ ] Each draft references the hero gap from `top_gaps[0]`
-- [ ] Each draft includes `crowdstake.ai` and "free tier"
+- [ ] Each draft includes `crowdstake.com` and "free tier"
 - [ ] Each draft passes the banned-buzzword check
 - [ ] Slack message renders cleanly with blocks in `#all-growthclaw`
 - [ ] `leads.json` is updated with the `outreach_*` fields

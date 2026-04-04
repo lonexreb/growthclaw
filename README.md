@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <strong>Autonomous founder-scouting outbound engine for <a href="https://crowdstake.ai">Crowdstake AI</a></strong><br/>
+  <strong>Autonomous founder-scouting outbound engine for <a href="https://crowdstake.com">Crowdstake AI</a></strong><br/>
   Built with <a href="https://docs.openclaw.ai">OpenClaw</a> at the Austin OpenClaw Hackathon (April 4, 2026)
 </p>
 

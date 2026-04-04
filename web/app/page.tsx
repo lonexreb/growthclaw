@@ -211,7 +211,7 @@ export default function Dashboard() {
           <span>
             Built for{" "}
             <a
-              href="https://crowdstake.ai"
+              href="https://crowdstake.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gc-red/60 hover:text-gc-red"
