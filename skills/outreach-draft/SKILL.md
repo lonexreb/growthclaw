@@ -17,10 +17,12 @@ Writes to: `data/leads.json` (outreach fields), `data/dashboard.md`, Slack `#all
 ## Input Contract
 
 This skill consumes leads in `data/leads.json` where `status` is one of:
-- `"qualified"` — score ≤ 7 (clear Crowdstake fit)
-- `"qualified-low"` — score 7–8 (softer pitch, lower priority)
+- `"qualified"` — `marketing_score` ≤ 6 (clear Crowdstake fit)
+- `"qualified-low"` — `marketing_score` 7–8 (softer pitch, lower priority)
 
-Leads with `status: "skipped"` (score 9–10) are ignored — those founders don't need Crowdstake.
+Leads with `status: "skipped"` (`marketing_score` 9–10) are ignored — those founders don't need Crowdstake.
+
+> **Field note:** The upstream `enrich-qualify` skill writes `marketing_score` (not `score`) and score_breakdown keys `positioning_clarity`, `cta_strength`, `social_proof`, `design_quality`, `copy_quality`. Downstream consumers should read `.marketing_score // .score` for compatibility with earlier drafts of the contract.
 
 Expected input fields per lead (produced upstream by `enrich-qualify`):
 ```json
@@ -32,14 +34,14 @@ Expected input fields per lead (produced upstream by `enrich-qualify`):
   "source": "producthunt",
   "source_url": "https://producthunt.com/posts/foobar",
   "description": "one-line from the launch post",
-  "social": { "twitter": "@janedoe", "linkedin": null },
-  "score": 4,
+  "social_handles": { "twitter": "@janedoe", "linkedin": null },
+  "marketing_score": 4,
   "score_breakdown": {
-    "positioning": 3,
-    "cta": 2,
+    "positioning_clarity": 3,
+    "cta_strength": 2,
     "social_proof": 4,
-    "design": 6,
-    "copy": 5
+    "design_quality": 6,
+    "copy_quality": 5
   },
   "top_gaps": [
     "No clear CTA above the fold",

@@ -62,7 +62,7 @@ fi
 # Matches the Slack Message Format section in skills/outreach-draft/SKILL.md.
 PAYLOAD=$(echo "$LEAD_JSON" | jq '
   . as $lead
-  | ($lead.score // 0) as $score
+  | (($lead.marketing_score // $lead.score) // 0) as $score
   | (
       if $score <= 3 then "high priority"
       elif $score <= 6 then "good fit"

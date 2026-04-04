@@ -31,21 +31,22 @@ NOW="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
 # ---- Counts per pipeline stage ------------------------------------------------
 SCOUTED=$(jq '[.leads[]] | length' "$LEADS")
-QUALIFIED=$(jq '[.leads[] | select(.status == "qualified" or .status == "qualified-low")] | length' "$LEADS")
+QUALIFIED=$(jq '[.leads[] | select(.status == "qualified" or .status == "qualified-low" or .status == "outreach-drafted")] | length' "$LEADS")
 DRAFTED=$(jq '[.leads[] | select(.status == "outreach-drafted")] | length' "$LEADS")
 APPROVED=$(jq '[.leads[] | select(.outreach_status == "approved" or .outreach_status == "sent")] | length' "$LEADS")
 SKIPPED=$(jq '[.leads[] | select(.status == "skipped")] | length' "$LEADS")
 
 # ---- Score distribution -------------------------------------------------------
-BAND_HIGH=$(jq '[.leads[] | select(.score != null and .score <= 3)] | length' "$LEADS")
-BAND_GOOD=$(jq '[.leads[] | select(.score != null and .score >= 4 and .score <= 6)] | length' "$LEADS")
-BAND_SOFT=$(jq '[.leads[] | select(.score != null and .score >= 7 and .score <= 8)] | length' "$LEADS")
-BAND_SKIP=$(jq '[.leads[] | select(.score != null and .score >= 9)] | length' "$LEADS")
+# Supports both legacy `.score` and current `.marketing_score` field names.
+BAND_HIGH=$(jq '[.leads[] | (.marketing_score // .score) as $s | select($s != null and $s <= 3)] | length' "$LEADS")
+BAND_GOOD=$(jq '[.leads[] | (.marketing_score // .score) as $s | select($s != null and $s >= 4 and $s <= 6)] | length' "$LEADS")
+BAND_SOFT=$(jq '[.leads[] | (.marketing_score // .score) as $s | select($s != null and $s >= 7 and $s <= 8)] | length' "$LEADS")
+BAND_SKIP=$(jq '[.leads[] | (.marketing_score // .score) as $s | select($s != null and $s >= 9)] | length' "$LEADS")
 
 # ---- Recent leads rows (latest 10, newest first) -----------------------------
 RECENT_ROWS=$(jq -r '
   .leads
-  | sort_by(.drafted_at // .scouted_at // "")
+  | sort_by(.drafted_at // .enriched_at // .found_at // .scouted_at // "")
   | reverse
   | .[0:10]
   | to_entries
@@ -53,7 +54,7 @@ RECENT_ROWS=$(jq -r '
       "| \(.key + 1) "
       + "| \(.value.product_name // "—") "
       + "| \(.value.founder_name // "—") "
-      + "| \(.value.score // "—") "
+      + "| \(.value.marketing_score // .value.score // "—") "
       + "| \(.value.source // "—") "
       + "| \((.value.top_gaps // [])[0] // "—") "
       + "| \(.value.status // "—") |"
