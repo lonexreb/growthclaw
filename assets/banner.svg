@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f23;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a1a3e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f0f23;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="claw" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff3864;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0e0ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ff3864;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff6b35;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="300" rx="16" fill="url(#bg)" />
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.05" stroke="#ffffff" stroke-width="0.5">
+    <line x1="0" y1="50" x2="1200" y2="50" />
+    <line x1="0" y1="100" x2="1200" y2="100" />
+    <line x1="0" y1="150" x2="1200" y2="150" />
+    <line x1="0" y1="200" x2="1200" y2="200" />
+    <line x1="0" y1="250" x2="1200" y2="250" />
+    <line x1="200" y1="0" x2="200" y2="300" />
+    <line x1="400" y1="0" x2="400" y2="300" />
+    <line x1="600" y1="0" x2="600" y2="300" />
+    <line x1="800" y1="0" x2="800" y2="300" />
+    <line x1="1000" y1="0" x2="1000" y2="300" />
+  </g>
+
+  <!-- Accent line top -->
+  <rect x="0" y="0" width="1200" height="3" rx="1.5" fill="url(#accent)" />
+
+  <!-- Claw icon -->
+  <g transform="translate(80, 90)" filter="url(#glow)">
+    <path d="M0 60 Q10 0 30 10 Q20 30 25 60 Z" fill="url(#claw)" opacity="0.9" />
+    <path d="M25 55 Q40 -5 60 5 Q45 30 45 55 Z" fill="url(#claw)" opacity="0.95" />
+    <path d="M45 55 Q65 -5 85 10 Q70 30 65 55 Z" fill="url(#claw)" opacity="0.9" />
+    <ellipse cx="42" cy="80" rx="50" ry="25" fill="url(#claw)" opacity="0.3" />
+  </g>
+
+  <!-- Main title -->
+  <text x="210" y="130" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="72" font-weight="800" fill="url(#text-grad)" letter-spacing="-2">
+    GrowthClaw
+  </text>
+
+  <!-- Tagline -->
+  <text x="215" y="170" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="20" fill="#8888aa" font-weight="400" letter-spacing="1">
+    Autonomous Founder-Scouting Outbound Engine
+  </text>
+
+  <!-- Tech badges -->
+  <g transform="translate(215, 195)">
+    <!-- OpenClaw badge -->
+    <rect x="0" y="0" width="100" height="28" rx="14" fill="#ff6b35" opacity="0.15" stroke="#ff6b35" stroke-width="1" stroke-opacity="0.4" />
+    <text x="50" y="18" font-family="system-ui, sans-serif" font-size="12" fill="#ff6b35" text-anchor="middle" font-weight="600">OpenClaw</text>
+
+    <!-- AI Scoring badge -->
+    <rect x="115" y="0" width="100" height="28" rx="14" fill="#ff3864" opacity="0.15" stroke="#ff3864" stroke-width="1" stroke-opacity="0.4" />
+    <text x="165" y="18" font-family="system-ui, sans-serif" font-size="12" fill="#ff3864" text-anchor="middle" font-weight="600">AI Scoring</text>
+
+    <!-- Browser badge -->
+    <rect x="230" y="0" width="120" height="28" rx="14" fill="#6b5bff" opacity="0.15" stroke="#6b5bff" stroke-width="1" stroke-opacity="0.4" />
+    <text x="290" y="18" font-family="system-ui, sans-serif" font-size="12" fill="#6b5bff" text-anchor="middle" font-weight="600">Browser Auto</text>
+
+    <!-- Slack badge -->
+    <rect x="365" y="0" width="80" height="28" rx="14" fill="#36c5f0" opacity="0.15" stroke="#36c5f0" stroke-width="1" stroke-opacity="0.4" />
+    <text x="405" y="18" font-family="system-ui, sans-serif" font-size="12" fill="#36c5f0" text-anchor="middle" font-weight="600">Slack</text>
+  </g>
+
+  <!-- Pipeline flow diagram -->
+  <g transform="translate(700, 80)">
+    <!-- Scout box -->
+    <rect x="0" y="0" width="120" height="45" rx="8" fill="#ff6b35" opacity="0.12" stroke="#ff6b35" stroke-width="1" stroke-opacity="0.5" />
+    <text x="60" y="20" font-family="monospace" font-size="11" fill="#ff6b35" text-anchor="middle" font-weight="600">SCOUT</text>
+    <text x="60" y="35" font-family="monospace" font-size="9" fill="#ff6b35" text-anchor="middle" opacity="0.7">PH / Reddit</text>
+
+    <!-- Arrow 1 -->
+    <line x1="125" y1="22" x2="155" y2="22" stroke="#ff6b35" stroke-width="1.5" opacity="0.5" />
+    <polygon points="155,18 163,22 155,26" fill="#ff6b35" opacity="0.5" />
+
+    <!-- Enrich box -->
+    <rect x="165" y="0" width="120" height="45" rx="8" fill="#ff3864" opacity="0.12" stroke="#ff3864" stroke-width="1" stroke-opacity="0.5" />
+    <text x="225" y="20" font-family="monospace" font-size="11" fill="#ff3864" text-anchor="middle" font-weight="600">ENRICH</text>
+    <text x="225" y="35" font-family="monospace" font-size="9" fill="#ff3864" text-anchor="middle" opacity="0.7">Score 1-10</text>
+
+    <!-- Arrow 2 -->
+    <line x1="290" y1="22" x2="320" y2="22" stroke="#ff3864" stroke-width="1.5" opacity="0.5" />
+    <polygon points="320,18 328,22 320,26" fill="#ff3864" opacity="0.5" />
+
+    <!-- Outreach box -->
+    <rect x="330" y="0" width="120" height="45" rx="8" fill="#6b5bff" opacity="0.12" stroke="#6b5bff" stroke-width="1" stroke-opacity="0.5" />
+    <text x="390" y="20" font-family="monospace" font-size="11" fill="#6b5bff" text-anchor="middle" font-weight="600">OUTREACH</text>
+    <text x="390" y="35" font-family="monospace" font-size="9" fill="#6b5bff" text-anchor="middle" opacity="0.7">Draft + Slack</text>
+
+    <!-- Stats -->
+    <text x="225" y="80" font-family="monospace" font-size="11" fill="#8888aa" text-anchor="middle">20-50 leads/week  |  ~$0.02/lead</text>
+
+    <!-- Powered by -->
+    <text x="225" y="105" font-family="system-ui, sans-serif" font-size="10" fill="#555577" text-anchor="middle" letter-spacing="2">BUILT FOR CROWDSTAKE AI</text>
+  </g>
+
+  <!-- Accent line bottom -->
+  <rect x="0" y="297" width="1200" height="3" rx="1.5" fill="url(#accent)" />
+</svg>

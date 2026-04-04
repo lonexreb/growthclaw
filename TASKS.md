@@ -12,7 +12,7 @@ Everyone gets OpenClaw running. No one touches skills until setup is confirmed.
 
 | Person | Task | Done? |
 |--------|------|-------|
-| **Shubh** | Install OpenClaw, verify browser tool works. Create repo structure (`skills/`, `config/`, `data/`, `demo/`). Write initial `SOUL.md` with Crowdstake brand voice, ICP definition, and scoring rubric. | [ ] |
+| **Shubh** | Install OpenClaw, verify browser tool works. Create repo structure (`skills/`, `config/`, `data/`, `demo/`). Write initial `SOUL.md` with Crowdstake brand voice, ICP definition, and scoring rubric. | [x] |
 | **Gopal** | Install OpenClaw, verify browser tool works. Test browsing Product Hunt (`producthunt.com/posts?order=newest`). Confirm you can extract post titles, maker names, URLs from the page. | [ ] |
 | **Manu** | Install OpenClaw, verify LLM integration (Claude or GPT-4 API key loaded). Test a simple prompt: "Score this landing page for marketing quality" with a sample URL. Confirm AI reasoning works. | [ ] |
 | **Viren** | Install OpenClaw, verify messaging channel works. Set up Slack workspace OR Telegram bot. Confirm OpenClaw can send a test message to the channel. If Slack fails, fall back to Telegram. | [ ] |
@@ -27,7 +27,7 @@ Parallel build. Each person owns one deliverable.
 
 | Person | Task | Deliverable | Done? |
 |--------|------|------------|-------|
-| **Shubh** | Write `SOUL.md` (agent personality, goals, constraints). Define the lead data schema in `leads.json`. Write the `DEMO_SCRIPT.md` outline. Start on integration logic — how Skill 1 → Skill 2 → Skill 3 chain together. | `SOUL.md`, `data/leads.json` schema, `demo/DEMO_SCRIPT.md` draft | [ ] |
+| **Shubh** | Write `SOUL.md` (agent personality, goals, constraints). Define the lead data schema in `leads.json`. Write the `DEMO_SCRIPT.md` outline. Start on integration logic — how Skill 1 → Skill 2 → Skill 3 chain together. | `SOUL.md`, `data/leads.json` schema, `demo/DEMO_SCRIPT.md` draft | [x] |
 | **Gopal** | Build `skills/founder-scout/SKILL.md`. The skill browses Product Hunt newest, Indie Hackers new products, and r/SideProject. Extracts: product name, founder name, website URL, description, social handles. Outputs to `data/leads.json`. Test with ≥3 real leads. | `skills/founder-scout/SKILL.md` — working, tested | [ ] |
 | **Manu** | Build `skills/enrich-qualify/SKILL.md`. Given a lead record (name, URL), the skill: (1) visits the founder's website, (2) analyzes landing page quality (positioning clarity, CTA presence, social proof, design), (3) generates a 1-10 "marketing gap score" with reasoning, (4) pulls Twitter/X bio if available. Outputs enriched record back to `leads.json`. | `skills/enrich-qualify/SKILL.md` — working, tested on 1 real site | [ ] |
 | **Viren** | Build `skills/outreach-draft/SKILL.md`. Given an enriched lead (name, product, score, gaps), generates a personalized outreach message pitching Crowdstake. Tone: helpful, specific, not spammy. References the actual gap found. Includes CTA to Crowdstake free tier. Posts to Slack/Telegram channel. Also start building `data/dashboard.md` template. | `skills/outreach-draft/SKILL.md` — working, tested with mock data | [ ] |
@@ -42,7 +42,7 @@ Connect the three skills into one autonomous pipeline.
 
 | Person | Task | Done? |
 |--------|------|-------|
-| **Shubh** | Wire skills together in `SOUL.md` / orchestration config. Agent should: trigger Skill 1 → for each lead, trigger Skill 2 → for qualified leads (score ≥ 6), trigger Skill 3. Test the full chain end-to-end with 1 real lead. Debug any handoff issues. | [ ] |
+| **Shubh** | Wire skills together in `SOUL.md` / orchestration config. Agent should: trigger Skill 1 → for each lead, trigger Skill 2 → for qualified leads (score ≥ 6), trigger Skill 3. Test the full chain end-to-end with 1 real lead. Debug any handoff issues. | [x] |
 | **Gopal** | Add Reddit r/SideProject and r/startups as additional sources to Founder Scout. Handle edge cases: missing founder names, broken URLs, duplicate leads. Add dedup logic. Optimize browser scraping speed. | [ ] |
 | **Manu** | Tune the scoring prompt. Run Skill 2 on 5 real websites found by Gopal's skill. Calibrate: a great landing page should score 8+, a bad one should score 3-4. Adjust the prompt until scores feel right. Add "top 3 specific improvements" to the output. | [ ] |
 | **Viren** | Configure `config/cron.yaml` for scheduled runs (even if we demo manually). Build the auto-updating `data/dashboard.md`: table of leads found, scores, outreach status. Make it pretty — this shows in the demo. Ensure Slack messages include the score + gap summary, not just the outreach draft. | [ ] |
@@ -57,7 +57,7 @@ No new features. Only polish, testing, and demo prep.
 
 | Person | Task | Done? |
 |--------|------|-------|
-| **Shubh** | Run the full pipeline 3 times. Identify the single best lead (most impressive scoring + outreach). This is the "hero lead" for the live demo. Write the final `DEMO_SCRIPT.md` — every word of the 5-min pitch. Practice it once out loud. | [ ] |
+| **Shubh** | Run the full pipeline 3 times. Identify the single best lead (most impressive scoring + outreach). This is the "hero lead" for the live demo. Write the final `DEMO_SCRIPT.md` — every word of the 5-min pitch. Practice it once out loud. | [ ] (in progress — hero lead identified: Vincero 5/10) |
 | **Gopal** | Pre-cache 5 scored leads as backup. If live demo fails, we show these. Make sure `leads.json` has clean, impressive data. Help Shubh debug any pipeline issues. | [ ] |
 | **Manu** | Review all outreach drafts for quality. Rewrite any that sound generic or spammy. Prepare 2-3 "killer lines" that reference real Crowdstake pain points (no PH launch, SEO crypto residue, 5 FB likes). These go in the pitch narrative. | [ ] |
 | **Viren** | Final Slack channel cleanup — pin the best messages. Dashboard should look clean and impressive on screen. Set up screen sharing / demo display. Test: can we trigger the agent live and show it browsing in real-time? If browser is too slow for live, pre-record a 30s clip as backup. | [ ] |
@@ -98,18 +98,18 @@ No new features. Only polish, testing, and demo prep.
 ## SCOREBOARD — Track Progress
 
 ```
-[ ] OpenClaw installed (all 4)
-[ ] Browser tool verified
-[ ] LLM integration verified
+[x] OpenClaw installed (all 4)
+[x] Browser tool verified
+[x] LLM integration verified
 [ ] Slack/Telegram channel live
-[ ] SOUL.md written
-[ ] Skill 1 (Founder Scout) works
-[ ] Skill 2 (Enrich & Qualify) works
-[ ] Skill 3 (Outreach Draft) works
-[ ] Skills chained together
-[ ] Full pipeline runs end-to-end
-[ ] ≥5 real leads scored and drafted
-[ ] Dashboard looks good
+[x] SOUL.md written
+[x] Skill 1 (Founder Scout) works
+[x] Skill 2 (Enrich & Qualify) works
+[x] Skill 3 (Outreach Draft) works
+[x] Skills chained together
+[x] Full pipeline runs end-to-end
+[ ] ≥5 real leads scored and drafted (3 so far)
+[x] Dashboard looks good
 [ ] Demo script finalized
 [ ] Demo practiced once
 [ ] Backup leads cached

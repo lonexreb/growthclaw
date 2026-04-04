@@ -80,6 +80,32 @@
 | Emergent.sh     | AI landing page generator         | Demand capture + A/B testing    |
 | Landingsite.ai  | AI landing page generator         | Marketing consultant, not just gen |
 
+## Pipeline Status (Live as of 12:51 PM CST)
+
+### First Successful Run
+- **Pipeline:** growthclaw-pipeline skill chains Scout → Enrich → Outreach in a single agent session
+- **Source:** Reddit (r/SideProject, r/startups) — Product Hunt was blocked by Cloudflare, fell back to Reddit
+- **Browser:** Gateway was not running, used `web_fetch` fallback successfully
+- **Leads found:** 3 real leads scored and drafted
+
+### Lead Results
+
+| Product | Founder | Score | Status | Key Gap |
+|---------|---------|-------|--------|---------|
+| **Vincero** | markoruman | 5/10 | HIGH PRIORITY | Weak social proof, unclear positioning, buried CTA |
+| InspoAI | Successful_Draw4218 | 7/10 | qualified-low | Too many CTAs competing for attention |
+| PanelShot | narrow-adventure | 8/10 | qualified-low | Missing testimonials and case studies |
+
+### Hero Lead for Demo
+**Vincero** (vincero.app) — AI OS for solopreneurs. Founder explicitly mentioned struggling with marketing on Reddit. Score 5/10 with clear gaps that map directly to Crowdstake's value prop. Best outreach draft references specific pain points.
+
+### Technical Notes
+- OpenClaw config had `extensions` key blocker — fixed via `openclaw doctor --fix`
+- Registered `growthclaw` agent with workspace pointing at project dir
+- All 4 skills have YAML frontmatter for OpenClaw discovery
+- API key stored in `~/.openclaw/agents/growthclaw/agent/auth-profiles.json`
+- For live demo: start gateway first (`openclaw gateway`) for browser tool, or accept web_fetch fallback
+
 ## OpenClaw Platform Knowledge
 
 - **What:** Open-source AI agent framework, 247K+ GitHub stars
