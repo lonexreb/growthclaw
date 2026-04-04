@@ -2,8 +2,8 @@
   "metadata": {
     "project": "growthclaw",
     "version": "1.0",
-    "last_updated": "2026-04-04T18:47:00Z",
-    "total_leads": 8
+    "last_updated": "2026-04-04T18:50:00Z",
+    "total_leads": 14
   },
   "leads": [
     {
@@ -29,7 +29,7 @@
     {
       "id": "rd-003",
       "source": "reddit",
-      "product_name": "Vincerò",
+      "product_name": "Vincero",
       "founder_name": "markoruman",
       "website_url": "https://vincero.app",
       "description": "AI operating system for solopreneurs.",
@@ -125,6 +125,162 @@
       "outreach_status": "drafted",
       "drafted_at": "2026-04-04T18:47:00Z",
       "status": "outreach-drafted"
+    },
+    {
+      "id": "test-001",
+      "source": "producthunt",
+      "product_name": "Lancey",
+      "founder_name": "Test Founder",
+      "website_url": "https://lancey.io",
+      "description": "Interactive product demos that convert",
+      "social_handles": { "twitter": "", "producthunt": "", "linkedin": "" },
+      "source_url": "https://producthunt.com",
+      "found_at": "2026-04-04T10:00:00Z",
+      "marketing_score": 5,
+      "score_breakdown": {
+        "positioning_clarity": 6,
+        "cta_strength": 4,
+        "social_proof": 3,
+        "design_quality": 7,
+        "copy_quality": 4
+      },
+      "top_gaps": [
+        "No clear CTA above the fold -- visitors don't know what action to take upon landing",
+        "Limited social proof -- few testimonials or customer logos visible",
+        "Copy focuses too heavily on technical features rather than user benefits"
+      ],
+      "improvements": [
+        "Crowdstake auto-generates landing pages with conversion-optimized CTAs above the fold",
+        "Crowdstake adds social proof sections with testimonial collection and display",
+        "Crowdstake's AI rewrites copy to lead with benefits, not features"
+      ],
+      "twitter_bio": "",
+      "enriched_at": "2026-04-04T18:13:00Z",
+      "status": "qualified"
+    },
+    {
+      "id": "cal-001",
+      "source": "calibration",
+      "product_name": "Tally",
+      "founder_name": "Marie Martens",
+      "website_url": "https://tally.so",
+      "description": "The simplest way to create forms",
+      "social_handles": { "twitter": "@TallyForms", "producthunt": "", "linkedin": "" },
+      "source_url": "https://producthunt.com",
+      "found_at": "2026-04-04T18:20:00Z",
+      "marketing_score": 7,
+      "score_breakdown": {
+        "positioning_clarity": 8,
+        "cta_strength": 7,
+        "social_proof": 6,
+        "design_quality": 8,
+        "copy_quality": 7
+      },
+      "top_gaps": [
+        "Social proof elements not visible above the fold -- user counts and logos buried below",
+        "Some copy sections lean feature-focused rather than benefit-driven",
+        "Customer testimonials not prominently showcased on landing page"
+      ],
+      "improvements": [
+        "Crowdstake surfaces social proof above the fold automatically",
+        "Crowdstake rewrites feature copy into benefit-driven messaging",
+        "Crowdstake generates testimonial display sections"
+      ],
+      "twitter_bio": "@TallyForms",
+      "enriched_at": "2026-04-04T18:20:00Z",
+      "status": "qualified-low"
+    },
+    {
+      "id": "cal-003",
+      "source": "calibration",
+      "product_name": "PocketBase",
+      "founder_name": "Gani Georgiev",
+      "website_url": "https://pocketbase.io",
+      "description": "Open Source backend in 1 file",
+      "social_handles": { "twitter": "@pocketbase", "producthunt": "", "linkedin": "" },
+      "source_url": "https://producthunt.com",
+      "found_at": "2026-04-04T18:20:00Z",
+      "marketing_score": 4,
+      "score_breakdown": {
+        "positioning_clarity": 4,
+        "cta_strength": 4,
+        "social_proof": 2,
+        "design_quality": 5,
+        "copy_quality": 4
+      },
+      "top_gaps": [
+        "Headline 'Open Source backend in 1 file' is dev jargon -- a non-technical visitor has no idea why they should care",
+        "CTA says 'Explore all features' -- not a converting CTA, doesn't drive signups or trials",
+        "Zero social proof -- no testimonials, user counts, or customer logos anywhere on the page"
+      ],
+      "improvements": [
+        "Crowdstake's AI rewrites headline to benefit-first: e.g. 'Ship your app backend in minutes'",
+        "Crowdstake generates high-converting CTAs like 'Start building free' with bold placement",
+        "Crowdstake adds testimonial sections with real developer quotes and usage stats"
+      ],
+      "twitter_bio": "@pocketbase",
+      "enriched_at": "2026-04-04T18:45:00Z",
+      "status": "qualified"
+    },
+    {
+      "id": "cal-004",
+      "source": "calibration",
+      "product_name": "Screenpipe",
+      "founder_name": "Louis Beaumont",
+      "website_url": "https://screenpi.pe",
+      "description": "AI screen recording and context engine",
+      "social_handles": { "twitter": "@screen_pipe", "producthunt": "", "linkedin": "" },
+      "source_url": "https://producthunt.com",
+      "found_at": "2026-04-04T18:20:00Z",
+      "marketing_score": 5,
+      "score_breakdown": {
+        "positioning_clarity": 6,
+        "cta_strength": 5,
+        "social_proof": 3,
+        "design_quality": 6,
+        "copy_quality": 5
+      },
+      "top_gaps": [
+        "Social proof is minimal -- no testimonials or user counts visible on landing page",
+        "CTA doesn't highlight unique differentiator vs other screen recording tools",
+        "Copy leans feature-heavy without clearly articulating user benefit"
+      ],
+      "improvements": [
+        "Crowdstake adds social proof widgets with user counts and testimonials",
+        "Crowdstake rewrites CTA to emphasize unique value prop with urgency",
+        "Crowdstake's AI shifts copy from feature-dump to benefit-led messaging"
+      ],
+      "twitter_bio": "@screen_pipe",
+      "enriched_at": "2026-04-04T18:28:00Z",
+      "status": "qualified"
+    },
+    {
+      "id": "cal-005",
+      "source": "calibration",
+      "product_name": "Dub",
+      "founder_name": "Steven Tey",
+      "website_url": "https://dub.co",
+      "description": "Open-source link management for modern marketing teams",
+      "social_handles": { "twitter": "@dubdotco", "producthunt": "", "linkedin": "" },
+      "source_url": "https://producthunt.com",
+      "found_at": "2026-04-04T18:20:00Z",
+      "marketing_score": 8,
+      "score_breakdown": {
+        "positioning_clarity": 8,
+        "cta_strength": 7,
+        "social_proof": 8,
+        "design_quality": 7,
+        "copy_quality": 8
+      },
+      "top_gaps": [
+        "CTA 'Learn more' lacks urgency -- doesn't drive immediate signups",
+        "Testimonials lack photos and specific metrics to enhance credibility",
+        "Some copy sections focus on features rather than explicitly outlining user benefits"
+      ],
+      "improvements": [],
+      "twitter_bio": "@dubdotco",
+      "enriched_at": "2026-04-04T18:27:00Z",
+      "status": "qualified-low"
     }
   ]
 }

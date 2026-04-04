@@ -14,6 +14,18 @@ Writes to: `data/leads.json` (outreach fields), `data/dashboard.md`, Slack `#all
 
 ---
 
+## Message Structure: HOOK → BRIDGE → CTA
+
+Every outreach message follows this 3-sentence structure:
+
+**HOOK (sentence 1):** Lead with a specific observation from their actual landing page. Show you visited it. Name the exact gap — quote their headline, CTA text, or a missing element. This is NOT a compliment opener. Example: "I checked out pocketbase.io — your headline 'Open Source backend in 1 file' is clear to devs but might lose non-technical visitors in the first 5 seconds."
+
+**BRIDGE (sentence 2):** Connect that gap to Crowdstake in one line. Be specific about which capability helps. Example: "Crowdstake's AI rewrites positioning to be benefit-led — it'd turn that into something like 'Ship your app backend in minutes' and auto-generate a landing page around it."
+
+**CTA (sentence 3):** Low-friction, no-pressure. Point to free tier. Example: "Free tier at crowdstake.ai if you want to try it — takes about 2 minutes."
+
+---
+
 ## Input Contract
 
 This skill consumes leads in `data/leads.json` where `status` is one of:
