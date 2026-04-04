@@ -2,8 +2,8 @@
   "metadata": {
     "project": "growthclaw",
     "version": "1.0",
-    "last_updated": "2026-04-04T18:50:00Z",
-    "total_leads": 14
+    "last_updated": "2026-04-04T18:57:00Z",
+    "total_leads": 11
   },
   "leads": [
     {
@@ -29,7 +29,7 @@
     {
       "id": "rd-003",
       "source": "reddit",
-      "product_name": "Vincero",
+      "product_name": "Vincerò",
       "founder_name": "markoruman",
       "website_url": "https://vincero.app",
       "description": "AI operating system for solopreneurs.",
@@ -127,160 +127,94 @@
       "status": "outreach-drafted"
     },
     {
-      "id": "test-001",
-      "source": "producthunt",
-      "product_name": "Lancey",
-      "founder_name": "Test Founder",
-      "website_url": "https://lancey.io",
-      "description": "Interactive product demos that convert",
-      "social_handles": { "twitter": "", "producthunt": "", "linkedin": "" },
-      "source_url": "https://producthunt.com",
-      "found_at": "2026-04-04T10:00:00Z",
-      "marketing_score": 5,
-      "score_breakdown": {
-        "positioning_clarity": 6,
-        "cta_strength": 4,
-        "social_proof": 3,
-        "design_quality": 7,
-        "copy_quality": 4
-      },
-      "top_gaps": [
-        "No clear CTA above the fold -- visitors don't know what action to take upon landing",
-        "Limited social proof -- few testimonials or customer logos visible",
-        "Copy focuses too heavily on technical features rather than user benefits"
-      ],
-      "improvements": [
-        "Crowdstake auto-generates landing pages with conversion-optimized CTAs above the fold",
-        "Crowdstake adds social proof sections with testimonial collection and display",
-        "Crowdstake's AI rewrites copy to lead with benefits, not features"
-      ],
-      "twitter_bio": "",
-      "enriched_at": "2026-04-04T18:13:00Z",
-      "status": "qualified"
-    },
-    {
-      "id": "cal-001",
-      "source": "calibration",
-      "product_name": "Tally",
-      "founder_name": "Marie Martens",
-      "website_url": "https://tally.so",
-      "description": "The simplest way to create forms",
-      "social_handles": { "twitter": "@TallyForms", "producthunt": "", "linkedin": "" },
-      "source_url": "https://producthunt.com",
-      "found_at": "2026-04-04T18:20:00Z",
+      "id": "rd-009",
+      "source": "reddit",
+      "product_name": "PriceMyJob",
+      "founder_name": "toffeemartyn",
+      "website_url": "https://pricemyjob.uk",
+      "description": "AI-powered UK trade job cost estimator. Get itemised breakdown of materials and labour in 60 seconds.",
+      "social_handles": {},
+      "source_url": "https://www.reddit.com/r/SideProject/comments/1schc1g/",
+      "found_at": "2026-04-04T18:57:00Z",
       "marketing_score": 7,
       "score_breakdown": {
-        "positioning_clarity": 8,
-        "cta_strength": 7,
-        "social_proof": 6,
-        "design_quality": 8,
-        "copy_quality": 7
-      },
-      "top_gaps": [
-        "Social proof elements not visible above the fold -- user counts and logos buried below",
-        "Some copy sections lean feature-focused rather than benefit-driven",
-        "Customer testimonials not prominently showcased on landing page"
-      ],
-      "improvements": [
-        "Crowdstake surfaces social proof above the fold automatically",
-        "Crowdstake rewrites feature copy into benefit-driven messaging",
-        "Crowdstake generates testimonial display sections"
-      ],
-      "twitter_bio": "@TallyForms",
-      "enriched_at": "2026-04-04T18:20:00Z",
-      "status": "qualified-low"
-    },
-    {
-      "id": "cal-003",
-      "source": "calibration",
-      "product_name": "PocketBase",
-      "founder_name": "Gani Georgiev",
-      "website_url": "https://pocketbase.io",
-      "description": "Open Source backend in 1 file",
-      "social_handles": { "twitter": "@pocketbase", "producthunt": "", "linkedin": "" },
-      "source_url": "https://producthunt.com",
-      "found_at": "2026-04-04T18:20:00Z",
-      "marketing_score": 4,
-      "score_breakdown": {
-        "positioning_clarity": 4,
-        "cta_strength": 4,
-        "social_proof": 2,
-        "design_quality": 5,
-        "copy_quality": 4
-      },
-      "top_gaps": [
-        "Headline 'Open Source backend in 1 file' is dev jargon -- a non-technical visitor has no idea why they should care",
-        "CTA says 'Explore all features' -- not a converting CTA, doesn't drive signups or trials",
-        "Zero social proof -- no testimonials, user counts, or customer logos anywhere on the page"
-      ],
-      "improvements": [
-        "Crowdstake's AI rewrites headline to benefit-first: e.g. 'Ship your app backend in minutes'",
-        "Crowdstake generates high-converting CTAs like 'Start building free' with bold placement",
-        "Crowdstake adds testimonial sections with real developer quotes and usage stats"
-      ],
-      "twitter_bio": "@pocketbase",
-      "enriched_at": "2026-04-04T18:45:00Z",
-      "status": "qualified"
-    },
-    {
-      "id": "cal-004",
-      "source": "calibration",
-      "product_name": "Screenpipe",
-      "founder_name": "Louis Beaumont",
-      "website_url": "https://screenpi.pe",
-      "description": "AI screen recording and context engine",
-      "social_handles": { "twitter": "@screen_pipe", "producthunt": "", "linkedin": "" },
-      "source_url": "https://producthunt.com",
-      "found_at": "2026-04-04T18:20:00Z",
-      "marketing_score": 5,
-      "score_breakdown": {
-        "positioning_clarity": 6,
-        "cta_strength": 5,
+        "positioning_clarity": 9,
+        "cta_strength": 8,
         "social_proof": 3,
-        "design_quality": 6,
-        "copy_quality": 5
-      },
-      "top_gaps": [
-        "Social proof is minimal -- no testimonials or user counts visible on landing page",
-        "CTA doesn't highlight unique differentiator vs other screen recording tools",
-        "Copy leans feature-heavy without clearly articulating user benefit"
-      ],
-      "improvements": [
-        "Crowdstake adds social proof widgets with user counts and testimonials",
-        "Crowdstake rewrites CTA to emphasize unique value prop with urgency",
-        "Crowdstake's AI shifts copy from feature-dump to benefit-led messaging"
-      ],
-      "twitter_bio": "@screen_pipe",
-      "enriched_at": "2026-04-04T18:28:00Z",
-      "status": "qualified"
-    },
-    {
-      "id": "cal-005",
-      "source": "calibration",
-      "product_name": "Dub",
-      "founder_name": "Steven Tey",
-      "website_url": "https://dub.co",
-      "description": "Open-source link management for modern marketing teams",
-      "social_handles": { "twitter": "@dubdotco", "producthunt": "", "linkedin": "" },
-      "source_url": "https://producthunt.com",
-      "found_at": "2026-04-04T18:20:00Z",
-      "marketing_score": 8,
-      "score_breakdown": {
-        "positioning_clarity": 8,
-        "cta_strength": 7,
-        "social_proof": 8,
-        "design_quality": 7,
+        "design_quality": 8,
         "copy_quality": 8
       },
       "top_gaps": [
-        "CTA 'Learn more' lacks urgency -- doesn't drive immediate signups",
-        "Testimonials lack photos and specific metrics to enhance credibility",
-        "Some copy sections focus on features rather than explicitly outlining user benefits"
+        "Zero social proof — no testimonials from tradesmen, no user count, no customer logos",
+        "'0 UK competitors' reads as weak positioning — should highlight traction or results instead",
+        "No visual example of what an estimate looks like — a sample output screenshot would build confidence"
       ],
-      "improvements": [],
-      "twitter_bio": "@dubdotco",
-      "enriched_at": "2026-04-04T18:27:00Z",
-      "status": "qualified-low"
+      "enriched_at": "2026-04-04T18:57:00Z",
+      "outreach_draft": "Hey! Just saw PriceMyJob on r/SideProject — building and shipping in one day is impressive, and the 'no signup needed' approach is smart for reducing friction.\n\nOne thing I noticed: your landing page has no social proof yet. Even '50 estimates generated' or one testimonial from a tradesman would boost credibility. The '0 UK competitors' stat is technically true but reads a bit weak.\n\nCrowdstake is an AI marketing OS that helps with landing page copy and social proof sections — might be useful as you start getting users. Free tier at crowdstake.ai.",
+      "outreach_channel": "dashboard",
+      "outreach_status": "drafted",
+      "drafted_at": "2026-04-04T18:57:00Z",
+      "status": "outreach-drafted"
+    },
+    {
+      "id": "rd-010",
+      "source": "reddit",
+      "product_name": "Ditherit",
+      "founder_name": "OkAcanthocephala9305",
+      "website_url": "https://ditherit-rho.vercel.app",
+      "description": "Image, Video, GIF to dither and ASCII art converter. Open-source with physics-based interactive preview.",
+      "social_handles": {},
+      "source_url": "https://www.reddit.com/r/SideProject/comments/1sch9d8/",
+      "found_at": "2026-04-04T18:57:00Z",
+      "marketing_score": 3,
+      "score_breakdown": {
+        "positioning_clarity": 3,
+        "cta_strength": 5,
+        "social_proof": 1,
+        "design_quality": 7,
+        "copy_quality": 2
+      },
+      "top_gaps": [
+        "No positioning or value prop — visitors land on controls without knowing what the tool does or why they'd use it",
+        "Zero social proof — GitHub repo exists but no stars/usage displayed on the landing page",
+        "No copy explaining use cases — who is this for? Designers? Developers? Content creators? What do they make with it?"
+      ],
+      "enriched_at": "2026-04-04T18:57:00Z",
+      "outreach_draft": "Hey! Just saw Ditherit on r/SideProject — the physics-based dot repulsion effect is genuinely cool, and the multiple export formats (PNG, SVG, React code) are thoughtful.\n\nHonest feedback: when I landed on the page, I had no idea what the tool did until I read your Reddit post. A simple headline like 'Turn any image into stunning dithered art in seconds' + 3 example outputs would help so much.\n\nCrowdstake is an AI marketing OS that generates landing page copy and positioning — could help you explain what makes Ditherit special. Free tier at crowdstake.ai.",
+      "outreach_channel": "dashboard",
+      "outreach_status": "drafted",
+      "drafted_at": "2026-04-04T18:57:00Z",
+      "status": "outreach-drafted"
+    },
+    {
+      "id": "rd-011",
+      "source": "reddit",
+      "product_name": "Veld Portfolio",
+      "founder_name": "TheRealRefuro",
+      "website_url": "https://veldportfolio.com",
+      "description": "Real estate portfolio analytics and deal underwriting for small landlords with 1-10 properties.",
+      "social_handles": {},
+      "source_url": "https://www.reddit.com/r/buildinpublic/comments/1sch9cq/",
+      "found_at": "2026-04-04T18:57:00Z",
+      "marketing_score": 7,
+      "score_breakdown": {
+        "positioning_clarity": 9,
+        "cta_strength": 8,
+        "social_proof": 2,
+        "design_quality": 8,
+        "copy_quality": 8
+      },
+      "top_gaps": [
+        "No social proof — zero testimonials from landlords, no user count, no 'trusted by X investors'",
+        "No visual preview of the dashboard — a screenshot showing actual portfolio data would build confidence",
+        "Missing specific results — 'what do users achieve?' e.g., 'Average user saves 2 hours/month on spreadsheet work'"
+      ],
+      "enriched_at": "2026-04-04T18:57:00Z",
+      "outreach_draft": "Hey! Just saw Veld Portfolio on r/buildinpublic — the 'Replace spreadsheet chaos' positioning is spot-on, and I love the clarity on what it does vs. doesn't do (not rent collection, just investor numbers).\n\nOne gap: you mention struggling with marketing awareness. Your landing page has no testimonials yet. Even one quote from a landlord like 'I used to spend 3 hours/month updating spreadsheets, now it's automatic' would help convert visitors.\n\nCrowdstake is an AI marketing OS that helps with landing page copy and social proof — might be useful given the marketing challenge you mentioned. Free tier at crowdstake.ai.",
+      "outreach_channel": "dashboard",
+      "outreach_status": "drafted",
+      "drafted_at": "2026-04-04T18:57:00Z",
+      "status": "outreach-drafted"
     }
   ]
 }
