@@ -23,25 +23,27 @@ export interface Lead {
   founder_name: string;
   website_url: string;
   description: string;
-  social_handles: Record<string, string>;
+  social_handles?: Record<string, string>;
   source_url: string;
   found_at: string;
-  marketing_score: number;
-  score_breakdown: ScoreBreakdown;
-  top_gaps: string[];
-  enriched_at: string;
-  outreach_draft: string;
-  outreach_channel: string;
-  outreach_status: OutreachStatus;
-  drafted_at: string;
   status: LeadStatus;
+  // Added by Stage 2 (enrich-qualify) — absent during Stage 1
+  marketing_score?: number;
+  score_breakdown?: ScoreBreakdown;
+  top_gaps?: string[];
+  enriched_at?: string;
+  // Added by Stage 3 (outreach-draft) — absent during Stages 1-2
+  outreach_draft?: string;
+  outreach_channel?: string;
+  outreach_status?: OutreachStatus;
+  drafted_at?: string;
 }
 
 export interface LeadsFile {
   metadata: {
     project: string;
     version: string;
-    last_updated: string;
+    last_updated: string | null;
     total_leads: number;
   };
   leads: Lead[];

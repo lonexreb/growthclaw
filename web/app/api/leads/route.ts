@@ -7,9 +7,9 @@ export async function GET() {
   try {
     const data = readLeads();
     return NextResponse.json(data);
-  } catch {
+  } catch (err) {
     return NextResponse.json(
-      { error: "Failed to read leads" },
+      { error: `Failed to read leads: ${err instanceof Error ? err.message : String(err)}` },
       { status: 500 }
     );
   }
@@ -32,9 +32,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Lead not found" }, { status: 404 });
     }
     return NextResponse.json(lead);
-  } catch {
+  } catch (err) {
     return NextResponse.json(
-      { error: "Failed to update lead" },
+      { error: `Failed to update lead: ${err instanceof Error ? err.message : String(err)}` },
       { status: 500 }
     );
   }

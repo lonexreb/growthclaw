@@ -12,10 +12,12 @@ export function StatsCards({ leads }: { leads: Lead[] }) {
       l.status === "outreach-drafted" ||
       l.status === "qualified-low"
   ).length;
+  const scoredLeads = leads.filter((l) => l.marketing_score != null);
   const avgScore =
-    total > 0
+    scoredLeads.length > 0
       ? (
-          leads.reduce((sum, l) => sum + l.marketing_score, 0) / total
+          scoredLeads.reduce((sum, l) => sum + (l.marketing_score ?? 0), 0) /
+          scoredLeads.length
         ).toFixed(1)
       : "—";
   const draftsReady = leads.filter(
@@ -57,9 +59,7 @@ export function StatsCards({ leads }: { leads: Lead[] }) {
           className="bg-gc-bg-secondary/50 border-gc-muted/10"
         >
           <CardContent className="p-4 flex items-center gap-4">
-            <div
-              className={`p-2.5 rounded-lg bg-gc-bg ${color}`}
-            >
+            <div className={`p-2.5 rounded-lg bg-gc-bg ${color}`}>
               <Icon className="h-5 w-5" />
             </div>
             <div>

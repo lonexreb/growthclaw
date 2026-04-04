@@ -26,6 +26,9 @@ web/.next/
 web/out/
 web/node_modules/
 
+# Pipeline state (temp file for HMR persistence)
+data/.pipeline-state.json
+
 # OpenClaw runtime files (auto-generated when agent runs)
 AGENTS.md
 HEARTBEAT.md

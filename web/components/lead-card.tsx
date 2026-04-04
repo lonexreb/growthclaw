@@ -32,6 +32,9 @@ interface LeadCardProps {
 export function LeadCard({ lead, onApprove, onSkip }: LeadCardProps) {
   const source = sourceConfig[lead.source] || { label: lead.source, color: "bg-gc-muted/20 text-gc-muted" };
   const status = statusConfig[lead.status] || { label: lead.status, color: "bg-gc-muted/20 text-gc-muted" };
+  const hasScore = lead.marketing_score != null;
+  const hasBreakdown = lead.score_breakdown != null;
+  const hasGaps = lead.top_gaps && lead.top_gaps.length > 0;
 
   return (
     <Card className="bg-gc-bg-secondary/30 border-gc-muted/10 hover:border-gc-muted/20 transition-colors">
@@ -39,14 +42,14 @@ export function LeadCard({ lead, onApprove, onSkip }: LeadCardProps) {
         {/* Header row */}
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center gap-2 mb-1 flex-wrap">
               <Badge variant="outline" className={source.color}>
                 {source.label}
               </Badge>
               <Badge variant="outline" className={status.color}>
                 {status.label}
               </Badge>
-              {lead.marketing_score <= 5 && (
+              {hasScore && lead.marketing_score! <= 5 && (
                 <Badge className="bg-gc-red/20 text-gc-red border-gc-red/30">
                   HIGH PRIORITY
                 </Badge>
@@ -68,38 +71,49 @@ export function LeadCard({ lead, onApprove, onSkip }: LeadCardProps) {
               {lead.description}
             </p>
           </div>
-          <ScoreGauge score={lead.marketing_score} />
+          {hasScore && <ScoreGauge score={lead.marketing_score!} />}
         </div>
 
-        {/* Score breakdown */}
-        <div className="mt-4">
-          <ScoreBreakdown breakdown={lead.score_breakdown} />
-        </div>
+        {/* Score breakdown — only after Stage 2 */}
+        {hasBreakdown && (
+          <div className="mt-4">
+            <ScoreBreakdown breakdown={lead.score_breakdown!} />
+          </div>
+        )}
 
-        {/* Gaps */}
-        <div className="mt-4">
-          <p className="text-xs font-medium text-gc-muted uppercase tracking-wide mb-1.5">
-            Marketing Gaps
-          </p>
-          <ul className="space-y-1">
-            {lead.top_gaps.map((gap, i) => (
-              <li
-                key={i}
-                className="text-sm text-gc-text/80 flex items-start gap-2"
-              >
-                <span className="text-gc-accent mt-1 shrink-0">&#8226;</span>
-                <span>{gap}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Gaps — only after Stage 2 */}
+        {hasGaps && (
+          <div className="mt-4">
+            <p className="text-xs font-medium text-gc-muted uppercase tracking-wide mb-1.5">
+              Marketing Gaps
+            </p>
+            <ul className="space-y-1">
+              {lead.top_gaps!.map((gap, i) => (
+                <li
+                  key={`${lead.id}-gap-${i}`}
+                  className="text-sm text-gc-text/80 flex items-start gap-2"
+                >
+                  <span className="text-gc-accent mt-1 shrink-0">&#8226;</span>
+                  <span>{gap}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
-        {/* Outreach */}
+        {/* Scouted-only state */}
+        {!hasScore && (
+          <div className="mt-4 py-3 text-center text-sm text-gc-muted/60">
+            Awaiting scoring...
+          </div>
+        )}
+
+        {/* Outreach — only after Stage 3 */}
         {lead.outreach_draft && (
           <div className="mt-4 pt-4 border-t border-gc-muted/10">
             <OutreachDraft
               draft={lead.outreach_draft}
-              status={lead.outreach_status}
+              status={lead.outreach_status || "drafted"}
               onApprove={() => onApprove(lead.id)}
               onSkip={() => onSkip(lead.id)}
             />

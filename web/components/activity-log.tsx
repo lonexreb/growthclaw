@@ -5,6 +5,7 @@ import { Clock, Search, BarChart3, FileText } from "lucide-react";
 import type { Lead, PipelineStage } from "@/lib/types";
 
 interface LogEntry {
+  id: string;
   time: string;
   message: string;
   type: "scout" | "score" | "draft";
@@ -41,6 +42,7 @@ export function ActivityLog({
   for (const lead of leads) {
     if (lead.found_at) {
       entries.push({
+        id: `${lead.id}-scout-${lead.found_at}`,
         time: lead.found_at,
         message: `Scouted ${lead.product_name} from ${lead.source}`,
         type: "scout",
@@ -48,13 +50,15 @@ export function ActivityLog({
     }
     if (lead.enriched_at) {
       entries.push({
+        id: `${lead.id}-score-${lead.enriched_at}`,
         time: lead.enriched_at,
-        message: `Scored ${lead.product_name}: ${lead.marketing_score}/10`,
+        message: `Scored ${lead.product_name}: ${lead.marketing_score ?? "?"}/10`,
         type: "score",
       });
     }
     if (lead.drafted_at) {
       entries.push({
+        id: `${lead.id}-draft-${lead.drafted_at}`,
         time: lead.drafted_at,
         message: `Drafted outreach for ${lead.product_name}`,
         type: "draft",
@@ -103,11 +107,10 @@ export function ActivityLog({
               No activity yet. Run the pipeline to start.
             </p>
           )}
-          {entries.map((entry, i) => {
+          {entries.map((entry) => {
             const config = typeConfig[entry.type];
-            const Icon = config.icon;
             return (
-              <div key={i} className="flex items-start gap-3">
+              <div key={entry.id} className="flex items-start gap-3">
                 <div
                   className={`mt-1 w-1.5 h-1.5 rounded-full ${config.color} shrink-0`}
                 />
