@@ -101,10 +101,28 @@ export function LeadCard({ lead, onApprove, onSkip }: LeadCardProps) {
           </div>
         )}
 
-        {/* Scouted-only state */}
+        {/* Scouted-only state — no score yet */}
         {!hasScore && (
           <div className="mt-4 py-3 text-center text-sm text-gray-400">
             Awaiting scoring...
+          </div>
+        )}
+
+        {/* Has score but no detailed breakdown — show compact summary */}
+        {hasScore && !hasBreakdown && !hasGaps && (
+          <div className="mt-3 flex items-center gap-2 text-sm text-gray-400">
+            <div
+              className={`w-2 h-2 rounded-full ${
+                lead.marketing_score! <= 3
+                  ? "bg-red-500"
+                  : lead.marketing_score! <= 6
+                    ? "bg-amber-500"
+                    : "bg-emerald-500"
+              }`}
+            />
+            <span>
+              Score {lead.marketing_score}/10 — detailed breakdown not available
+            </span>
           </div>
         )}
 

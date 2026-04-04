@@ -2,9 +2,9 @@ import fs from "fs";
 import path from "path";
 import { LeadsFile, Lead } from "./types";
 
-// Resolve project root reliably: go up from web/ to growthclaw/
-// Works whether started from web/ (pnpm dev) or project root (next dev --dir web)
-const PROJECT_ROOT = path.resolve(__dirname, "..", "..");
+// Resolve project root: go up from web/ (process.cwd()) to growthclaw/
+// __dirname is unreliable in Next.js (points into .next/ build output)
+const PROJECT_ROOT = path.resolve(process.cwd(), "..");
 const LEADS_PATH = path.join(PROJECT_ROOT, "data", "leads.json");
 
 export function getProjectRoot(): string {

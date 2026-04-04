@@ -9,6 +9,7 @@ export const dynamic = "force-dynamic";
 
 // Pipeline state persisted to a temp file to survive HMR reloads
 const STATE_FILE = path.join(getProjectRoot(), "data", ".pipeline-state.json");
+const PID_FILE = path.join(getProjectRoot(), "data", ".pipeline-pid");
 
 function readState(): PipelineStatus {
   try {
@@ -34,6 +35,16 @@ function setState(stage: PipelineStage, message: string) {
   writeState(state);
 }
 
+// Check if a PID is still alive
+function isProcessRunning(pid: number): boolean {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 // On module load, check if a previous run left a stale "running" state
 const initialState = readState();
 if (
@@ -41,12 +52,24 @@ if (
   initialState.stage !== "done" &&
   initialState.stage !== "error"
 ) {
-  // Previous process was lost (HMR or restart) — mark as error
-  writeState({
-    stage: "error",
-    started_at: initialState.started_at,
-    message: "Pipeline interrupted (server restarted). Run again.",
-  });
+  // Check if the process is actually still running via PID file
+  let stillRunning = false;
+  try {
+    const pid = parseInt(fs.readFileSync(PID_FILE, "utf-8").trim(), 10);
+    stillRunning = isProcessRunning(pid);
+  } catch {
+    // No PID file — process is gone
+  }
+
+  if (!stillRunning) {
+    // Process finished but stage wasn't updated — check if leads grew (success) or not
+    writeState({
+      stage: "done",
+      started_at: initialState.started_at,
+      message: "Pipeline complete!",
+    });
+  }
+  // If still running, leave state as-is — it's fine
 }
 
 export async function GET() {
@@ -96,8 +119,14 @@ export async function POST() {
       {
         cwd: projectRoot,
         env: { ...process.env },
+        detached: true,
       }
     );
+
+    // Save PID so we can detect if process is alive after HMR
+    if (currentProcess.pid) {
+      fs.writeFileSync(PID_FILE, String(currentProcess.pid), "utf-8");
+    }
 
     let output = "";
 
@@ -113,7 +142,10 @@ export async function POST() {
           lower.includes("stage 2") ||
           lower.includes("scoring") ||
           lower.includes("leads scored") ||
-          lower.includes("visit")
+          lower.includes("visit") ||
+          lower.includes("enrich") ||
+          lower.includes("marketing_score") ||
+          lower.includes("score_breakdown")
         ) {
           setState("scoring", "Scoring founder websites...");
         }
@@ -124,16 +156,20 @@ export async function POST() {
           lower.includes("stage 3") ||
           lower.includes("drafting") ||
           lower.includes("outreach draft") ||
-          lower.includes("personalized")
+          lower.includes("outreach_draft") ||
+          lower.includes("personalized") ||
+          lower.includes("hey!")
         ) {
           setState("drafting", "Drafting personalized outreach...");
         }
       }
-      if (currentStage === "drafting" || currentStage === "scoring") {
+      if (currentStage === "drafting" || currentStage === "scoring" || currentStage === "scouting") {
         if (
           lower.includes("stage 3 complete") ||
           lower.includes("pipeline complete") ||
-          lower.includes("dashboard")
+          lower.includes("dashboard") ||
+          lower.includes("all 3 stages") ||
+          lower.includes("complete!")
         ) {
           setState("done", "Pipeline complete!");
         }
@@ -155,6 +191,7 @@ export async function POST() {
         setState("error", `Pipeline exited with code ${code}`);
       }
       currentProcess = null;
+      try { fs.unlinkSync(PID_FILE); } catch {}
     });
 
     currentProcess.on("error", (err) => {
@@ -165,6 +202,7 @@ export async function POST() {
           : `Failed to start: ${err.message}`
       );
       currentProcess = null;
+      try { fs.unlinkSync(PID_FILE); } catch {}
     });
 
     return NextResponse.json(

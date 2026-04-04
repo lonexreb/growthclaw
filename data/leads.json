@@ -2,8 +2,8 @@
   "metadata": {
     "project": "growthclaw",
     "version": "1.0",
-    "last_updated": "2026-04-04T17:51:00Z",
-    "total_leads": 7
+    "last_updated": "2026-04-04T18:47:00Z",
+    "total_leads": 8
   },
   "leads": [
     {
@@ -12,28 +12,8 @@
       "product_name": "InspoAI",
       "founder_name": "Successful_Draw4218",
       "website_url": "https://www.inspoai.io/",
-      "description": "AI-powered design search and Mobbin alternative. Search for design inspiration with AI, build moodboards, audit designs against brand guidelines.",
-      "social_handles": {},
-      "source_url": "https://www.reddit.com/r/SideProject/comments/1scf15g/",
-      "found_at": "2026-04-04T17:49:00Z",
+      "description": "AI-powered design search and Mobbin alternative.",
       "marketing_score": 7,
-      "score_breakdown": {
-        "positioning_clarity": 6,
-        "cta_strength": 7,
-        "social_proof": 7,
-        "design_quality": 7,
-        "copy_quality": 7
-      },
-      "top_gaps": [
-        "Positioning could be tighter — 'everything creative professionals need' is broad; lead with the ONE thing that differentiates from Mobbin",
-        "Too many CTAs compete for attention (Upgrade, Get Freelancer, Get Team, Get Lifetime, GET INSPIRED) — prioritize one primary action",
-        "Hero section lacks a clear product demo or screenshot showing the AI search in action"
-      ],
-      "enriched_at": "2026-04-04T17:50:00Z",
-      "outreach_draft": "Hey! Just saw InspoAI on r/SideProject — building a smarter alternative to Mobbin with AI search is a really clever angle, and the moodboard + brand audit features are genuinely useful.\n\nOne thing I noticed: your landing page has a lot of CTAs competing for attention (Upgrade, Get Freelancer, Get Team, Get Lifetime, GET INSPIRED). Simplifying to one clear primary action could boost conversions.\n\nThere's an AI marketing tool called Crowdstake that auto-generates landing pages with conversion-optimized copy — might help you A/B test different versions quickly. Free tier at crowdstake.ai if you want to try it.",
-      "outreach_channel": "dashboard",
-      "outreach_status": "drafted",
-      "drafted_at": "2026-04-04T17:51:00Z",
       "status": "outreach-drafted"
     },
     {
@@ -42,28 +22,8 @@
       "product_name": "PanelShot",
       "founder_name": "narrow-adventure",
       "website_url": "https://panelshot.com",
-      "description": "AI-powered synthetic focus groups. Generate AI personas to evaluate your website and get user research feedback in minutes instead of weeks.",
-      "social_handles": {},
-      "source_url": "https://www.reddit.com/r/startups/comments/1scefy7/",
-      "found_at": "2026-04-04T17:49:00Z",
+      "description": "AI-powered synthetic focus groups.",
       "marketing_score": 8,
-      "score_breakdown": {
-        "positioning_clarity": 9,
-        "cta_strength": 8,
-        "social_proof": 5,
-        "design_quality": 7,
-        "copy_quality": 8
-      },
-      "top_gaps": [
-        "No customer testimonials or logos — '50,000+ Personas Generated' is good but real customer quotes would build more trust",
-        "Missing case studies showing before/after results from actual users",
-        "No founder story or team page — adding a human element could increase conversion"
-      ],
-      "enriched_at": "2026-04-04T17:50:00Z",
-      "outreach_draft": "Hey! Saw you mention PanelShot in r/startups — synthetic focus groups for $0.50/persona is a brilliant positioning. The 'Minutes, Not Weeks' angle really lands.\n\nYour landing page is solid, but I noticed you're missing customer testimonials and case studies. Adding 2-3 real user quotes with before/after results could significantly boost trust and conversion.\n\nCrowdstake's AI marketing consultant can help you generate social proof sections and optimize your copy for conversion — free tier at crowdstake.ai if you want to test it out.",
-      "outreach_channel": "dashboard",
-      "outreach_status": "drafted",
-      "drafted_at": "2026-04-04T17:51:00Z",
       "status": "outreach-drafted"
     },
     {
@@ -72,93 +32,99 @@
       "product_name": "Vincerò",
       "founder_name": "markoruman",
       "website_url": "https://vincero.app",
-      "description": "AI operating system for solopreneurs. Connects goals to habits to tasks with an AI coach that eliminates fake work and holds you accountable.",
-      "social_handles": {},
-      "source_url": "https://www.reddit.com/r/SideProject/comments/1scepza/",
-      "found_at": "2026-04-04T17:49:00Z",
+      "description": "AI operating system for solopreneurs.",
       "marketing_score": 5,
-      "score_breakdown": {
-        "positioning_clarity": 6,
-        "cta_strength": 5,
-        "social_proof": 3,
-        "design_quality": 6,
-        "copy_quality": 7
-      },
-      "top_gaps": [
-        "Extremely weak social proof — '150+ solopreneurs' is low, no testimonials, no user stories, no logos",
-        "No clear CTA above the fold — 'Get the System (free)' is buried and leads to waitlist, not product",
-        "Positioning takes too long to understand — visitors need 5+ seconds to figure out what the product actually does"
-      ],
-      "enriched_at": "2026-04-04T17:50:00Z",
-      "outreach_draft": "Hey Marko! Just saw Vincerò on r/SideProject — love the 'anti-cheerleader' angle for solopreneurs. The copy around 'fake work' and the Company of One concept really resonates.\n\nQuick feedback: your hero takes a few seconds to understand what the product actually does, and '150+ solopreneurs' as social proof is underselling your traction. A clearer one-liner + some user testimonials above the fold would help a lot.\n\nCrowdstake is an AI marketing OS that writes positioning and auto-generates landing pages — might help you nail the messaging before your beta launch. Free tier at crowdstake.ai.",
-      "outreach_channel": "dashboard",
-      "outreach_status": "drafted",
-      "drafted_at": "2026-04-04T17:51:00Z",
       "status": "outreach-drafted"
     },
     {
-      "id": "ph-001",
-      "source": "producthunt",
-      "product_name": "Sleek Analytics",
-      "founder_name": "Abbas Aga",
-      "website_url": "https://getsleek.io",
-      "description": "Simple website analytics — paste one line of code and watch real visitors move through your site live. No cookie banners, no noise.",
-      "social_handles": {
-        "twitter": "@getsleekio",
-        "producthunt": "@uaghazade",
-        "linkedin": ""
-      },
-      "source_url": "https://www.producthunt.com/posts/sleek-analytics",
-      "found_at": "2026-04-04T10:45:00Z",
-      "status": "scouted"
+      "id": "rd-004",
+      "source": "reddit",
+      "product_name": "The Backgammon Cafe",
+      "founder_name": "TellBrak",
+      "website_url": "https://thebackgammoncafe.com",
+      "description": "Wordle + Duolingo for Backgammon.",
+      "marketing_score": 5,
+      "status": "outreach-drafted"
     },
     {
-      "id": "ph-002",
-      "source": "producthunt",
-      "product_name": "Faahh",
-      "founder_name": "Tonino Catapano",
-      "website_url": "https://www.faahhh.fun",
-      "description": "Focus app that sits in your menu bar — slap your desk or unplug a device to trigger a loud alert and snap back to work. No blockers or dashboards.",
-      "social_handles": {
-        "twitter": "",
-        "producthunt": "@tonnoz",
-        "linkedin": ""
-      },
-      "source_url": "https://www.producthunt.com/posts/faahh",
-      "found_at": "2026-04-04T10:45:00Z",
-      "status": "scouted"
+      "id": "rd-005",
+      "source": "reddit",
+      "product_name": "The Void Game",
+      "founder_name": "E-S-",
+      "website_url": "https://www.thevoid.game",
+      "description": "Cognitive gaming platform.",
+      "marketing_score": 6,
+      "status": "outreach-drafted"
     },
     {
-      "id": "ph-003",
-      "source": "producthunt",
-      "product_name": "Donut Browser",
-      "founder_name": "Andy",
-      "website_url": "https://donutbrowser.com",
-      "description": "Open source anti-detect browser. Create unlimited local profiles with unique fingerprints, proxy support, and full browser automation.",
-      "social_handles": {
-        "twitter": "@zhomag",
-        "producthunt": "@zhom",
-        "linkedin": ""
-      },
-      "source_url": "https://www.producthunt.com/posts/donut-browser",
-      "found_at": "2026-04-04T10:45:00Z",
-      "status": "scouted"
+      "id": "rd-006",
+      "source": "reddit",
+      "product_name": "DraftMarket",
+      "founder_name": "ScholarNew5819",
+      "website_url": "https://draft-market.vercel.app",
+      "description": "Fantasy crypto trading platform.",
+      "marketing_score": 5,
+      "status": "outreach-drafted"
     },
     {
-      "id": "ph-004",
-      "source": "producthunt",
-      "product_name": "APImage",
-      "founder_name": "Ole Mai",
-      "website_url": "https://apimage.org",
-      "description": "AI-powered image generation and editing platform. Generate, edit, and enhance images — studio-grade results in seconds for developers, designers, and creators.",
-      "social_handles": {
-        "twitter": "@apimageorg",
-        "producthunt": "@olemai",
-        "linkedin": ""
+      "id": "rd-007",
+      "source": "reddit",
+      "product_name": "Runphatic",
+      "founder_name": "Top-Ant-4492",
+      "website_url": "https://runphatic.com",
+      "description": "Running app with Whoop integration. Zero to 5K training in 10 weeks with recovery-based advice.",
+      "social_handles": {},
+      "source_url": "https://www.reddit.com/r/indiehackers/comments/1sc7zl0/",
+      "found_at": "2026-04-04T18:47:00Z",
+      "marketing_score": 4,
+      "score_breakdown": {
+        "positioning_clarity": 6,
+        "cta_strength": 3,
+        "social_proof": 1,
+        "design_quality": 5,
+        "copy_quality": 5
       },
-      "source_url": "https://www.producthunt.com/posts/apimage",
-      "found_at": "2026-04-04T10:45:00Z",
-      "status": "scouted"
+      "top_gaps": [
+        "Zero social proof — founder admitted getting only 2 signups in 6 years across 5 products",
+        "No clear CTA — page lists features but no 'Start Training' or 'Connect Whoop' button visible",
+        "Positioning is feature-focused not benefit-focused — 'GPS tracking, 5 heart rate zones' vs 'Actually finish your first 5K'"
+      ],
+      "enriched_at": "2026-04-04T18:47:00Z",
+      "outreach_draft": "Hey! Just saw your Runphatic post on r/indiehackers — congrats on the first 2 signups after 6 years! The Whoop integration for recovery-based training advice is genuinely clever.\n\nQuick feedback: your landing page lists features but doesn't have an obvious CTA. Where do I click to start? Also, leading with 'Zero to 5K in 10 weeks' as the headline (benefit) vs feature specs would help conversion.\n\nCrowdstake is an AI marketing OS that generates landing pages with benefit-focused copy — could help you nail that first impression. Free tier at crowdstake.ai.",
+      "outreach_channel": "dashboard",
+      "outreach_status": "drafted",
+      "drafted_at": "2026-04-04T18:47:00Z",
+      "status": "outreach-drafted"
+    },
+    {
+      "id": "rd-008",
+      "source": "reddit",
+      "product_name": "SuperCmd",
+      "founder_name": "Purple_Minute_4776",
+      "website_url": "https://supercmd.sh",
+      "description": "Open-source macOS launcher alternative to Raycast. AI prompt, clipboard, notes, voice typing, extensions.",
+      "social_handles": {},
+      "source_url": "https://www.reddit.com/r/indiehackers/comments/1s9q285/",
+      "found_at": "2026-04-04T18:47:00Z",
+      "marketing_score": 7,
+      "score_breakdown": {
+        "positioning_clarity": 8,
+        "cta_strength": 7,
+        "social_proof": 6,
+        "design_quality": 7,
+        "copy_quality": 7
+      },
+      "top_gaps": [
+        "1k GitHub stars mentioned on Reddit but not prominently displayed on landing page",
+        "No testimonials from actual users — just feature descriptions",
+        "Free/open-source positioning may limit monetization potential"
+      ],
+      "enriched_at": "2026-04-04T18:47:00Z",
+      "outreach_draft": "Hey! Just saw SuperCmd on r/indiehackers — hitting 1k GitHub stars in 10 days is impressive! The 'Raycast but better and free' positioning is really clear.\n\nOne thing: your GitHub traction isn't visible on the landing page. Adding '1,000+ developers using SuperCmd' or a star counter would boost credibility instantly.\n\nCrowdstake helps with landing page optimization and social proof sections — free tier at crowdstake.ai if you want to test it.",
+      "outreach_channel": "dashboard",
+      "outreach_status": "drafted",
+      "drafted_at": "2026-04-04T18:47:00Z",
+      "status": "outreach-drafted"
     }
   ]
 }
