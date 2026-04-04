@@ -1,73 +1,91 @@
 "use client";
 
 function getScoreColor(score: number): string {
-  if (score <= 3) return "#dc2626";  // crab red — severe
-  if (score <= 6) return "#d97706";  // amber — moderate
-  if (score <= 8) return "#059669";  // green — decent
-  return "#7c3aed";                   // purple — strong
+  if (score <= 3) return "#dc2626";
+  if (score <= 6) return "#d97706";
+  if (score <= 8) return "#059669";
+  return "#7c3aed";
+}
+
+/**
+ * Attempt to describe a point on a semicircular arc.
+ * The arc spans from 180 degrees (left) to 0 degrees (right),
+ * sweeping clockwise over the top. In SVG, Y-axis points down,
+ * so we use: x = cx + r*cos(angle), y = cy - r*sin(angle)
+ * where angle is measured counter-clockwise from the positive X-axis.
+ *
+ * We parameterize with t in [0, 1] where t=0 is leftmost (180 deg)
+ * and t=1 is rightmost (0 deg).
+ */
+function arcPoint(cx: number, cy: number, r: number, t: number) {
+  const angle = Math.PI * (1 - t); // t=0 → π (left), t=1 → 0 (right)
+  return {
+    x: cx + r * Math.cos(angle),
+    y: cy - r * Math.sin(angle),
+  };
 }
 
 export function ScoreGauge({ score }: { score: number }) {
   const color = getScoreColor(score);
-  const percentage = score / 10;
-  const radius = 40;
+  const fraction = Math.max(0, Math.min(score / 10, 1));
+
   const cx = 60;
-  const cy = 50;
+  const cy = 55;
+  const r = 38;
 
-  // Arc from 180deg (left) to 0deg (right)
-  const startAngle = Math.PI;
-  const endAngle = Math.PI - percentage * Math.PI;
+  // Background arc: full semicircle from left (t=0) to right (t=1)
+  const bgStart = arcPoint(cx, cy, r, 0);
+  const bgEnd = arcPoint(cx, cy, r, 1);
 
-  const startX = cx + radius * Math.cos(startAngle);
-  const startY = cy - radius * Math.sin(startAngle);
-  const endX = cx + radius * Math.cos(endAngle);
-  const endY = cy - radius * Math.sin(endAngle);
-
-  const largeArc = percentage > 0.5 ? 1 : 0;
-
-  const bgStartX = cx + radius * Math.cos(Math.PI);
-  const bgStartY = cy - radius * Math.sin(Math.PI);
-  const bgEndX = cx + radius * Math.cos(0);
-  const bgEndY = cy - radius * Math.sin(0);
+  // Score arc: from left (t=0) to fraction
+  const scoreEnd = arcPoint(cx, cy, r, fraction);
+  const largeArc = fraction > 0.5 ? 1 : 0;
 
   return (
-    <div className="flex flex-col items-center">
-      <svg viewBox="0 0 120 65" className="w-24 h-auto">
-        {/* Background arc */}
+    <div className="flex flex-col items-center shrink-0">
+      <svg viewBox="0 0 120 72" className="w-[100px] h-auto">
+        {/* Background arc — full semicircle */}
         <path
-          d={`M ${bgStartX} ${bgStartY} A ${radius} ${radius} 0 1 1 ${bgEndX} ${bgEndY}`}
+          d={`M ${bgStart.x} ${bgStart.y} A ${r} ${r} 0 1 1 ${bgEnd.x} ${bgEnd.y}`}
           fill="none"
-          stroke="#f3f4f6"
-          strokeWidth="8"
+          stroke="#e5e7eb"
+          strokeWidth="7"
           strokeLinecap="round"
         />
+
         {/* Score arc */}
-        {percentage > 0 && (
+        {fraction > 0.01 && (
           <path
-            d={`M ${startX} ${startY} A ${radius} ${radius} 0 ${largeArc} 1 ${endX} ${endY}`}
+            d={`M ${bgStart.x} ${bgStart.y} A ${r} ${r} 0 ${largeArc} 1 ${scoreEnd.x} ${scoreEnd.y}`}
             fill="none"
             stroke={color}
-            strokeWidth="8"
+            strokeWidth="7"
             strokeLinecap="round"
           />
         )}
-        {/* Score text */}
+
+        {/* Score number */}
         <text
           x={cx}
-          y={cy - 2}
+          y={cy - 6}
           textAnchor="middle"
-          className="text-2xl font-bold"
+          dominantBaseline="central"
           fill={color}
-          fontSize="24"
+          fontSize="26"
+          fontWeight="700"
+          fontFamily="system-ui, sans-serif"
         >
           {score}
         </text>
+
+        {/* /10 label */}
         <text
           x={cx}
           y={cy + 12}
           textAnchor="middle"
           fill="#9ca3af"
-          fontSize="10"
+          fontSize="11"
+          fontFamily="system-ui, sans-serif"
         >
           /10
         </text>
