@@ -1,22 +1,23 @@
 # GrowthClaw Channel Configuration
-# Slack/Telegram webhook config for lead delivery
+# Lead delivery targets. Secrets live in .env.local (gitignored).
 
 channels:
-  # Primary: Slack
+  # Primary: Slack Incoming Webhook → #all-growthclaw
   slack:
     enabled: true
-    channel: "#growthclaw-leads"
-    webhook_url: "${SLACK_WEBHOOK_URL}"  # Set in environment
-    format: "rich"  # Use Slack block kit formatting
+    channel: "#all-growthclaw"
+    webhook_url: "${SLACK_WEBHOOK_URL}"  # Set in .env.local
+    format: "blocks"  # Use Slack Block Kit
+    rate_limit_per_run: 10
 
-  # Fallback: Telegram
+  # Fallback: Telegram (disabled for hackathon)
   telegram:
     enabled: false
     bot_token: "${TELEGRAM_BOT_TOKEN}"
     chat_id: "${TELEGRAM_CHAT_ID}"
     format: "markdown"
 
-  # Always-on: Local dashboard
+  # Always-on: Local dashboard mirror (redundancy for demo)
   dashboard:
     enabled: true
     path: "data/dashboard.md"
