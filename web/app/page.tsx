@@ -14,6 +14,8 @@ export default function Dashboard() {
     stage: "idle",
     started_at: null,
     message: "Ready to run",
+    detail: "",
+    progress: 0,
   });
   const [error, setError] = useState<string | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -92,6 +94,8 @@ export default function Dashboard() {
         stage: "scouting",
         started_at: new Date().toISOString(),
         message: "Scouting founders from Product Hunt & Reddit...",
+        detail: "Searching Reddit and Product Hunt...",
+        progress: 5,
       });
     } catch (err) {
       setError(
@@ -143,7 +147,12 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gc-bg">
       <Header onRun={handleRunPipeline} isRunning={isRunning} />
-      <PipelineStatus stage={pipeline.stage} message={pipeline.message} />
+      <PipelineStatus
+        stage={pipeline.stage}
+        message={pipeline.message}
+        detail={pipeline.detail}
+        progress={pipeline.progress}
+      />
 
       {/* Error bar */}
       {(error || pipeline.stage === "error") && (

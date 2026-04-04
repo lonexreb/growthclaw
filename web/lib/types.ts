@@ -61,4 +61,6 @@ export interface PipelineStatus {
   stage: PipelineStage;
   started_at: string | null;
   message: string;
+  detail: string;
+  progress: number;
 }

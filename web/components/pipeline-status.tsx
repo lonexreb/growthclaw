@@ -1,6 +1,11 @@
 "use client";
 
 import { Check, Search, BarChart3, FileText, Sparkles } from "lucide-react";
+import {
+  Progress,
+  ProgressTrack,
+  ProgressIndicator,
+} from "@/components/ui/progress";
 import type { PipelineStage } from "@/lib/types";
 
 const steps = [
@@ -22,9 +27,13 @@ const stageOrder: Record<string, number> = {
 export function PipelineStatus({
   stage,
   message,
+  detail,
+  progress,
 }: {
   stage: PipelineStage;
   message: string;
+  detail: string;
+  progress: number;
 }) {
   const currentIdx = stageOrder[stage] ?? -1;
   const isRunning =
@@ -33,8 +42,8 @@ export function PipelineStatus({
   return (
     <div className="w-full bg-gc-red-light/50 border-b border-red-100 px-6 py-3">
       <div className="max-w-[1600px] mx-auto">
+        {/* Step indicators */}
         <div className="flex items-center gap-3">
-          {/* Steps */}
           <div className="flex items-center gap-0 flex-1">
             {steps.map((step, i) => {
               const StepIcon = step.icon;
@@ -89,17 +98,45 @@ export function PipelineStatus({
               );
             })}
           </div>
-
-          {/* Status message */}
-          {isRunning && (
-            <p className="text-xs text-gc-red font-medium animate-pulse shrink-0">
-              {message}
-            </p>
-          )}
-          {stage === "error" && (
-            <p className="text-xs text-gc-red shrink-0">{message}</p>
-          )}
         </div>
+
+        {/* Progress bar + detail — visible when running */}
+        {isRunning && (
+          <div className="mt-3 space-y-1.5">
+            <Progress value={progress} className="flex-wrap gap-0">
+              <ProgressTrack className="h-1.5 bg-red-100 rounded-full">
+                <ProgressIndicator className="bg-gc-red rounded-full transition-all duration-700 ease-out" />
+              </ProgressTrack>
+            </Progress>
+            <div className="flex items-center justify-between">
+              <p className="text-xs text-gc-muted truncate max-w-[75%]">
+                {detail || message}
+              </p>
+              <span className="text-xs text-gc-muted tabular-nums font-medium">
+                {progress}%
+              </span>
+            </div>
+          </div>
+        )}
+
+        {/* Done state — full bar + green message */}
+        {stage === "done" && (
+          <div className="mt-3 space-y-1.5">
+            <Progress value={100} className="flex-wrap gap-0">
+              <ProgressTrack className="h-1.5 bg-red-100 rounded-full">
+                <ProgressIndicator className="bg-gc-green rounded-full" />
+              </ProgressTrack>
+            </Progress>
+            <p className="text-xs text-gc-green font-medium">{message}</p>
+          </div>
+        )}
+
+        {/* Error state */}
+        {stage === "error" && (
+          <div className="mt-2">
+            <p className="text-xs text-gc-red shrink-0">{message}</p>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,148 +1,154 @@
-# GrowthClaw Dashboard
+# GrowthClaw Pipeline Dashboard
 
-> Last updated: 2026-04-04T18:57:00Z
-
-## Pipeline Status
-
-| Stage | Count | Last Run |
-|-------|-------|----------|
-| Scouted | 11 | 2026-04-04T18:57:00Z |
-| Qualified | 5 | 2026-04-04T18:57:00Z |
-| Qualified (Low Priority) | 6 | 2026-04-04T18:57:00Z |
-| Outreach Drafted | 11 | 2026-04-04T18:57:00Z |
-| Skipped | 0 | — |
-| Errors | 0 | — |
-
-## Recent Leads
-
-| # | Product | Founder | Score | Top Gap | Status |
-|---|---------|---------|-------|---------|--------|
-| 1 | InspoAI | Successful_Draw4218 | 7/10 | Too many CTAs competing | outreach-drafted |
-| 2 | PanelShot | narrow-adventure | 8/10 | No testimonials | outreach-drafted |
-| 3 | Vincerò | markoruman | 5/10 | Weak social proof, unclear positioning | outreach-drafted |
-| 4 | The Backgammon Cafe | TellBrak | 5/10 | No conversion path | outreach-drafted |
-| 5 | The Void Game | E-S- | 6/10 | Missing clear value prop | outreach-drafted |
-| 6 | DraftMarket | ScholarNew5819 | 5/10 | No social proof | outreach-drafted |
-| 7 | Runphatic | Top-Ant-4492 | 4/10 | No CTA, feature-focused copy | outreach-drafted |
-| 8 | SuperCmd | Purple_Minute_4776 | 7/10 | GitHub stars not displayed | outreach-drafted |
-| 9 | PriceMyJob | toffeemartyn | 7/10 | Zero social proof | outreach-drafted |
-| 10 | Ditherit | OkAcanthocephala9305 | 3/10 | No positioning, no copy | outreach-drafted |
-| 11 | Veld Portfolio | TheRealRefuro | 7/10 | No testimonials or preview | outreach-drafted |
-
-## Score Distribution
-
-- **1-3 (High priority):** 1 lead (Ditherit)
-- **4-6 (Good lead):** 4 leads (Vincerò, The Backgammon Cafe, The Void Game, DraftMarket, Runphatic)
-- **7-8 (Low priority):** 6 leads (InspoAI, PanelShot, SuperCmd, PriceMyJob, Veld Portfolio)
-- **9-10 (Skipped):** 0 leads
-
-## Run 3 Leads (New)
-
-### PriceMyJob — Score: 7/10
-**Website:** https://pricemyjob.uk
-**Founder:** toffeemartyn
-**Source:** r/SideProject
-
-**Gaps:**
-- Zero social proof — no testimonials from tradesmen, no user count, no customer logos
-- '0 UK competitors' reads as weak positioning — should highlight traction or results instead
-- No visual example of what an estimate looks like — a sample output screenshot would build confidence
-
-**Draft:**
-> Hey! Just saw PriceMyJob on r/SideProject — building and shipping in one day is impressive, and the 'no signup needed' approach is smart for reducing friction.
->
-> One thing I noticed: your landing page has no social proof yet. Even '50 estimates generated' or one testimonial from a tradesman would boost credibility. The '0 UK competitors' stat is technically true but reads a bit weak.
->
-> Crowdstake is an AI marketing OS that helps with landing page copy and social proof sections — might be useful as you start getting users. Free tier at crowdstake.ai.
+**Last Updated:** 2026-04-04 19:16 CST  
+**Total Leads:** 16  
+**Pipeline Runs:** 5
 
 ---
 
-### Ditherit — Score: 3/10 ⚠️ HIGH PRIORITY
-**Website:** https://ditherit-rho.vercel.app
-**Founder:** OkAcanthocephala9305
-**Source:** r/SideProject
+## 📊 Score Distribution
 
-**Gaps:**
-- No positioning or value prop — visitors land on controls without knowing what the tool does or why they'd use it
-- Zero social proof — GitHub repo exists but no stars/usage displayed on the landing page
-- No copy explaining use cases — who is this for? Designers? Developers? Content creators? What do they make with it?
-
-**Draft:**
-> Hey! Just saw Ditherit on r/SideProject — the physics-based dot repulsion effect is genuinely cool, and the multiple export formats (PNG, SVG, React code) are thoughtful.
->
-> Honest feedback: when I landed on the page, I had no idea what the tool did until I read your Reddit post. A simple headline like 'Turn any image into stunning dithered art in seconds' + 3 example outputs would help so much.
->
-> Crowdstake is an AI marketing OS that generates landing page copy and positioning — could help you explain what makes Ditherit special. Free tier at crowdstake.ai.
+| Score | Count | Status |
+|-------|-------|--------|
+| 3     | 1     | 🔥 HIGH PRIORITY |
+| 4     | 2     | 🔥 HIGH PRIORITY |
+| 5     | 5     | ✅ Qualified |
+| 6     | 3     | ✅ Qualified |
+| 7     | 4     | ⚡ Qualified-Low |
+| 8     | 1     | ⚡ Qualified-Low |
 
 ---
 
-### Veld Portfolio — Score: 7/10
-**Website:** https://veldportfolio.com
-**Founder:** TheRealRefuro
-**Source:** r/buildinpublic
+## 🔥 HIGH PRIORITY LEADS (Score ≤ 5)
 
-**Gaps:**
-- No social proof — zero testimonials from landlords, no user count, no 'trusted by X investors'
-- No visual preview of the dashboard — a screenshot showing actual portfolio data would build confidence
-- Missing specific results — 'what do users achieve?' e.g., 'Average user saves 2 hours/month on spreadsheet work'
+### 1. Ditherit — Score: 3/10
+- **URL:** ditherit-rho.vercel.app
+- **Founder:** OkAcanthocephala9305
+- **What:** Image/video to dither art converter
+- **Gaps:** Zero positioning, no copy explaining what it does, pure app UI
+- **Status:** ✅ Outreach drafted
 
-**Draft:**
-> Hey! Just saw Veld Portfolio on r/buildinpublic — the 'Replace spreadsheet chaos' positioning is spot-on, and I love the clarity on what it does vs. doesn't do (not rent collection, just investor numbers).
->
-> One gap: you mention struggling with marketing awareness. Your landing page has no testimonials yet. Even one quote from a landlord like 'I used to spend 3 hours/month updating spreadsheets, now it's automatic' would help convert visitors.
->
-> Crowdstake is an AI marketing OS that helps with landing page copy and social proof — might be useful given the marketing challenge you mentioned. Free tier at crowdstake.ai.
+### 2. Runphatic — Score: 4/10
+- **URL:** runphatic.com
+- **Founder:** Top-Ant-4492
+- **What:** Running app with Whoop integration
+- **Gaps:** No CTA, feature-focused not benefit-focused, zero social proof
+- **Status:** ✅ Outreach drafted
 
----
+### 3. WiBell — Score: 4/10 🆕
+- **URL:** wibell.net
+- **Founder:** Large-Jellyfish6069
+- **What:** WiFi programmable bell system for schools/factories
+- **Gaps:** Extremely minimal landing page, no testimonials, no product photos
+- **Status:** ✅ Outreach drafted
 
-## Previous Runs
+### 4. Vincerò — Score: 5/10
+- **URL:** vincero.app
+- **Founder:** markoruman
+- **What:** AI OS for solopreneurs
+- **Gaps:** Weak social proof, unclear positioning, buried CTA
+- **Status:** ✅ Outreach drafted
 
-### Run 2 Leads
+### 5. The Backgammon Cafe — Score: 5/10
+- **URL:** thebackgammoncafe.com
+- **Founder:** TellBrak
+- **What:** Wordle + Duolingo for Backgammon
+- **Status:** ✅ Outreach drafted
 
-#### The Backgammon Cafe — Score: 5/10
-**Website:** https://thebackgammoncafe.com
-**Draft:** Personalized message about gamification and social proof gaps.
+### 6. DraftMarket — Score: 5/10
+- **URL:** draft-market.vercel.app
+- **Founder:** ScholarNew5819
+- **What:** Fantasy crypto trading platform
+- **Status:** ✅ Outreach drafted
 
-#### The Void Game — Score: 6/10
-**Website:** https://www.thevoid.game
-**Draft:** Focused on clearer value proposition.
+### 7. Krafl-IO — Score: 5/10
+- **URL:** kraflio.com
+- **Founder:** Soft_Ad6760
+- **What:** AI LinkedIn post generator with 5-agent pipeline
+- **Gaps:** JS-heavy site, 2.3% conversion rate, no social proof
+- **Status:** ✅ Outreach drafted
 
-#### DraftMarket — Score: 5/10
-**Website:** https://draft-market.vercel.app
-**Draft:** Addressed trust/credibility for crypto-adjacent product.
-
-### Run 1 Leads
-
-#### Vincerò — Score: 5/10 ⭐ HERO LEAD
-**Website:** https://vincero.app
-**Founder explicitly mentioned struggling with marketing on Reddit.**
-
-#### InspoAI — Score: 7/10
-**Website:** https://www.inspoai.io/
-
-#### PanelShot — Score: 8/10
-**Website:** https://panelshot.com
-
----
-
-## High Priority Leads (Score ≤ 6)
-
-| Product | Score | Key Issue | Website |
-|---------|-------|-----------|---------|
-| **Ditherit** | 3/10 | No positioning at all | ditherit-rho.vercel.app |
-| **Runphatic** | 4/10 | No CTA, features-first | runphatic.com |
-| **Vincerò** | 5/10 | Weak positioning + social proof | vincero.app |
-| **The Backgammon Cafe** | 5/10 | No conversion path | thebackgammoncafe.com |
-| **DraftMarket** | 5/10 | No credibility signals | draft-market.vercel.app |
-| **The Void Game** | 6/10 | Unclear value prop | thevoid.game |
+### 8. Planlify — Score: 5/10
+- **URL:** planlify.com
+- **Founder:** planlify
+- **What:** Calendar + tasks + savings tracker
+- **Gaps:** Vague positioning, no social proof, generic copy
+- **Status:** ✅ Outreach drafted
 
 ---
 
-## Stats Summary
+## ✅ QUALIFIED LEADS (Score 6)
 
-- **Total leads:** 11
-- **High priority (score 1-6):** 6 (55%)
-- **Qualified-low (score 7-8):** 5 (45%)
-- **Skipped (score 9-10):** 0 (0%)
-- **Average score:** 5.5/10
-- **Sources:** Reddit (r/SideProject, r/indiehackers, r/buildinpublic)
+### 9. The Void Game — Score: 6/10
+- **URL:** thevoid.game
+- **Founder:** E-S-
+- **What:** Cognitive gaming platform
+- **Status:** ✅ Outreach drafted
+
+### 10. Malibu — Score: 6/10
+- **URL:** malibu-lake.vercel.app
+- **Founder:** ducksarooony
+- **What:** Price intelligence tool (Buy/Wait/Overpriced)
+- **Gaps:** Positioning unclear, no social proof, upgrade value unclear
+- **Status:** ✅ Outreach drafted
+
+### 11. TripDeck — Score: 6/10 🆕
+- **URL:** tripdeck.io
+- **Founder:** Solo dev from Tunisia
+- **What:** AI travel itinerary generator with real prices
+- **Gaps:** 17 signups but claims 50K+ stats, generic testimonials, founder asking for conversion help
+- **Status:** ✅ Outreach drafted
+
+---
+
+## ⚡ QUALIFIED-LOW (Score 7-8)
+
+### 12. InspoAI — Score: 7/10
+- **URL:** inspoai.io
+- **What:** AI design search (Mobbin alternative)
+
+### 13. SuperCmd — Score: 7/10
+- **URL:** supercmd.sh
+- **What:** Open-source macOS launcher
+- **Gaps:** 1K GitHub stars not visible on landing page
+
+### 14. PriceMyJob — Score: 7/10
+- **URL:** pricemyjob.uk
+- **What:** AI trade job cost estimator
+
+### 15. Veld Portfolio — Score: 7/10
+- **URL:** veldportfolio.com
+- **What:** Real estate portfolio analytics
+
+### 16. PanelShot — Score: 8/10
+- **URL:** panelshot.com
+- **What:** AI synthetic focus groups
+- **Note:** Marketing already decent, low priority for Crowdstake
+
+---
+
+## 📈 Pipeline History
+
+| Run | Date | Leads Found | High Priority | Source |
+|-----|------|-------------|---------------|--------|
+| 1   | Apr 4 | 3 | Vincerò (5) | Reddit |
+| 2   | Apr 4 | 3 | Backgammon Cafe (5), DraftMarket (5) | Reddit |
+| 3   | Apr 4 | 3 | Ditherit (3) 🏆 | Reddit |
+| 4   | Apr 4 | 3 | Krafl-IO (5), Planlify (5), Malibu (6) | Reddit |
+| 5   | Apr 4 | 2 | WiBell (4) 🆕 | Reddit |
+
+---
+
+## 🎯 Hero Leads for Demo
+
+1. **Ditherit** (Score 3) — Pure app UI, zero marketing copy. Perfect "before" example.
+2. **WiBell** (Score 4) — Hardware product with minimal web presence, selling on Amazon but no testimonials.
+3. **TripDeck** (Score 6) — Founder explicitly asking for conversion help on Reddit.
+
+---
+
+## Next Actions
+
+- [ ] Review outreach drafts in Slack (when connected)
+- [ ] Approve/reject outreach for human-in-the-loop
+- [ ] Track replies and move to "contacted" status
