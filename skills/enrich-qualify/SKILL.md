@@ -1,3 +1,8 @@
+---
+name: enrich-qualify
+description: Takes scouted leads, visits their websites, scores marketing quality on a 10-point rubric, and enriches records with gap analysis.
+---
+
 # Skill: Enrich & Qualify
 
 ## Description

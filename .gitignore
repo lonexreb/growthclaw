@@ -20,3 +20,10 @@ credentials.json
 
 # Claude Code
 .claude/
+
+# OpenClaw runtime files (auto-generated when agent runs)
+AGENTS.md
+HEARTBEAT.md
+IDENTITY.md
+TOOLS.md
+USER.md

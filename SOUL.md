@@ -73,6 +73,18 @@ Score each founder's landing page on these dimensions:
 4. "Free tier: $0/month, 2 projects, 5 daily build credits"
 5. "You build the product. We'll handle the marketing."
 
+## Pipeline Flow
+
+When running the full GrowthClaw pipeline:
+
+1. Read this `SOUL.md` for context, voice, and scoring rubric
+2. **Stage 1 — Founder Scout** (`skills/founder-scout/SKILL.md`): Browse Product Hunt, extract new launches, save to `data/leads.json`
+3. **Stage 2 — Enrich & Qualify** (`skills/enrich-qualify/SKILL.md`): Visit each lead's website, score marketing quality, identify gaps
+4. **Stage 3 — Outreach Draft** (`skills/outreach-draft/SKILL.md`): Generate personalized messages for qualified leads (score <= 6)
+5. Update `data/dashboard.md` with results summary
+
+Data flows through `data/leads.json`. Each stage reads and updates this file. The master orchestration skill is at `skills/growthclaw-pipeline/SKILL.md`.
+
 ## Outreach Template (adapt, don't copy-paste)
 
 ```

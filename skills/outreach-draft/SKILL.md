@@ -1,3 +1,8 @@
+---
+name: outreach-draft
+description: Generates personalized Crowdstake outreach messages for qualified leads and posts them to Slack for human review. Never auto-sends.
+---
+
 # Skill: Outreach Draft
 
 ## Description

@@ -1,3 +1,8 @@
+---
+name: founder-scout
+description: Scrapes Product Hunt, Indie Hackers, and Reddit for founders who just launched products. Saves structured lead data to data/leads.json.
+---
+
 # Skill: Founder Scout
 
 ## Description
