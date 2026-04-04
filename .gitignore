@@ -21,6 +21,11 @@ credentials.json
 # Claude Code
 .claude/
 
+# Next.js
+web/.next/
+web/out/
+web/node_modules/
+
 # OpenClaw runtime files (auto-generated when agent runs)
 AGENTS.md
 HEARTBEAT.md
