@@ -59,8 +59,20 @@ _[Show dashboard.md]_
 
 ---
 
+## Pre-Demo Checklist
+
+```
+[ ] cd web && pnpm dev — dashboard running on localhost:3000
+[ ] Clear session locks: rm -f ~/.openclaw/agents/growthclaw/sessions/*.lock
+[ ] Clear pipeline state: rm -f data/.pipeline-state.json data/.pipeline-pid
+[ ] Verify dashboard shows 26 leads at localhost:3000
+[ ] Browser tab open to vincero.app (hero lead)
+[ ] Terminal ready with: scripts/run_pipeline.sh --demo (backup)
+```
+
 ## Backup Plan
 
-- If live demo fails: show pre-cached leads + Slack messages, run 1 live trigger
-- If browser is slow: narrate over pre-recorded 30s clip
-- Hero lead pre-selected: [TBD — pick best lead from Hour 3 runs]
+- If live demo fails: dashboard already has 26 scored leads — show those + click through Vincerò
+- If openclaw hangs: narrate "we've run this 5 times today, here are real results" and drill into lead cards
+- If dashboard won't start: run `scripts/run_pipeline.sh --demo` in terminal (beautiful colored banners)
+- Hero lead: **Vincerò** (vincero.app) — score 5/10, founder posted "struggling with marketing" on Reddit

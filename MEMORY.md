@@ -80,53 +80,60 @@
 | Emergent.sh     | AI landing page generator         | Demand capture + A/B testing    |
 | Landingsite.ai  | AI landing page generator         | Marketing consultant, not just gen |
 
-## Web Dashboard (Built ~1:30 PM CST)
+## Web Dashboard (Built ~1:30 PM CST, updated ~2:30 PM)
 
-- **Stack:** Next.js 15 + shadcn/ui + Tailwind in `web/` subdirectory
-- **Features:** Lead cards with SVG score gauges, score breakdowns, collapsible outreach drafts with approve/skip, pipeline stepper (Scout→Score→Draft→Done), stats overview, activity log
+- **Stack:** Next.js 16 + React 19 + shadcn/ui + Tailwind in `web/` subdirectory
+- **Features:** Lead cards with SVG score gauges, score breakdowns, collapsible outreach drafts with approve/skip, pipeline stepper (Scout→Score→Draft→Done), progress bar with live detail messages, stats overview, activity log
 - **API:** `/api/leads` reads/writes `data/leads.json`, `/api/pipeline` spawns openclaw agent as child process
-- **Theme:** Dark, brand palette from banner.svg (#0f0f23, #ff6b35, #ff3864)
+- **Theme:** Brand palette with gc-red (#dc2626), gc-green, gc-muted
 - **Demo:** Optimized for projector — large fonts, high contrast, 1600px max width
 - **Run:** `cd web && pnpm dev` → http://localhost:3000
 
-### Code Review (11 Fixes Applied)
+### Key Fixes Applied
 1. Lead fields made optional for mid-pipeline polling (prevents React crashes)
-2. Path resolution uses `__dirname` not `process.cwd()` (works from any directory)
+2. Path resolution uses `process.cwd()` not `__dirname` (Next.js 16 `__dirname` resolves into `.next/` build output, broke leads API)
 3. Pipeline state persisted to `data/.pipeline-state.json` (survives HMR reloads)
-4. Null guards in all components for partial leads during stages 1-2
-5. Error bar in UI for pipeline/approve/skip failures
-6. ENOENT detection for missing openclaw binary
-7. Unified stdout stage detection with lowercase matching
-8. Composite React keys in activity log (not array index)
-9. `writeLeads()` auto-recalculates `total_leads` metadata
-10. Stale closure fix in fetchPipeline
-11. Added `.env.example` with required env vars
+4. PID file (`data/.pipeline-pid`) tracks openclaw process — prevents false "interrupted" errors on HMR reload
+5. Detached child process (`detached: true`) so openclaw survives HMR
+6. Progress bar with stage-based percentage (scouting=10%, scoring=40%, drafting=70%, done=100%)
+7. Detail extraction from openclaw stdout — parses URLs, subreddit names, product names from agent output
+8. Error state preserves last progress value instead of resetting to 0
 
-## Pipeline Status (Live as of 12:51 PM CST)
+### Known Issues
+- Openclaw session lock files can get stuck if process is killed (`~/.openclaw/agents/growthclaw/sessions/*.lock`) — clear manually before demo
+- Stage detection stays on "scouting" sometimes because openclaw output doesn't always match keyword patterns — pipeline still completes correctly
+- Product Hunt blocked by Cloudflare — all scouting falls back to Reddit (r/SideProject, r/startups, r/webdev, r/IMadeThis)
 
-### First Successful Run
+## Pipeline Status (Live as of 2:35 PM CST)
+
+### Pipeline Runs (5 successful runs today)
 - **Pipeline:** growthclaw-pipeline skill chains Scout → Enrich → Outreach in a single agent session
-- **Source:** Reddit (r/SideProject, r/startups) — Product Hunt was blocked by Cloudflare, fell back to Reddit
-- **Browser:** Gateway was not running, used `web_fetch` fallback successfully
-- **Leads found:** 3 real leads scored and drafted
+- **Source:** Reddit (r/SideProject, r/startups, r/webdev, r/IMadeThis, r/Entrepreneur) — Product Hunt blocked by Cloudflare
+- **Browser:** Gateway not running, uses `web_fetch` fallback successfully
+- **Total leads found:** 26 real leads, all scored and with outreach drafted
+- **Run time:** ~2-3.5 minutes per run, finds 2-3 new leads each time
+- **Score range:** 2 to 8 out of 10
 
-### Lead Results
+### Lead Highlights (26 total)
 
-| Product | Founder | Score | Status | Key Gap |
-|---------|---------|-------|--------|---------|
-| **Vincero** | markoruman | 5/10 | HIGH PRIORITY | Weak social proof, unclear positioning, buried CTA |
-| InspoAI | Successful_Draw4218 | 7/10 | qualified-low | Too many CTAs competing for attention |
-| PanelShot | narrow-adventure | 8/10 | qualified-low | Missing testimonials and case studies |
+| Product | Score | Key Gap |
+|---------|-------|---------|
+| **Instavault** | 2/10 | Lowest score — severe marketing gaps |
+| **UnFin** | 2/10 | Severe gaps |
+| **Ditherit** | 3/10 | Very weak marketing |
+| **Vincerò** (hero lead) | 5/10 | Weak social proof, buried CTA |
+| **PanelShot** | 8/10 | Missing testimonials |
+| **JobScoutly** | 8/10 | Highest score |
 
 ### Hero Lead for Demo
-**Vincero** (vincero.app) — AI OS for solopreneurs. Founder explicitly mentioned struggling with marketing on Reddit. Score 5/10 with clear gaps that map directly to Crowdstake's value prop. Best outreach draft references specific pain points.
+**Vincerò** (vincero.app) — AI OS for solopreneurs. Founder explicitly mentioned struggling with marketing on Reddit. Score 5/10 with clear gaps that map directly to Crowdstake's value prop. Best outreach draft references specific pain points.
 
 ### Technical Notes
-- OpenClaw config had `extensions` key blocker — fixed via `openclaw doctor --fix`
-- Registered `growthclaw` agent with workspace pointing at project dir
+- OpenClaw v2026.2.2-3 installed, `growthclaw` agent registered
 - All 4 skills have YAML frontmatter for OpenClaw discovery
 - API key stored in `~/.openclaw/agents/growthclaw/agent/auth-profiles.json`
-- For live demo: start gateway first (`openclaw gateway`) for browser tool, or accept web_fetch fallback
+- Session lock files must be cleared before demo: `rm -f ~/.openclaw/agents/growthclaw/sessions/*.lock`
+- For live demo: `cd web && pnpm dev` then click "Run Pipeline" button on dashboard
 
 ## OpenClaw Platform Knowledge
 

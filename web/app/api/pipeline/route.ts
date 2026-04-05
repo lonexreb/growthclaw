@@ -56,7 +56,7 @@ function setState(
     started_at: prev.started_at,
     message,
     detail: detail ?? prev.detail,
-    progress: progress ?? STAGE_PROGRESS[stage] ?? prev.progress,
+    progress: progress ?? (stage === "error" ? prev.progress : STAGE_PROGRESS[stage]) ?? prev.progress,
   };
   writeState(state);
 }
@@ -74,9 +74,18 @@ function extractDetail(chunk: string): string | null {
   const lines = chunk.split("\n");
   for (let i = lines.length - 1; i >= 0; i--) {
     const line = lines[i].trim();
-    if (!line) continue;
+    if (!line || line.startsWith("<<<") || line.startsWith("- DO NOT")) continue;
 
-    // URL being visited
+    // web_fetch tool calls — extract URL
+    const fetchMatch = line.match(/\[tools\]\s*web_fetch.*?(https?:\/\/[^\s"']+)/i);
+    if (fetchMatch) {
+      try {
+        const hostname = new URL(fetchMatch[1]).hostname.replace("www.", "");
+        return `Fetching ${hostname}...`;
+      } catch { /* skip */ }
+    }
+
+    // URL being visited (narrative text)
     const urlMatch = line.match(
       /(?:navigat|visit|brows|open|go(?:ing)?\s+to|loading|fetching|fetch)\S*\s+(https?:\/\/[^\s"']+)/i,
     );
@@ -84,41 +93,56 @@ function extractDetail(chunk: string): string | null {
       try {
         const hostname = new URL(urlMatch[1]).hostname.replace("www.", "");
         return `Visiting ${hostname}...`;
-      } catch {
-        /* skip */
-      }
+      } catch { /* skip */ }
     }
 
-    // Reddit subreddit
-    const redditMatch = line.match(/r\/(\w+)/i);
+    // Bold markdown product/domain names: **drivetree.net**, **borrow.dev**
+    const boldMatch = line.match(/(?:found|scouted)\s+\*\*([^*]+)\*\*/i);
+    if (boldMatch) return `Found ${boldMatch[1].trim()}`;
+
+    // "Leads scouted:" summary line
+    if (/leads?\s+scouted/i.test(line)) return "Leads scouted!";
+
+    // Stage transitions in narrative
+    if (/stage\s*2|website\s*scor/i.test(line)) return "Moving to website scoring...";
+    if (/stage\s*3|outreach/i.test(line) && /draft|generat|writ/i.test(line)) return "Moving to outreach drafting...";
+
+    // Reddit subreddit — match r/Name pattern (capital-sensitive to avoid noise)
+    const redditMatch = line.match(/r\/([A-Za-z]\w{2,})/);
     if (redditMatch) return `Browsing r/${redditMatch[1]}...`;
 
     // Product Hunt / Indie Hackers
     if (/product\s*hunt/i.test(line)) return "Browsing Product Hunt...";
     if (/indie\s*hackers/i.test(line)) return "Browsing Indie Hackers...";
 
-    // Product/lead found
+    // Product/lead found (narrative)
     const productMatch = line.match(
-      /(?:found|scouted|extracted|discovered|lead)[:\s]+["']?([A-Z][A-Za-z0-9\s]{2,25})/i,
+      /(?:found|scouted|extracted|discovered)\s+["']?(\*\*)?([A-Z][A-Za-z0-9.\s-]{2,25})/i,
     );
-    if (productMatch) return `Found ${productMatch[1].trim()}`;
+    if (productMatch) return `Found ${(productMatch[2] || "").trim()}`;
 
-    // Scoring
+    // Scoring a website
     const scoreMatch = line.match(
-      /(?:scor|analyz|evaluat|assess)\w*\s+(?:the\s+)?(?:website|landing|page|site)?\s*(?:for\s+|of\s+)?["']?([A-Za-z][A-Za-z0-9\s]{2,25})/i,
+      /(?:scor|analyz|evaluat|assess)\w*\s+(?:the\s+)?(?:website|landing|page|site|marketing)?\s*(?:for\s+|of\s+)?["']?\*?\*?([A-Za-z][A-Za-z0-9.\s-]{2,25})/i,
     );
     if (scoreMatch) return `Scoring ${scoreMatch[1].trim()}...`;
 
     // Drafting outreach
     const draftMatch = line.match(
-      /(?:draft|writ|generat)\w*\s+(?:outreach|message|email)\s*(?:for\s+)?["']?([A-Za-z][A-Za-z0-9\s]{2,25})/i,
+      /(?:draft|writ|generat)\w*\s+(?:outreach|message|email)\s*(?:for\s+)?["']?\*?\*?([A-Za-z][A-Za-z0-9.\s-]{2,25})/i,
     );
     if (draftMatch) return `Drafting outreach for ${draftMatch[1].trim()}...`;
 
-    // Stage markers
+    // Stage completion markers
     if (/stage 1 complete/i.test(line)) return "Scouting complete!";
     if (/stage 2 complete/i.test(line)) return "Scoring complete!";
     if (/stage 3 complete/i.test(line)) return "Outreach drafts ready!";
+
+    // Checking for duplicates
+    if (/duplicat/i.test(line)) return "Checking for duplicate leads...";
+
+    // Writing to leads.json
+    if (/leads\.json/i.test(line)) return "Saving leads...";
   }
   return null;
 }

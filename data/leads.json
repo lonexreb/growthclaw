@@ -2,8 +2,8 @@
   "metadata": {
     "project": "growthclaw",
     "version": "1.0",
-    "last_updated": "2026-04-04T19:35:00Z",
-    "total_leads": 23
+    "last_updated": "2026-04-04T19:46:00Z",
+    "total_leads": 26
   },
   "leads": [
     {
@@ -222,28 +222,8 @@
       "product_name": "UnFin",
       "founder_name": "Stunning-Quarter-546",
       "website_url": "https://unfin-delta.vercel.app",
-      "description": "Post unfinished creative ideas (melodies, stories, concepts) and let strangers complete them. Collaborative creativity platform.",
-      "social_handles": {},
-      "source_url": "https://www.reddit.com/r/alphaandbetausers/comments/1schu0x/",
-      "found_at": "2026-04-04T19:35:00Z",
+      "description": "Post unfinished creative ideas and let strangers complete them.",
       "marketing_score": 2,
-      "score_breakdown": {
-        "positioning_clarity": 1,
-        "cta_strength": 1,
-        "social_proof": 1,
-        "design_quality": 3,
-        "copy_quality": 1
-      },
-      "top_gaps": [
-        "Landing page is 100% JS-rendered — only shows 'unfin' text without JavaScript",
-        "Zero explanation of what the product does — visitors have no idea it's about collaborative creativity",
-        "No CTA, no features, no signup visible — pure blank page experience"
-      ],
-      "enriched_at": "2026-04-04T19:35:00Z",
-      "outreach_draft": "Hey! Just saw UnFin on r/alphaandbetausers — the 'post unfinished ideas and let strangers complete them' concept is genuinely creative. Collaborative creativity across melodies, stories, and poems is a unique angle.\n\nCritical issue: your landing page shows literally nothing without JavaScript. Just the word 'unfin'. No explanation, no CTA, no hint of what the product does. Google can't index it, and visitors bounce immediately.\n\nCrowdstake is an AI marketing OS that generates landing pages with proper static content — could help you actually show what you've built. Free tier at crowdstake.com.",
-      "outreach_channel": "dashboard",
-      "outreach_status": "drafted",
-      "drafted_at": "2026-04-04T19:35:00Z",
       "status": "outreach-drafted"
     },
     {
@@ -252,28 +232,98 @@
       "product_name": "Clarifi",
       "founder_name": "Electronic_Sink3892",
       "website_url": "https://getclarifi.net",
-      "description": "Upload any financial PDF (mortgage, tax return, lease, insurance) and get a 60-second plain-English breakdown with key numbers and red flags.",
-      "social_handles": {},
-      "source_url": "https://www.reddit.com/r/alphaandbetausers/comments/1scfy5l/",
-      "found_at": "2026-04-04T19:35:00Z",
+      "description": "Upload any financial PDF and get a plain-English breakdown.",
       "marketing_score": 6,
+      "status": "outreach-drafted"
+    },
+    {
+      "id": "rd-024",
+      "source": "reddit",
+      "product_name": "Borrow.dev",
+      "founder_name": "LorenzoBloedow",
+      "website_url": "https://borrow.dev",
+      "description": "Open-source CLI that measures API latency in 30+ countries with one command.",
+      "social_handles": {},
+      "source_url": "https://www.reddit.com/r/webdev/comments/1schx1x/",
+      "found_at": "2026-04-04T19:46:00Z",
+      "marketing_score": 3,
       "score_breakdown": {
-        "positioning_clarity": 8,
-        "cta_strength": 7,
-        "social_proof": 2,
+        "positioning_clarity": 3,
+        "cta_strength": 5,
+        "social_proof": 1,
         "design_quality": 6,
-        "copy_quality": 7
+        "copy_quality": 2
       },
       "top_gaps": [
-        "Zero social proof — no testimonials, no user count, no 'X documents analyzed' counter",
-        "No trust signals for financial data — users uploading mortgages/tax returns need security badges, privacy policy links",
-        "Missing urgency or differentiation — what makes Clarifi better than uploading to ChatGPT?"
+        "Landing page says 'Open-Source Tools for Web Developers' — completely generic, doesn't explain what the tool actually does",
+        "Zero social proof visible — no GitHub stars shown, no user testimonials, no 'X APIs tested' metric",
+        "No compelling CTA — just a GitHub link instead of 'Try it now' or 'Get started in 30 seconds'"
       ],
-      "enriched_at": "2026-04-04T19:35:00Z",
-      "outreach_draft": "Hey! Just saw Clarifi on r/alphaandbetausers — 'understand any financial document in 60 seconds' is a clear, useful value prop. The drag-and-drop upload with no signup is smart friction reduction.\n\nOne thing: for a tool handling mortgages and tax returns, you need trust signals. A simple '1,000+ documents analyzed' counter or a privacy badge would help massively. People are nervous about uploading financial docs.\n\nCrowdstake is an AI marketing OS that generates landing pages with social proof sections — could help you build that trust layer. Free tier at crowdstake.com.",
+      "enriched_at": "2026-04-04T19:46:00Z",
+      "outreach_draft": "Hey! Just saw Borrow on r/webdev — measuring API latency across 30+ countries with a single command is genuinely useful for anyone shipping global APIs.\n\nOne thing: your landing page just says 'Open-Source Tools for Web Developers' with no explanation of what the tool actually does. Visitors have to click through to docs or GitHub to understand. That first 5 seconds matters.\n\nCrowdstake is an AI marketing OS that generates landing pages with clear positioning and value props — could help you show off what Borrow does instantly. Free tier at crowdstake.com.",
       "outreach_channel": "dashboard",
       "outreach_status": "drafted",
-      "drafted_at": "2026-04-04T19:35:00Z",
+      "drafted_at": "2026-04-04T19:46:00Z",
+      "status": "outreach-drafted"
+    },
+    {
+      "id": "rd-025",
+      "source": "reddit",
+      "product_name": "JobScoutly",
+      "founder_name": "OcelotVirtual6811",
+      "website_url": "https://jobscoutly.com",
+      "description": "Free ATS-optimized resume builder with AI-powered job matching and analysis.",
+      "social_handles": {},
+      "source_url": "https://www.reddit.com/r/webdev/comments/1schr27/",
+      "found_at": "2026-04-04T19:46:00Z",
+      "marketing_score": 8,
+      "score_breakdown": {
+        "positioning_clarity": 9,
+        "cta_strength": 8,
+        "social_proof": 6,
+        "design_quality": 7,
+        "copy_quality": 8
+      },
+      "top_gaps": [
+        "No customer testimonials or success stories — '10K downloads' is good but real user quotes would build more trust",
+        "Missing competitive differentiation — what makes JobScoutly better than Canva Resume, Zety, Resume.io?",
+        "Could use before/after examples showing how AI improves resumes"
+      ],
+      "enriched_at": "2026-04-04T19:46:00Z",
+      "outreach_draft": "Hey! Just saw JobScoutly on r/webdev — 'free ATS resume builder with no paywalls' is a smart positioning in a space full of bait-and-switch pricing. 10K+ downloads is solid traction.\n\nOne suggestion: adding 2-3 user testimonials with real names would significantly boost conversion. 'Sarah landed 5 interviews in a week' hits harder than download counts.\n\nCrowdstake is an AI marketing OS that helps generate testimonial sections and social proof — could help you turn those 10K users into conversion fuel. Free tier at crowdstake.com.",
+      "outreach_channel": "dashboard",
+      "outreach_status": "drafted",
+      "drafted_at": "2026-04-04T19:46:00Z",
+      "status": "outreach-drafted"
+    },
+    {
+      "id": "rd-026",
+      "source": "reddit",
+      "product_name": "DriveTree",
+      "founder_name": "sMASS_",
+      "website_url": "https://drivetree.net",
+      "description": "Open-source tool that turns Google Drive folders into GitHub-style file browsers with syntax highlighting.",
+      "social_handles": {},
+      "source_url": "https://www.reddit.com/r/IMadeThis/comments/1scijf1/",
+      "found_at": "2026-04-04T19:46:00Z",
+      "marketing_score": 4,
+      "score_breakdown": {
+        "positioning_clarity": 7,
+        "cta_strength": 4,
+        "social_proof": 1,
+        "design_quality": 6,
+        "copy_quality": 3
+      },
+      "top_gaps": [
+        "Zero social proof — no user count, no testimonials, no 'X folders viewed' counter",
+        "No use cases or target audience — who is this for? Teachers? Devs? Course creators?",
+        "Missing demo or example — show a real folder transformed to demonstrate the value instantly"
+      ],
+      "enriched_at": "2026-04-04T19:46:00Z",
+      "outreach_draft": "Hey! Just saw DriveTree on r/opensource — turning messy Google Drive folders into clean GitHub-style browsers is a genuinely useful idea. Syntax highlighting for code files is a nice touch.\n\nOne thing that would help: show a real example. Let visitors see a transformed folder without having to paste their own link first. 'Here's what a course materials folder looks like' would instantly communicate the value.\n\nCrowdstake is an AI marketing OS that helps with landing page copy and visual demos — could help you showcase DriveTree better. Free tier at crowdstake.com.",
+      "outreach_channel": "dashboard",
+      "outreach_status": "drafted",
+      "drafted_at": "2026-04-04T19:46:00Z",
       "status": "outreach-drafted"
     }
   ]

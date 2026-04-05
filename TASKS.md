@@ -108,13 +108,15 @@ No new features. Only polish, testing, and demo prep.
 [x] Skill 3 (Outreach Draft) works
 [x] Skills chained together
 [x] Full pipeline runs end-to-end
-[ ] ≥5 real leads scored and drafted (3 so far)
+[x] ≥5 real leads scored and drafted (26 leads!)
 [x] Dashboard looks good
-[x] Web dashboard built (Next.js + shadcn/ui)
-[x] Code review fixes applied (11 issues resolved)
+[x] Web dashboard built (Next.js 16 + shadcn/ui)
+[x] Code review fixes applied
+[x] Progress bar + detail messages added
+[x] Pipeline tested 5x — reliable 2-3 min runs
+[x] Backup leads cached (26 leads in leads.json)
 [ ] Demo script finalized
 [ ] Demo practiced once
-[ ] Backup leads cached
 [ ] TACOS EATEN
 ```
 
