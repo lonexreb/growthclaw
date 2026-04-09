@@ -2,6 +2,8 @@
 # Heartbeat schedule for autonomous operation
 
 schedules:
+  # ── Stage 1-3: Lead Generation Pipeline (daily) ──
+
   # Daily scout run — finds new founders from all sources
   daily-scout:
     cron: "0 9 * * *"  # 9 AM daily
@@ -20,11 +22,47 @@ schedules:
     skill: skills/outreach-draft/SKILL.md
     description: "Generate outreach drafts and post to Slack"
 
-  # Demo mode — run full pipeline on demand
+  # ── Stage 4-5: Conversion Pipeline (daily) ──
+
+  # Send approved outreach, run follow-up sequences, handle replies
+  daily-follow-up:
+    cron: "30 10 * * *"  # 10:30 AM daily
+    skill: skills/follow-up-meeting/SKILL.md
+    description: "Send follow-ups, check replies, book meetings"
+
+  # Monitor trials, detect PQLs, prompt upgrades
+  daily-convert:
+    cron: "0 11 * * *"  # 11 AM daily
+    skill: skills/convert-close/SKILL.md
+    description: "Monitor trials, detect PQLs, prompt upgrades"
+
+  # ── Stage 6: Customer Success (weekly) ──
+
+  # Health scores, churn prevention, NPS, expansion
+  weekly-success:
+    cron: "0 9 * * 1"  # Monday 9 AM
+    skill: skills/success-expand/SKILL.md
+    description: "Health scores, churn prevention, NPS, expansion"
+
+  # ── Manual Triggers ──
+
+  # Demo mode — run lead gen pipeline on demand
   demo-trigger:
     cron: "manual"
     skills:
       - skills/founder-scout/SKILL.md
       - skills/enrich-qualify/SKILL.md
       - skills/outreach-draft/SKILL.md
-    description: "Full pipeline run for demo"
+    description: "Full lead gen pipeline run for demo"
+
+  # Full cycle — run everything
+  full-cycle:
+    cron: "manual"
+    skills:
+      - skills/founder-scout/SKILL.md
+      - skills/enrich-qualify/SKILL.md
+      - skills/outreach-draft/SKILL.md
+      - skills/follow-up-meeting/SKILL.md
+      - skills/convert-close/SKILL.md
+      - skills/success-expand/SKILL.md
+    description: "Full 6-stage sales cycle"

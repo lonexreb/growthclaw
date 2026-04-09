@@ -16,6 +16,9 @@ const STAGE_PROGRESS: Record<PipelineStage, number> = {
   scouting: 10,
   scoring: 40,
   drafting: 70,
+  "following-up": 80,
+  converting: 90,
+  "success-check": 95,
   done: 100,
   error: 0,
 };
@@ -24,7 +27,10 @@ const STAGE_MAX: Record<PipelineStage, number> = {
   idle: 0,
   scouting: 37,
   scoring: 67,
-  drafting: 97,
+  drafting: 77,
+  "following-up": 87,
+  converting: 94,
+  "success-check": 99,
   done: 100,
   error: 100,
 };

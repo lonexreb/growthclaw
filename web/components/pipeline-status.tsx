@@ -15,11 +15,14 @@ const steps = [
   { id: "done", label: "Done", icon: Sparkles },
 ] as const;
 
-const stageOrder: Record<string, number> = {
+const stageOrder: Record<PipelineStage, number> = {
   idle: -1,
   scouting: 0,
   scoring: 1,
   drafting: 2,
+  "following-up": 2,
+  converting: 2,
+  "success-check": 2,
   done: 3,
   error: -1,
 };
