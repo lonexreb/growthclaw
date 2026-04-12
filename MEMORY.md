@@ -80,60 +80,58 @@
 | Emergent.sh     | AI landing page generator         | Demand capture + A/B testing    |
 | Landingsite.ai  | AI landing page generator         | Marketing consultant, not just gen |
 
-## Web Dashboard (Built ~1:30 PM CST, updated ~2:30 PM)
+## Web Dashboard (Built Apr 4, updated Apr 9)
 
 - **Stack:** Next.js 16 + React 19 + shadcn/ui + Tailwind in `web/` subdirectory
-- **Features:** Lead cards with SVG score gauges, score breakdowns, collapsible outreach drafts with approve/skip, pipeline stepper (Scout→Score→Draft→Done), progress bar with live detail messages, stats overview, activity log
+- **Features:** Lead cards with SVG score gauges, score breakdowns, collapsible outreach drafts with approve/skip, pipeline stepper with progress bar + live detail messages, stats overview, activity log
 - **API:** `/api/leads` reads/writes `data/leads.json`, `/api/pipeline` spawns openclaw agent as child process
+- **Pipeline stages in UI:** Scout → Score → Draft → Follow-Up → Convert → Success Check → Done
 - **Theme:** Brand palette with gc-red (#dc2626), gc-green, gc-muted
-- **Demo:** Optimized for projector — large fonts, high contrast, 1600px max width
 - **Run:** `cd web && pnpm dev` → http://localhost:3000
 
 ### Key Fixes Applied
-1. Lead fields made optional for mid-pipeline polling (prevents React crashes)
-2. Path resolution uses `process.cwd()` not `__dirname` (Next.js 16 `__dirname` resolves into `.next/` build output, broke leads API)
-3. Pipeline state persisted to `data/.pipeline-state.json` (survives HMR reloads)
-4. PID file (`data/.pipeline-pid`) tracks openclaw process — prevents false "interrupted" errors on HMR reload
-5. Detached child process (`detached: true`) so openclaw survives HMR
-6. Progress bar with stage-based percentage (scouting=10%, scoring=40%, drafting=70%, done=100%)
-7. Detail extraction from openclaw stdout — parses URLs, subreddit names, product names from agent output
-8. Error state preserves last progress value instead of resetting to 0
+1. Path resolution uses `process.cwd()` not `__dirname` (Next.js 16 `__dirname` resolves into `.next/` build output)
+2. Pipeline state persisted to `data/.pipeline-state.json` with PID tracking (survives HMR reloads)
+3. Progress bar with stage-based percentage (scouting=10%, scoring=40%, drafting=70%, following-up=80%, converting=90%, success-check=95%, done=100%)
+4. Detail extraction from openclaw stdout — parses URLs, subreddit names, product names from agent output
 
 ### Known Issues
-- Openclaw session lock files can get stuck if process is killed (`~/.openclaw/agents/growthclaw/sessions/*.lock`) — clear manually before demo
-- Stage detection stays on "scouting" sometimes because openclaw output doesn't always match keyword patterns — pipeline still completes correctly
-- Product Hunt blocked by Cloudflare — all scouting falls back to Reddit (r/SideProject, r/startups, r/webdev, r/IMadeThis)
+- Openclaw session lock files can get stuck — clear with `rm -f ~/.openclaw/agents/growthclaw/sessions/*.lock`
+- Product Hunt blocked by Cloudflare — scouting falls back to Reddit
 
-## Pipeline Status (Live as of 2:35 PM CST)
+## Pipeline & Skills Status (as of Apr 9)
 
-### Pipeline Runs (5 successful runs today)
-- **Pipeline:** growthclaw-pipeline skill chains Scout → Enrich → Outreach in a single agent session
-- **Source:** Reddit (r/SideProject, r/startups, r/webdev, r/IMadeThis, r/Entrepreneur) — Product Hunt blocked by Cloudflare
-- **Browser:** Gateway not running, uses `web_fetch` fallback successfully
-- **Total leads found:** 26 real leads, all scored and with outreach drafted
-- **Run time:** ~2-3.5 minutes per run, finds 2-3 new leads each time
+### Skills (7 total — full sales cycle)
+
+| # | Skill | Path | Purpose |
+|---|-------|------|---------|
+| 1 | Founder Scout | `skills/founder-scout/` | Scrapes Reddit (PH blocked by Cloudflare) for new launches |
+| 2 | Enrich & Qualify | `skills/enrich-qualify/` | Visits websites, scores marketing gaps 1-10 |
+| 3 | Outreach Draft | `skills/outreach-draft/` | Personalized Crowdstake pitch, posts to Slack/dashboard |
+| 4 | Follow-Up & Meeting | `skills/follow-up-meeting/` | SMTP outreach, 3-touch follow-up, reply detection, Calendly booking |
+| 5 | Convert & Close | `skills/convert-close/` | Monitors signups, PQL scoring, upgrade prompts, Stripe tracking |
+| 6 | Success & Expand | `skills/success-expand/` | Onboarding emails, health scores, churn prevention, NPS, expansion |
+| - | Pipeline | `skills/growthclaw-pipeline/` | Orchestrates Skills 1-3 in a single session |
+
+### Cron Schedule (`config/cron.yaml`)
+- **Daily 9:00 AM:** Scout → 9:30 Enrich → 10:00 Outreach → 10:30 Follow-up → 11:00 Convert
+- **Weekly Monday 9 AM:** Success & Expand
+- **Manual triggers:** `demo-trigger` (Skills 1-3), `full-cycle` (all 6)
+
+### Lead Inventory (26 leads)
+- **Total:** 26 real leads, all scored and with outreach drafted
 - **Score range:** 2 to 8 out of 10
-
-### Lead Highlights (26 total)
-
-| Product | Score | Key Gap |
-|---------|-------|---------|
-| **Instavault** | 2/10 | Lowest score — severe marketing gaps |
-| **UnFin** | 2/10 | Severe gaps |
-| **Ditherit** | 3/10 | Very weak marketing |
-| **Vincerò** (hero lead) | 5/10 | Weak social proof, buried CTA |
-| **PanelShot** | 8/10 | Missing testimonials |
-| **JobScoutly** | 8/10 | Highest score |
+- **Sources:** Reddit (r/SideProject, r/startups, r/webdev, r/IMadeThis, r/Entrepreneur)
+- **Run time:** ~2-3.5 minutes per pipeline run, finds 2-3 new leads each time
 
 ### Hero Lead for Demo
-**Vincerò** (vincero.app) — AI OS for solopreneurs. Founder explicitly mentioned struggling with marketing on Reddit. Score 5/10 with clear gaps that map directly to Crowdstake's value prop. Best outreach draft references specific pain points.
+**Vincerò** (vincero.app) — AI OS for solopreneurs. Score 5/10. Founder posted "struggling with marketing" on Reddit. Clear gaps map directly to Crowdstake's value prop.
 
 ### Technical Notes
-- OpenClaw v2026.2.2-3 installed, `growthclaw` agent registered
-- All 4 skills have YAML frontmatter for OpenClaw discovery
-- API key stored in `~/.openclaw/agents/growthclaw/agent/auth-profiles.json`
-- Session lock files must be cleared before demo: `rm -f ~/.openclaw/agents/growthclaw/sessions/*.lock`
-- For live demo: `cd web && pnpm dev` then click "Run Pipeline" button on dashboard
+- OpenClaw v2026.2.2-3, `growthclaw` agent registered at `~/.openclaw/agents/growthclaw/`
+- All 7 skills have YAML frontmatter for OpenClaw discovery
+- Clear session locks before runs: `rm -f ~/.openclaw/agents/growthclaw/sessions/*.lock`
+- Skills 4-6 require env vars for SMTP, IMAP, Calendly, Crowdstake API, Stripe, NPS (see `.env.example`)
 
 ## OpenClaw Platform Knowledge
 

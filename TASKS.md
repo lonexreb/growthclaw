@@ -106,7 +106,10 @@ No new features. Only polish, testing, and demo prep.
 [x] Skill 1 (Founder Scout) works
 [x] Skill 2 (Enrich & Qualify) works
 [x] Skill 3 (Outreach Draft) works
-[x] Skills chained together
+[x] Skill 4 (Follow-Up & Meeting) — written (Apr 9)
+[x] Skill 5 (Convert & Close) — written (Apr 9)
+[x] Skill 6 (Success & Expand) — written (Apr 9)
+[x] Skills 1-3 chained together
 [x] Full pipeline runs end-to-end
 [x] ≥5 real leads scored and drafted (26 leads!)
 [x] Dashboard looks good
@@ -115,6 +118,9 @@ No new features. Only polish, testing, and demo prep.
 [x] Progress bar + detail messages added
 [x] Pipeline tested 5x — reliable 2-3 min runs
 [x] Backup leads cached (26 leads in leads.json)
+[x] Full sales cycle types + cron config (Apr 9)
+[x] Pipeline UI extended for 7 stages
+[ ] Skills 4-6 integration tested end-to-end
 [ ] Demo script finalized
 [ ] Demo practiced once
 [ ] TACOS EATEN

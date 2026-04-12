@@ -9,27 +9,26 @@ We are building this at the Austin OpenClaw Hackathon (April 4, 2026). Build win
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────┐
-│                    SOUL.md                          │
-│  (Brand voice, ICP definition, scoring rubric)      │
-└──────────────────────┬──────────────────────────────┘
-                       │
-       ┌───────────────┼───────────────┐
-       ▼               ▼               ▼
-┌─────────────┐ ┌─────────────┐ ┌─────────────────┐
-│  SKILL 1    │ │  SKILL 2    │ │  SKILL 3        │
-│  Founder    │ │  Enrich &   │ │  Personalized   │
-│  Scout      │ │  Qualify    │ │  Outreach       │
-│             │ │             │ │  Drafts         │
-│ browser +   │ │ browser +   │ │ AI + messaging  │
-│ cron        │ │ AI scoring  │ │ + Slack/TG      │
-└─────────────┘ └─────────────┘ └─────────────────┘
-       │               │               │
-       ▼               ▼               ▼
-┌─────────────────────────────────────────────────────┐
-│              leads.json / dashboard.md               │
-│         Slack Channel: #growthclaw-leads             │
-└─────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                          SOUL.md                                │
+│       (Brand voice, ICP definition, scoring rubric)             │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+  ┌──────────┬───────────────┼───────────────┬──────────┬─────────┐
+  ▼          ▼               ▼               ▼          ▼         ▼
+┌──────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌────────┐ ┌────────┐
+│SKILL1│ │  SKILL 2 │ │  SKILL 3 │ │  SKILL 4 │ │SKILL 5 │ │SKILL 6 │
+│Scout │ │ Enrich & │ │ Outreach │ │Follow-Up │ │Convert │ │Success │
+│      │ │ Qualify  │ │  Draft   │ │& Meeting │ │& Close │ │& Expand│
+│Reddit│ │ AI score │ │ AI + msg │ │SMTP+IMAP │ │Stripe  │ │NPS+    │
+│+ PH  │ │ browser  │ │ + Slack  │ │+Calendly │ │+PQL    │ │health  │
+└──────┘ └──────────┘ └──────────┘ └──────────┘ └────────┘ └────────┘
+  │          │               │               │          │         │
+  ▼          ▼               ▼               ▼          ▼         ▼
+┌─────────────────────────────────────────────────────────────────┐
+│   leads.json / dashboard.md / Slack: #growthclaw-leads          │
+│   Web Dashboard: localhost:3000 (Next.js 16 + shadcn/ui)        │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ## File Structure
@@ -42,17 +41,33 @@ growthclaw/
 ├── SOUL.md                # OpenClaw personality: Crowdstake brand voice + ICP
 ├── skills/
 │   ├── founder-scout/
-│   │   └── SKILL.md       # Scrapes PH, Indie Hackers, Reddit for new launches
+│   │   └── SKILL.md       # Skill 1: Scrapes Reddit, PH for new launches
 │   ├── enrich-qualify/
-│   │   └── SKILL.md       # Visits sites, scores marketing gaps, pulls social context
-│   └── outreach-draft/
-│       └── SKILL.md       # Generates personalized messages, posts to Slack
+│   │   └── SKILL.md       # Skill 2: Visits sites, scores marketing gaps
+│   ├── outreach-draft/
+│   │   └── SKILL.md       # Skill 3: Generates personalized messages
+│   ├── follow-up-meeting/
+│   │   └── SKILL.md       # Skill 4: SMTP outreach, follow-up sequences, replies
+│   ├── convert-close/
+│   │   └── SKILL.md       # Skill 5: Signup monitoring, PQL scoring, upgrades
+│   ├── success-expand/
+│   │   └── SKILL.md       # Skill 6: Onboarding, health scores, churn, expansion
+│   └── growthclaw-pipeline/
+│       └── SKILL.md       # Orchestrates Skills 1-3 in a single session
 ├── config/
-│   ├── cron.yaml           # Heartbeat schedule (daily or on-demand for demo)
+│   ├── cron.yaml           # Daily/weekly schedules + manual triggers
 │   └── channels.yaml       # Slack/Telegram webhook config
+├── scripts/
+│   ├── run_pipeline.sh     # CLI pipeline runner (--demo, --dry-run flags)
+│   ├── post_lead_to_slack.sh
+│   └── update_dashboard.sh
 ├── data/
-│   ├── leads.json          # Accumulated lead records
+│   ├── leads.json          # 26 accumulated lead records
 │   └── dashboard.md        # Auto-generated status report
+├── web/                    # Next.js 16 dashboard (localhost:3000)
+│   ├── app/                # Pages + API routes
+│   ├── components/         # Lead cards, pipeline status, stats
+│   └── lib/                # Types, leads reader
 └── demo/
     └── DEMO_SCRIPT.md      # 5-minute demo walkthrough for judges
 ```
