@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Search, BarChart3, FileText, Sparkles } from "lucide-react";
+import { Check, Search, BarChart3, FileText, Send, CreditCard, Sparkles } from "lucide-react";
 import {
   Progress,
   ProgressTrack,
@@ -12,6 +12,8 @@ const steps = [
   { id: "scouting", label: "Scout", icon: Search },
   { id: "scoring", label: "Score", icon: BarChart3 },
   { id: "drafting", label: "Draft", icon: FileText },
+  { id: "following-up", label: "Follow-Up", icon: Send },
+  { id: "converting", label: "Convert", icon: CreditCard },
   { id: "done", label: "Done", icon: Sparkles },
 ] as const;
 
@@ -20,10 +22,10 @@ const stageOrder: Record<PipelineStage, number> = {
   scouting: 0,
   scoring: 1,
   drafting: 2,
-  "following-up": 2,
-  converting: 2,
-  "success-check": 2,
-  done: 3,
+  "following-up": 3,
+  converting: 4,
+  "success-check": 4,
+  done: 5,
   error: -1,
 };
 
@@ -55,7 +57,6 @@ export function PipelineStatus({
 
               return (
                 <div key={step.id} className="flex items-center flex-1">
-                  {/* Step circle */}
                   <div className="flex items-center gap-2">
                     <div
                       className={`relative w-8 h-8 rounded-full flex items-center justify-center transition-all ${
@@ -76,7 +77,7 @@ export function PipelineStatus({
                       )}
                     </div>
                     <span
-                      className={`text-xs font-medium ${
+                      className={`text-xs font-medium hidden sm:inline ${
                         isComplete || isCurrent
                           ? "text-gc-text"
                           : "text-gray-400"
@@ -85,9 +86,8 @@ export function PipelineStatus({
                       {step.label}
                     </span>
                   </div>
-                  {/* Connector line */}
                   {i < steps.length - 1 && (
-                    <div className="flex-1 mx-3">
+                    <div className="flex-1 mx-2">
                       <div
                         className={`h-0.5 rounded-full transition-all ${
                           currentIdx > i
@@ -103,7 +103,7 @@ export function PipelineStatus({
           </div>
         </div>
 
-        {/* Progress bar + detail — visible when running */}
+        {/* Progress bar + detail */}
         {isRunning && (
           <div className="mt-3 space-y-1.5">
             <Progress value={progress} className="flex-wrap gap-0">
@@ -122,7 +122,6 @@ export function PipelineStatus({
           </div>
         )}
 
-        {/* Done state — full bar + green message */}
         {stage === "done" && (
           <div className="mt-3 space-y-1.5">
             <Progress value={100} className="flex-wrap gap-0">
@@ -134,7 +133,6 @@ export function PipelineStatus({
           </div>
         )}
 
-        {/* Error state */}
         {stage === "error" && (
           <div className="mt-2">
             <p className="text-xs text-gc-red shrink-0">{message}</p>

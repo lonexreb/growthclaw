@@ -6,7 +6,10 @@ import { PipelineStatus } from "@/components/pipeline-status";
 import { StatsCards } from "@/components/stats-cards";
 import { LeadCard } from "@/components/lead-card";
 import { ActivityLog } from "@/components/activity-log";
+import { FunnelChart } from "@/components/funnel-chart";
 import type { Lead, PipelineStatus as PipelineStatusType } from "@/lib/types";
+
+type PipelineAction = "scout" | "follow-up" | "convert" | "success" | "full";
 
 export default function Dashboard() {
   const [leads, setLeads] = useState<Lead[]>([]);
@@ -77,8 +80,28 @@ export default function Dashboard() {
     };
   }, [isRunning, fetchLeads, fetchPipeline]);
 
-  const handleRunPipeline = async () => {
+  const handleRunPipeline = async (action: PipelineAction = "scout") => {
     setError(null);
+
+    // For non-scout actions, call the dedicated API routes directly
+    if (action === "follow-up" || action === "convert" || action === "success") {
+      const endpoint = `/api/${action === "follow-up" ? "follow-up" : action === "convert" ? "convert" : "success"}`;
+      try {
+        const res = await fetch(endpoint, { method: "POST" });
+        const data = await res.json();
+        if (!res.ok) {
+          setError(data.error || `${action} failed`);
+        } else {
+          setError(null);
+          await fetchLeads();
+        }
+      } catch (err) {
+        setError(`${action} failed: ${err instanceof Error ? err.message : String(err)}`);
+      }
+      return;
+    }
+
+    // Scout (default) — triggers the OpenClaw pipeline
     try {
       const res = await fetch("/api/pipeline", { method: "POST" });
       if (res.status === 409) {
@@ -174,6 +197,13 @@ export default function Dashboard() {
       <main className="max-w-[1600px] mx-auto px-6 py-6">
         <StatsCards leads={leads} />
 
+        {/* Funnel chart — show when there are leads */}
+        {leads.length > 0 && (
+          <div className="mt-6">
+            <FunnelChart leads={leads} />
+          </div>
+        )}
+
         <div className="mt-6 grid grid-cols-1 xl:grid-cols-[1fr_380px] gap-6">
           {/* Lead cards */}
           <div className="space-y-4">
@@ -181,7 +211,7 @@ export default function Dashboard() {
               <div className="text-center py-20">
                 <p className="text-gray-500 text-lg">No leads yet</p>
                 <p className="text-gray-400 text-sm mt-1">
-                  Click &quot;Run Pipeline&quot; to scout founders
+                  Click &quot;Scout Leads&quot; to find founders
                 </p>
               </div>
             ) : (
@@ -218,7 +248,7 @@ export default function Dashboard() {
             >
               Crowdstake AI
             </a>{" "}
-            at the Austin OpenClaw Hackathon
+            — Full-Cycle Autonomous Sales Engine
           </span>
           <span>Powered by OpenClaw + Claude</span>
         </div>

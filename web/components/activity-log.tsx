@@ -1,14 +1,16 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Clock, Search, BarChart3, FileText } from "lucide-react";
+import { Clock, Search, BarChart3, FileText, Send, MessageCircle, CreditCard, Heart } from "lucide-react";
 import type { Lead, PipelineStage } from "@/lib/types";
+
+type ActivityType = "scout" | "score" | "draft" | "sent" | "replied" | "converted" | "health";
 
 interface LogEntry {
   id: string;
   time: string;
   message: string;
-  type: "scout" | "score" | "draft";
+  type: ActivityType;
 }
 
 function formatTime(iso: string): string {
@@ -24,10 +26,14 @@ function formatTime(iso: string): string {
   }
 }
 
-const typeConfig = {
+const typeConfig: Record<ActivityType, { icon: typeof Search; color: string }> = {
   scout: { icon: Search, color: "bg-gc-red" },
   score: { icon: BarChart3, color: "bg-gc-amber" },
   draft: { icon: FileText, color: "bg-gc-purple" },
+  sent: { icon: Send, color: "bg-blue-500" },
+  replied: { icon: MessageCircle, color: "bg-gc-green" },
+  converted: { icon: CreditCard, color: "bg-gc-green" },
+  health: { icon: Heart, color: "bg-gc-cyan" },
 };
 
 export function ActivityLog({
@@ -63,6 +69,38 @@ export function ActivityLog({
         type: "draft",
       });
     }
+    if (lead.sent_at) {
+      entries.push({
+        id: `${lead.id}-sent-${lead.sent_at}`,
+        time: lead.sent_at,
+        message: `Sent outreach to ${lead.founder_name}`,
+        type: "sent",
+      });
+    }
+    if (lead.reply?.received_at) {
+      entries.push({
+        id: `${lead.id}-reply-${lead.reply.received_at}`,
+        time: lead.reply.received_at,
+        message: `Reply from ${lead.founder_name}: ${lead.reply.sentiment}`,
+        type: "replied",
+      });
+    }
+    if (lead.converted_at) {
+      entries.push({
+        id: `${lead.id}-converted-${lead.converted_at}`,
+        time: lead.converted_at,
+        message: `${lead.product_name} converted to ${lead.plan} ($${lead.mrr}/mo)`,
+        type: "converted",
+      });
+    }
+    if (lead.health_checked_at) {
+      entries.push({
+        id: `${lead.id}-health-${lead.health_checked_at}`,
+        time: lead.health_checked_at,
+        message: `Health check: ${lead.product_name} — ${lead.health_score}/100`,
+        type: "health",
+      });
+    }
   }
 
   entries.sort(
@@ -84,7 +122,6 @@ export function ActivityLog({
       </CardHeader>
       <CardContent className="max-h-[500px] overflow-y-auto">
         <div className="space-y-3">
-          {/* Current stage indicator */}
           {isRunning && (
             <div className="flex items-start gap-3 pb-3 border-b border-gray-100">
               <div className="mt-0.5 w-2 h-2 rounded-full bg-gc-red animate-pulse shrink-0" />
@@ -93,6 +130,9 @@ export function ActivityLog({
                   {pipelineStage === "scouting" && "Scouting founders..."}
                   {pipelineStage === "scoring" && "Scoring websites..."}
                   {pipelineStage === "drafting" && "Drafting outreach..."}
+                  {pipelineStage === "following-up" && "Running follow-ups..."}
+                  {pipelineStage === "converting" && "Checking conversions..."}
+                  {pipelineStage === "success-check" && "Running health checks..."}
                 </p>
                 <p className="text-xs text-gc-muted">In progress</p>
               </div>
@@ -104,7 +144,7 @@ export function ActivityLog({
               No activity yet. Run the pipeline to start.
             </p>
           )}
-          {entries.map((entry) => {
+          {entries.slice(0, 50).map((entry) => {
             const config = typeConfig[entry.type];
             return (
               <div key={entry.id} className="flex items-start gap-3">
