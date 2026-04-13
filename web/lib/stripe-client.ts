@@ -1,3 +1,5 @@
+import Stripe from "stripe";
+
 const STRIPE_KEY = process.env.STRIPE_API_KEY;
 
 interface ConversionResult {
@@ -7,46 +9,41 @@ interface ConversionResult {
   converted_at: string;
 }
 
-function requireConfig(): void {
+function getClient(): Stripe {
   if (!STRIPE_KEY) {
     throw new Error(
       "Stripe not configured. Set STRIPE_API_KEY in .env.local"
     );
   }
+  return new Stripe(STRIPE_KEY);
 }
 
 export async function checkConversion(
   email: string
 ): Promise<ConversionResult | null> {
-  requireConfig();
+  const stripe = getClient();
 
-  const res = await fetch(
-    `https://api.stripe.com/v1/customers/search?query=email:'${encodeURIComponent(email)}'`,
-    { headers: { Authorization: `Bearer ${STRIPE_KEY}` } }
-  );
-  if (!res.ok) {
-    throw new Error(`Stripe search failed: ${res.status} ${res.statusText}`);
-  }
+  const customers = await stripe.customers.search({
+    query: `email:"${email}"`,
+    limit: 1,
+  });
 
-  const data = await res.json();
-  if (!data.data || data.data.length === 0) return null;
+  if (customers.data.length === 0) return null;
 
-  const customer = data.data[0];
+  const customer = customers.data[0];
 
-  const subRes = await fetch(
-    `https://api.stripe.com/v1/subscriptions?customer=${customer.id}&status=active`,
-    { headers: { Authorization: `Bearer ${STRIPE_KEY}` } }
-  );
-  if (!subRes.ok) {
-    throw new Error(`Stripe subscriptions failed: ${subRes.status}`);
-  }
+  const subscriptions = await stripe.subscriptions.list({
+    customer: customer.id,
+    status: "active",
+    limit: 1,
+  });
 
-  const subData = await subRes.json();
-  if (!subData.data || subData.data.length === 0) return null;
+  if (subscriptions.data.length === 0) return null;
 
-  const sub = subData.data[0];
-  const planAmount = sub.items?.data?.[0]?.price?.unit_amount ?? 0;
-  const planName = sub.items?.data?.[0]?.price?.nickname || "core";
+  const sub = subscriptions.data[0];
+  const item = sub.items.data[0];
+  const planAmount = item?.price?.unit_amount ?? 0;
+  const planName = item?.price?.nickname || "core";
 
   return {
     converted: true,

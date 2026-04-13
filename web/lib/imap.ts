@@ -52,18 +52,27 @@ export async function checkReplies(
   const replies: IncomingReply[] = [];
 
   try {
+    // Fetch envelope + text body only (not full source with attachments)
     const messages = client.fetch(
       { seen: false, since: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) },
-      { envelope: true, source: true }
+      { envelope: true, bodyParts: ["text"] }
     );
 
     for await (const msg of messages) {
       const fromAddr = msg.envelope?.from?.[0]?.address || "";
       if (knownEmails.includes(fromAddr.toLowerCase())) {
+        // Extract text body part — bounded, no attachments loaded
+        let body = "";
+        if (msg.bodyParts) {
+          for (const [, value] of msg.bodyParts) {
+            body = value.toString("utf-8").slice(0, 2000);
+            break; // take first text part only
+          }
+        }
         replies.push({
           from: fromAddr,
           subject: msg.envelope?.subject || "",
-          body: msg.source?.toString("utf-8").slice(0, 2000) || "",
+          body,
           date: msg.envelope?.date?.toISOString() || new Date().toISOString(),
         });
       }
