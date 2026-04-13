@@ -11,20 +11,43 @@ interface IncomingReply {
 
 type Sentiment = "interested" | "declined" | "question";
 
-const INTERESTED_KEYWORDS = [
-  "sounds good", "interested", "tell me more", "sign up", "sign me up",
-  "let's chat", "love to", "try it", "show me", "demo", "yes",
+// Word-boundary matching to avoid false positives like
+// "pass" matching "I'll pass along to my cofounder"
+const INTERESTED_PHRASES = [
+  /\bsounds good\b/,
+  /\bi'?m interested\b/,
+  /\btell me more\b/,
+  /\bsign me up\b/,
+  /\bsign up\b/,
+  /\blet'?s chat\b/,
+  /\bi'?d love to\b/,
+  /\bwant to try\b/,
+  /\bshow me\b/,
+  /\bbook a demo\b/,
+  /\byes[,!.\s]|^yes$/,
+  /\blooks great\b/,
+  /\bcount me in\b/,
 ];
 
-const DECLINED_KEYWORDS = [
-  "not interested", "no thanks", "unsubscribe", "stop", "remove me",
-  "don't contact", "opt out", "pass",
+const DECLINED_PHRASES = [
+  /\bnot interested\b/,
+  /\bno thanks\b/,
+  /\bunsubscribe\b/,
+  /\bplease stop\b/,
+  /\bstop emailing\b/,
+  /\bremove me\b/,
+  /\bdon'?t contact\b/,
+  /\bopt out\b/,
+  /\bnot a fit\b/,
+  /\bno thank you\b/,
+  /\bleave me alone\b/,
 ];
 
 export function classifySentiment(text: string): Sentiment {
   const lower = text.toLowerCase();
-  if (DECLINED_KEYWORDS.some((kw) => lower.includes(kw))) return "declined";
-  if (INTERESTED_KEYWORDS.some((kw) => lower.includes(kw))) return "interested";
+  // Check declined first — respect opt-out signals
+  if (DECLINED_PHRASES.some((re) => re.test(lower))) return "declined";
+  if (INTERESTED_PHRASES.some((re) => re.test(lower))) return "interested";
   return "question";
 }
 

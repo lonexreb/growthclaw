@@ -189,7 +189,7 @@ export default function Dashboard() {
 
       {/* Error bar */}
       {(error || pipeline.stage === "error") && (
-        <div className="bg-red-50 border-b border-red-200 px-6 py-2">
+        <div className="bg-red-50 border-b border-red-200 px-6 py-2" role="alert" aria-live="polite">
           <div className="max-w-[1600px] mx-auto flex items-center justify-between">
             <p className="text-sm text-red-700">
               {error || pipeline.message}
@@ -236,11 +236,16 @@ export default function Dashboard() {
             )}
           </div>
 
-          {/* Activity log */}
-          <div className="hidden xl:block">
-            <div className="sticky top-6">
-              <ActivityLog leads={leads} pipelineStage={pipeline.stage} />
-            </div>
+          {/* Activity log — sticky sidebar on xl, collapsible on mobile */}
+          <div className="xl:block">
+            <details className="xl:open" open>
+              <summary className="xl:hidden cursor-pointer text-sm font-medium text-gc-muted py-2">
+                Activity Log
+              </summary>
+              <div className="sticky top-6">
+                <ActivityLog leads={leads} pipelineStage={pipeline.stage} />
+              </div>
+            </details>
           </div>
         </div>
       </main>

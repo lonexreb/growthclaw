@@ -100,7 +100,7 @@ export function LeadCard({ lead, onApprove, onSkip }: LeadCardProps) {
               >
                 {lead.product_name}
               </a>
-              <ExternalLink className="h-3.5 w-3.5 text-gray-400" />
+              <ExternalLink className="h-3.5 w-3.5 text-gray-400" aria-label="Visit website" />
             </h3>
             <p className="text-sm text-gc-muted">by {lead.founder_name}</p>
             <p className="text-sm text-gray-500 mt-1 line-clamp-2">

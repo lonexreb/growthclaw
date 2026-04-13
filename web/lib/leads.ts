@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import lockfile from "proper-lockfile";
 import { LeadsFile, Lead } from "./types";
+import { leadsFileSchema } from "./schemas";
 
 // Resolve project root: configurable via env, falls back to cwd parent
 const PROJECT_ROOT = process.env.GROWTHCLAW_ROOT || path.resolve(process.cwd(), "..");
@@ -15,7 +16,8 @@ export function getProjectRoot(): string {
 
 export function readLeads(): LeadsFile {
   const raw = fs.readFileSync(LEADS_PATH, "utf-8");
-  return JSON.parse(raw) as LeadsFile;
+  const parsed = JSON.parse(raw);
+  return leadsFileSchema.parse(parsed) as LeadsFile;
 }
 
 function writeLeadsAtomic(data: LeadsFile): void {
