@@ -2,11 +2,10 @@ import { NextResponse } from "next/server";
 import { readLeads, updateLeadStatus } from "@/lib/leads";
 import { sendEmail } from "@/lib/email";
 import { checkReplies, classifySentiment } from "@/lib/imap";
+import { requireAuth, handleAuthError } from "@/lib/auth";
 import type { Lead, FollowUp } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
-
-const PRODUCT_URL = process.env.PRODUCT_SIGNUP_URL || process.env.PRODUCT_API_URL || "";
 
 function daysSince(isoDate: string): number {
   return (Date.now() - new Date(isoDate).getTime()) / (1000 * 60 * 60 * 24);
@@ -34,7 +33,8 @@ export async function GET() {
   });
 }
 
-export async function POST() {
+export async function POST(request: Request) {
+  try { requireAuth(request); } catch (err) { return handleAuthError(err); }
   const data = readLeads();
   const results = {
     initial_sent: 0,

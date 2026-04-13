@@ -3,6 +3,7 @@ import { readLeads, updateLeadStatus } from "@/lib/leads";
 import { getUsageSignals } from "@/lib/integration";
 import { calculateHealthScore } from "@/lib/health-score";
 import { sendEmail } from "@/lib/email";
+import { requireAuth, handleAuthError } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -29,7 +30,8 @@ export async function GET() {
   });
 }
 
-export async function POST() {
+export async function POST(request: Request) {
+  try { requireAuth(request); } catch (err) { return handleAuthError(err); }
   const data = readLeads();
   const results = {
     onboarding_emails: 0,

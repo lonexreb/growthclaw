@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import type { PipelineStage, PipelineStatus } from "@/lib/types";
 import { getProjectRoot } from "@/lib/leads";
+import { requireAuth, handleAuthError } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -193,7 +194,8 @@ export async function GET() {
   return NextResponse.json(readState());
 }
 
-export async function POST() {
+export async function POST(request: Request) {
+  try { requireAuth(request); } catch (err) { return handleAuthError(err); }
   const current = readState();
   if (
     currentProcess &&

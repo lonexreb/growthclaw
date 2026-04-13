@@ -3,6 +3,7 @@ import { readLeads, updateLeadStatus } from "@/lib/leads";
 import { checkSignup, getUsageSignals, calculatePqlScore } from "@/lib/integration";
 import { checkConversion } from "@/lib/stripe-client";
 import { sendEmail } from "@/lib/email";
+import { requireAuth, handleAuthError } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -26,7 +27,8 @@ export async function GET() {
   });
 }
 
-export async function POST() {
+export async function POST(request: Request) {
+  try { requireAuth(request); } catch (err) { return handleAuthError(err); }
   const data = readLeads();
   const results = {
     signups_confirmed: 0,

@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 import { readLeads, updateLeadStatus } from "@/lib/leads";
+import { requireAuth, handleAuthError } from "@/lib/auth";
+import { leadsActionSchema } from "@/lib/validation";
+import { ZodError } from "zod/v4";
 
 export const dynamic = "force-dynamic";
 
@@ -17,10 +20,10 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const { id, action } = (await request.json()) as {
-      id: string;
-      action: "approve" | "skip";
-    };
+    requireAuth(request);
+
+    const body = await request.json();
+    const { id, action } = leadsActionSchema.parse(body);
 
     const updates =
       action === "approve"
@@ -33,9 +36,12 @@ export async function POST(request: Request) {
     }
     return NextResponse.json(lead);
   } catch (err) {
-    return NextResponse.json(
-      { error: `Failed to update lead: ${err instanceof Error ? err.message : String(err)}` },
-      { status: 500 }
-    );
+    if (err instanceof ZodError) {
+      return NextResponse.json(
+        { error: "Invalid request", details: err.issues },
+        { status: 400 }
+      );
+    }
+    return handleAuthError(err);
   }
 }

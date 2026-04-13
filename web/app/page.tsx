@@ -11,6 +11,11 @@ import type { Lead, PipelineStatus as PipelineStatusType } from "@/lib/types";
 
 type PipelineAction = "scout" | "follow-up" | "convert" | "success" | "full";
 
+const AUTH_HEADERS: HeadersInit = {
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_SECRET || ""}`,
+};
+
 export default function Dashboard() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [pipeline, setPipeline] = useState<PipelineStatusType>({
@@ -87,7 +92,7 @@ export default function Dashboard() {
     if (action === "follow-up" || action === "convert" || action === "success") {
       const endpoint = `/api/${action === "follow-up" ? "follow-up" : action === "convert" ? "convert" : "success"}`;
       try {
-        const res = await fetch(endpoint, { method: "POST" });
+        const res = await fetch(endpoint, { method: "POST", headers: AUTH_HEADERS });
         const data = await res.json();
         if (!res.ok) {
           setError(data.error || `${action} failed`);
@@ -103,7 +108,7 @@ export default function Dashboard() {
 
     // Scout (default) — triggers the OpenClaw pipeline
     try {
-      const res = await fetch("/api/pipeline", { method: "POST" });
+      const res = await fetch("/api/pipeline", { method: "POST", headers: AUTH_HEADERS });
       if (res.status === 409) {
         setError("Pipeline is already running.");
         return;
@@ -131,7 +136,7 @@ export default function Dashboard() {
     try {
       const res = await fetch("/api/leads", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: AUTH_HEADERS,
         body: JSON.stringify({ id, action: "approve" }),
       });
       if (!res.ok) {
@@ -148,7 +153,7 @@ export default function Dashboard() {
     try {
       const res = await fetch("/api/leads", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: AUTH_HEADERS,
         body: JSON.stringify({ id, action: "skip" }),
       });
       if (!res.ok) {
