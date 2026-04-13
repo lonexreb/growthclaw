@@ -113,10 +113,24 @@
 | `lib/stripe-client.ts` | Customer lookup, subscription tracking |
 | `lib/health-score.ts` | Weighted health score (0-100), churn risk tiers |
 
+### Code Review Fixes (22 of 35 issues fixed — Batches 1-6)
+
+| Batch | What | Issues Fixed |
+|-------|------|-------------|
+| 1 | Auth + Zod validation on all POST routes | #18, #23, #38, #46 |
+| 2 | File locking (proper-lockfile) + atomic writes + batch updates | #19, #25, #36 |
+| 3 | try/catch on all sendEmail + null guards on contact_email | #21, #22 |
+| 4 | Pipeline env var filtering (allowlist) + SIGTERM cleanup | #17, #24 |
+| 5 | Official Stripe SDK + IMAP bodyParts (no OOM) | #20, #26 |
+| 6 | DRY (daysSince), dead code, MAX_EMAILS_PER_BATCH, style cleanup | #27, #30, #31, #41, #43, #44 |
+
+**Remaining:** Batches 7 (architecture/devops), 8 (accessibility/schema), 9 (test suite)
+
 ### Known Issues
 - Openclaw session lock files can get stuck — clear with `rm -f ~/.openclaw/agents/growthclaw/sessions/*.lock`
 - Product Hunt blocked by Cloudflare — scouting falls back to Reddit
-- Skills 4-6 backend requires env vars (SMTP, IMAP, Crowdstake API, Stripe) — graceful fallback when not configured
+- Skills 4-6 require env vars (SMTP, IMAP, PRODUCT_API, Stripe) — throws clear errors when missing
+- All POST routes require `Authorization: Bearer <API_SECRET>` header
 
 ## Pipeline & Skills Status (as of Apr 9)
 

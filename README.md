@@ -134,14 +134,29 @@ From our first live run:
 | InspoAI | Successful_Draw4218 | 7/10 | Too many CTAs competing | qualified-low |
 | PanelShot | narrow-adventure | 8/10 | Missing testimonials | qualified-low |
 
+## Security & Production Readiness
+
+GrowthClaw follows industry security standards:
+
+- **API Authentication** — All POST endpoints require `Authorization: Bearer <API_SECRET>`
+- **Input Validation** — Zod schemas on all API inputs (rejects malformed requests with 400)
+- **File Locking** — `proper-lockfile` prevents race conditions on leads.json
+- **Atomic Writes** — Write to .tmp then rename (no partial reads)
+- **Env Filtering** — Pipeline child process only gets PATH + ANTHROPIC_API_KEY (no SMTP/Stripe secrets)
+- **Official SDKs** — Stripe SDK (not raw fetch), nodemailer for SMTP
+- **Error Isolation** — One failed email doesn't crash the batch
+
+See `code-review.md` for the full audit (22/35 issues fixed, 0 critical remaining).
+
 ## Fork It For Your Startup
 
-GrowthClaw is designed to be forked. To adapt it for your own startup:
+GrowthClaw is product-agnostic. To adapt it for your startup:
 
 1. **Edit `SOUL.md`** — Change the ICP, scoring rubric, and outreach voice to match your product
 2. **Update `skills/outreach-draft/SKILL.md`** — Swap in your product's pitch points and CTA
 3. **Configure `config/channels.yaml`** — Point to your Slack workspace
-4. **Run it** — Same pipeline, your leads
+4. **Set `PRODUCT_API_URL`** — Point the integration layer to your product's API
+5. **Run it** — Same pipeline, your leads
 
 **Total cost:** $5/mo VPS + $10/mo LLM API = 20-50 qualified leads/week.
 
