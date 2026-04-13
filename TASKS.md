@@ -106,23 +106,26 @@ No new features. Only polish, testing, and demo prep.
 [x] Skill 1 (Founder Scout) works
 [x] Skill 2 (Enrich & Qualify) works
 [x] Skill 3 (Outreach Draft) works
-[x] Skill 4 (Follow-Up & Meeting) — written (Apr 9)
-[x] Skill 5 (Convert & Close) — written (Apr 9)
-[x] Skill 6 (Success & Expand) — written (Apr 9)
+[x] Skill 4 (Follow-Up & Meeting) — skill + backend + UI (Apr 12)
+[x] Skill 5 (Convert & Close) — skill + backend + UI (Apr 12)
+[x] Skill 6 (Success & Expand) — skill + backend + UI (Apr 12)
 [x] Skills 1-3 chained together
 [x] Full pipeline runs end-to-end
 [x] ≥5 real leads scored and drafted (26 leads!)
-[x] Dashboard looks good
-[x] Web dashboard built (Next.js 16 + shadcn/ui)
-[x] Code review fixes applied
+[x] Web dashboard — full sales cycle (Next.js 16 + shadcn/ui)
 [x] Progress bar + detail messages added
 [x] Pipeline tested 5x — reliable 2-3 min runs
 [x] Backup leads cached (26 leads in leads.json)
-[x] Full sales cycle types + cron config (Apr 9)
-[x] Pipeline UI extended for 7 stages
+[x] Full sales cycle types + cron config
+[x] Pipeline UI: 6-step stepper + funnel chart
+[x] 3 new API routes (follow-up, convert, success)
+[x] 5 new backend libs (email, imap, crowdstake, stripe, health)
+[x] 2 new components (FunnelChart, FollowUpTimeline)
+[x] StatsCards expanded to 8 metrics
+[x] Header: 4 action buttons for full cycle
 [ ] Skills 4-6 integration tested end-to-end
+[ ] Env vars configured for SMTP/IMAP/Stripe
 [ ] Demo script finalized
-[ ] Demo practiced once
 [ ] TACOS EATEN
 ```
 

@@ -80,24 +80,43 @@
 | Emergent.sh     | AI landing page generator         | Demand capture + A/B testing    |
 | Landingsite.ai  | AI landing page generator         | Marketing consultant, not just gen |
 
-## Web Dashboard (Built Apr 4, updated Apr 9)
+## Web Dashboard (Built Apr 4, full sales cycle Apr 12)
 
 - **Stack:** Next.js 16 + React 19 + shadcn/ui + Tailwind in `web/` subdirectory
-- **Features:** Lead cards with SVG score gauges, score breakdowns, collapsible outreach drafts with approve/skip, pipeline stepper with progress bar + live detail messages, stats overview, activity log
-- **API:** `/api/leads` reads/writes `data/leads.json`, `/api/pipeline` spawns openclaw agent as child process
-- **Pipeline stages in UI:** Scout → Score → Draft → Follow-Up → Convert → Success Check → Done
-- **Theme:** Brand palette with gc-red (#dc2626), gc-green, gc-muted
 - **Run:** `cd web && pnpm dev` → http://localhost:3000
+- **Theme:** Brand palette with gc-red (#dc2626), gc-green, gc-muted
 
-### Key Fixes Applied
-1. Path resolution uses `process.cwd()` not `__dirname` (Next.js 16 `__dirname` resolves into `.next/` build output)
-2. Pipeline state persisted to `data/.pipeline-state.json` with PID tracking (survives HMR reloads)
-3. Progress bar with stage-based percentage (scouting=10%, scoring=40%, drafting=70%, following-up=80%, converting=90%, success-check=95%, done=100%)
-4. Detail extraction from openclaw stdout — parses URLs, subreddit names, product names from agent output
+### API Routes (6 total)
+| Route | Method | Purpose |
+|-------|--------|---------|
+| `/api/leads` | GET/POST | Read/write leads, approve/skip actions |
+| `/api/pipeline` | GET/POST | Pipeline state + trigger openclaw agent |
+| `/api/follow-up` | POST | Send outreach, run follow-up sequences, detect replies |
+| `/api/convert` | POST | Check signups, PQL scoring, upgrade prompts, Stripe tracking |
+| `/api/success` | POST | Onboarding emails, health scores, churn prevention, NPS |
+
+### Frontend Components
+- **Header:** 4 action buttons (Follow-Ups, Conversions, Health Check, Scout Pipeline)
+- **PipelineStatus:** 6-step stepper (Scout→Score→Draft→Follow-Up→Convert→Done) + progress bar
+- **StatsCards:** 8 metrics in 2 rows (Leads, Avg Score, Drafted, High Priority, Sent, Replies, Converted, MRR)
+- **FunnelChart:** Horizontal funnel (Scouted→Qualified→Drafted→Sent→Replied→Converted)
+- **LeadCard:** Score gauge, gaps, outreach draft, follow-up timeline, reply content, conversion badge, health score, churn risk, expansion badge
+- **FollowUpTimeline:** Horizontal dot timeline (Sent→FU1→FU2→FU3→Reply) with dates
+- **ActivityLog:** 7 event types (scout/score/draft/sent/replied/converted/health)
+
+### Backend Libraries (5 new)
+| File | Purpose |
+|------|---------|
+| `lib/email.ts` | SMTP client (nodemailer), CAN-SPAM footer, graceful fallback |
+| `lib/imap.ts` | Reply detection (imapflow), sentiment classification |
+| `lib/crowdstake.ts` | Signup checks, usage signals, PQL scoring |
+| `lib/stripe-client.ts` | Customer lookup, subscription tracking |
+| `lib/health-score.ts` | Weighted health score (0-100), churn risk tiers |
 
 ### Known Issues
 - Openclaw session lock files can get stuck — clear with `rm -f ~/.openclaw/agents/growthclaw/sessions/*.lock`
 - Product Hunt blocked by Cloudflare — scouting falls back to Reddit
+- Skills 4-6 backend requires env vars (SMTP, IMAP, Crowdstake API, Stripe) — graceful fallback when not configured
 
 ## Pipeline & Skills Status (as of Apr 9)
 

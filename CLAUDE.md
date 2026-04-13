@@ -79,6 +79,9 @@ growthclaw/
 - **LLM** — Claude or GPT-4 via API for scoring + outreach generation
 - **Slack/Telegram** — native OpenClaw messaging channel for lead delivery
 - **Cron heartbeat** — OpenClaw scheduled task for autonomous daily runs
+- **Next.js 16 + React 19 + shadcn/ui** — web dashboard with full sales cycle UI
+- **nodemailer + imapflow** — SMTP outreach + IMAP reply detection
+- **Stripe API** — conversion tracking + subscription monitoring
 
 ## ICP (Ideal Customer Profile) for Crowdstake
 
@@ -99,10 +102,10 @@ growthclaw/
 ## Demo Strategy (5 minutes)
 
 1. **30s** — Problem: "160K products launch on PH yearly. Most have terrible marketing. Crowdstake fixes that, but nobody knows Crowdstake exists."
-2. **60s** — Solution: Show GrowthClaw architecture. Three skills. Runs autonomously.
-3. **120s** — LIVE DEMO: Trigger the agent. Watch it browse Product Hunt, find a real founder who launched today, visit their site, score their landing page, draft a personalized message. Show the Slack notification arriving.
-4. **30s** — Results: "In 24 hours of autonomous operation, GrowthClaw can surface 20-50 qualified founders per day at $0.30/lead in API costs."
-5. **30s** — Close: "This isn't a hackathon project. This is Crowdstake's first growth hire. It works 24/7 for the price of API tokens. Fork the skills, swap the ICP, and any startup in this room can use it."
+2. **60s** — Solution: Show GrowthClaw architecture. Six skills covering the full sales cycle — from scouting to conversion to customer success. Runs autonomously.
+3. **120s** — LIVE DEMO: Trigger the pipeline from the dashboard. Show the progress bar filling, leads appearing with scores. Drill into a lead card — score gauge, marketing gaps, personalized outreach draft. Show the funnel chart and 8-metric stats panel.
+4. **30s** — Results: "26 qualified founders found, scored, and drafted. Full follow-up sequences, conversion tracking, and customer health monitoring — all automated."
+5. **30s** — Close: "This isn't a hackathon project. This is Crowdstake's full growth engine. $5/month VPS, $10/month LLM budget. Fork the skills, swap the ICP, and any startup in this room can use it."
 
 ## Non-Negotiable Rules
 
@@ -121,9 +124,11 @@ growthclaw/
 
 ## Success Criteria
 
-- [ ] Agent autonomously finds ≥3 real founders from Product Hunt
-- [ ] Each founder's website is visited and scored with a marketing gap analysis
-- [ ] Personalized outreach draft generated for each lead
-- [ ] Results delivered to Slack (or shown in terminal/dashboard)
-- [ ] Live demo runs end-to-end without manual intervention
+- [x] Agent autonomously finds ≥3 real founders (26 found!)
+- [x] Each founder's website visited and scored with marketing gap analysis
+- [x] Personalized outreach draft generated for each lead
+- [x] Results shown in web dashboard with full sales cycle UI
+- [x] Live pipeline runs end-to-end (~2-3 min per run)
+- [x] Full sales cycle: scout → score → draft → follow-up → convert → success
+- [ ] Skills 4-6 integration tested with real SMTP/Stripe credentials
 - [ ] Presentation clearly articulates value to Crowdstake specifically
