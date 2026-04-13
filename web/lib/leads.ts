@@ -3,8 +3,8 @@ import path from "path";
 import lockfile from "proper-lockfile";
 import { LeadsFile, Lead } from "./types";
 
-// Resolve project root: go up from web/ (process.cwd()) to growthclaw/
-const PROJECT_ROOT = path.resolve(process.cwd(), "..");
+// Resolve project root: configurable via env, falls back to cwd parent
+const PROJECT_ROOT = process.env.GROWTHCLAW_ROOT || path.resolve(process.cwd(), "..");
 const LEADS_PATH = path.join(PROJECT_ROOT, "data", "leads.json");
 const LEADS_TMP = LEADS_PATH + ".tmp";
 const LOCK_OPTS = { retries: { retries: 5, minTimeout: 50, maxTimeout: 500 } };

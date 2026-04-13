@@ -27,17 +27,22 @@ export default function Dashboard() {
   });
   const [error, setError] = useState<string | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const mountedRef = useRef(true);
+
+  useEffect(() => {
+    return () => { mountedRef.current = false; };
+  }, []);
 
   const fetchLeads = useCallback(async () => {
     try {
       const res = await fetch("/api/leads");
       if (!res.ok) throw new Error(`Leads API returned ${res.status}`);
       const data = await res.json();
-      if (data.leads) {
+      if (data.leads && mountedRef.current) {
         setLeads(data.leads);
       }
-    } catch (err) {
-      console.error("Failed to fetch leads:", err);
+    } catch {
+      // Silently skip — polling will retry in 2s
     }
   }, []);
 
@@ -46,10 +51,9 @@ export default function Dashboard() {
       const res = await fetch("/api/pipeline");
       if (!res.ok) throw new Error(`Pipeline API returned ${res.status}`);
       const data = await res.json();
-      setPipeline(data);
+      if (mountedRef.current) setPipeline(data);
       return data as PipelineStatusType;
-    } catch (err) {
-      console.error("Failed to fetch pipeline status:", err);
+    } catch {
       return null;
     }
   }, []);
@@ -67,6 +71,7 @@ export default function Dashboard() {
   useEffect(() => {
     if (isRunning) {
       intervalRef.current = setInterval(async () => {
+        if (!mountedRef.current) return;
         await fetchLeads();
         const status = await fetchPipeline();
         if (
@@ -76,7 +81,7 @@ export default function Dashboard() {
             status.stage === "idle")
         ) {
           if (intervalRef.current) clearInterval(intervalRef.current);
-          await fetchLeads();
+          if (mountedRef.current) await fetchLeads();
         }
       }, 2000);
     }

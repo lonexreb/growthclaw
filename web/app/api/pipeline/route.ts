@@ -175,45 +175,56 @@ function isProcessRunning(pid: number): boolean {
   }
 }
 
-// On module load, check if a previous run left a stale "running" state
-const initialState = readState();
-if (
-  initialState.stage !== "idle" &&
-  initialState.stage !== "done" &&
-  initialState.stage !== "error"
-) {
-  let stillRunning = false;
+// Lazy init — called from handlers, not on module import
+let initialized = false;
+function ensureInit() {
+  if (initialized) return;
+  initialized = true;
+  const state = readState();
+  if (
+    state.stage !== "idle" &&
+    state.stage !== "done" &&
+    state.stage !== "error"
+  ) {
+    let stillRunning = false;
+    try {
+      const pid = parseInt(fs.readFileSync(PID_FILE, "utf-8").trim(), 10);
+      stillRunning = isProcessRunning(pid);
+    } catch { /* no PID file */ }
+
+    if (!stillRunning) {
+      writeState({
+        stage: "done",
+        started_at: state.started_at,
+        message: "Pipeline complete!",
+        detail: "All stages complete!",
+        progress: 100,
+      });
+    }
+  }
+}
+
+// Check if pipeline is already running via PID file (not in-memory variable)
+function isPipelineRunning(): boolean {
   try {
     const pid = parseInt(fs.readFileSync(PID_FILE, "utf-8").trim(), 10);
-    stillRunning = isProcessRunning(pid);
+    return isProcessRunning(pid);
   } catch {
-    // No PID file — process is gone
-  }
-
-  if (!stillRunning) {
-    writeState({
-      stage: "done",
-      started_at: initialState.started_at,
-      message: "Pipeline complete!",
-      detail: "All stages complete!",
-      progress: 100,
-    });
+    return false;
   }
 }
 
 export async function GET() {
+  ensureInit();
   return NextResponse.json(readState());
 }
 
 export async function POST(request: Request) {
   try { requireAuth(request); } catch (err) { return handleAuthError(err); }
-  const current = readState();
-  if (
-    currentProcess &&
-    current.stage !== "idle" &&
-    current.stage !== "done" &&
-    current.stage !== "error"
-  ) {
+  ensureInit();
+
+  // Concurrency check via PID file (works across HMR and serverless)
+  if (isPipelineRunning()) {
     return NextResponse.json(
       { error: "Pipeline already running" },
       { status: 409 },
