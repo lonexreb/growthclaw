@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { readLeads, updateLeadStatus } from "@/lib/leads";
-import { getUsageSignals, isCrowdstakeConfigured } from "@/lib/crowdstake";
+import { getUsageSignals } from "@/lib/integration";
 import { calculateHealthScore } from "@/lib/health-score";
 import { sendEmail } from "@/lib/email";
 
@@ -18,14 +18,14 @@ export async function GET() {
   const onboarding = leads.filter((l) => l.status === "onboarding").length;
   const churning = leads.filter((l) => l.status === "churning").length;
   const expansionReady = leads.filter((l) => l.status === "expansion-ready").length;
-  const avgHealth = leads
-    .filter((l) => l.health_score != null)
-    .reduce((s, l, _, a) => s + (l.health_score ?? 0) / a.length, 0);
+  const healthLeads = leads.filter((l) => l.health_score != null);
+  const avgHealth = healthLeads.length > 0
+    ? Math.round(healthLeads.reduce((s, l) => s + (l.health_score ?? 0), 0) / healthLeads.length)
+    : 0;
   const totalLtv = leads.reduce((s, l) => s + (l.lifetime_value ?? 0), 0);
 
   return NextResponse.json({
-    crowdstake_configured: isCrowdstakeConfigured(),
-    stats: { active, onboarding, churning, expansionReady, avgHealth: Math.round(avgHealth), totalLtv },
+    stats: { active, onboarding, churning, expansionReady, avgHealth, totalLtv },
   });
 }
 
@@ -52,8 +52,8 @@ export async function POST() {
     const stage = lead.onboarding_stage || "";
 
     if (days >= 0 && days < 1 && stage !== "day-0") {
-      await sendEmail(email, `Welcome to Crowdstake, ${lead.founder_name}!`,
-        `Congrats on upgrading! Here's how to get the most out of Crowdstake in your first week:\n\n1. Start your first project: Tell the AI about ${lead.product_name}\n2. Generate a landing page: One click, conversion-optimized copy\n3. Set up demand capture: Start collecting emails from day one\n\nQuestions? Just reply to this email.`
+      await sendEmail(email, `Welcome, ${lead.founder_name}!`,
+        `Congrats on upgrading! Here's how to get the most out of your first week:\n\n1. Start your first project for ${lead.product_name}\n2. Generate a landing page with conversion-optimized copy\n3. Set up demand capture to start collecting emails\n\nQuestions? Just reply to this email.`
       );
       updateLeadStatus(lead.id, { onboarding_stage: "day-0", status: "onboarding" });
       results.onboarding_emails++;
@@ -65,7 +65,7 @@ export async function POST() {
       updateLeadStatus(lead.id, { onboarding_stage: "day-3" });
       results.onboarding_emails++;
     } else if (days >= 7 && days < 8 && stage === "day-3") {
-      await sendEmail(email, `How's it going with Crowdstake?`,
+      await sendEmail(email, `How's it going?`,
         `Hey ${lead.founder_name}, you're one week in! Just wanted to check — have you had a chance to generate a landing page for ${lead.product_name}? If you're stuck on anything, reply here and I'll help.`
       );
       updateLeadStatus(lead.id, { onboarding_stage: "day-7" });
@@ -98,7 +98,6 @@ export async function POST() {
     });
     results.health_checks++;
 
-    // Churn prevention
     if (health.risk === "high" || health.risk === "critical") {
       updateLeadStatus(lead.id, {
         status: "churning",
@@ -107,7 +106,6 @@ export async function POST() {
       results.churn_alerts++;
     }
 
-    // Expansion detection
     if (
       health.risk === "low" &&
       signals.credits_used_daily_avg >= 4 &&
@@ -138,15 +136,12 @@ export async function POST() {
     if (!email) continue;
 
     if (days >= 30 && days < 31) {
-      await sendEmail(email, `Quick question about Crowdstake`,
-        `Hey ${lead.founder_name}, quick question: On a scale of 0-10, how likely are you to recommend Crowdstake to a fellow founder?\n\nReply with just a number. We read every response.`
+      await sendEmail(email, `Quick question`,
+        `Hey ${lead.founder_name}, quick question: On a scale of 0-10, how likely are you to recommend us to a fellow founder?\n\nReply with just a number. We read every response.`
       );
       results.nps_sent++;
     }
   }
 
-  return NextResponse.json({
-    message: "Success check complete",
-    results,
-  });
+  return NextResponse.json({ message: "Success check complete", results });
 }

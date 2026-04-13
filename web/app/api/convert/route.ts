@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { readLeads, updateLeadStatus } from "@/lib/leads";
-import { checkSignup, getUsageSignals, calculatePqlScore, isCrowdstakeConfigured } from "@/lib/crowdstake";
-import { checkConversion, isStripeConfigured } from "@/lib/stripe-client";
+import { checkSignup, getUsageSignals, calculatePqlScore } from "@/lib/integration";
+import { checkConversion } from "@/lib/stripe-client";
 import { sendEmail } from "@/lib/email";
 
 export const dynamic = "force-dynamic";
@@ -14,17 +14,15 @@ export async function GET() {
   const data = readLeads();
   const leads = data.leads;
 
-  const trialStarted = leads.filter((l) => l.status === "trial-started").length;
-  const onboarding = leads.filter((l) => l.status === "onboarding").length;
-  const active = leads.filter((l) => l.status === "active").length;
-  const converted = leads.filter((l) => l.converted === true).length;
-  const totalMrr = leads.reduce((sum, l) => sum + (l.mrr ?? 0), 0);
-  const stalled = leads.filter((l) => l.status === "stalled").length;
-
   return NextResponse.json({
-    crowdstake_configured: isCrowdstakeConfigured(),
-    stripe_configured: isStripeConfigured(),
-    stats: { trialStarted, onboarding, active, converted, totalMrr, stalled },
+    stats: {
+      trialStarted: leads.filter((l) => l.status === "trial-started").length,
+      onboarding: leads.filter((l) => l.status === "onboarding").length,
+      active: leads.filter((l) => l.status === "active").length,
+      converted: leads.filter((l) => l.converted === true).length,
+      totalMrr: leads.reduce((sum, l) => sum + (l.mrr ?? 0), 0),
+      stalled: leads.filter((l) => l.status === "stalled").length,
+    },
   });
 }
 
@@ -38,7 +36,6 @@ export async function POST() {
     upgrade_prompts: 0,
     conversions: 0,
     stalled: 0,
-    skipped_no_api: false,
   };
 
   // 1. Check signups for trial-started leads
@@ -67,11 +64,10 @@ export async function POST() {
       daysSince(lead.sent_at) >= 7 &&
       !lead.signup_nudge_sent
     ) {
-      // Send nudge email
       await sendEmail(
         email,
-        `Did you get a chance to try Crowdstake?`,
-        `Hey ${lead.founder_name}, just checking in — did you get a chance to try Crowdstake? The free tier takes about 5 minutes to set up: crowdstake.com`
+        `Did you get a chance to try it?`,
+        `Hey ${lead.founder_name}, just checking in — did you get a chance to sign up? The free tier takes about 5 minutes to set up.`
       );
       updateLeadStatus(lead.id, { signup_nudge_sent: true });
     }
@@ -87,10 +83,7 @@ export async function POST() {
     if (!email) continue;
 
     const signals = await getUsageSignals(email);
-    if (!signals) {
-      results.skipped_no_api = true;
-      continue;
-    }
+    if (!signals) continue;
 
     const pqlScore = calculatePqlScore(signals);
     updateLeadStatus(lead.id, {
@@ -107,8 +100,8 @@ export async function POST() {
     if (pqlScore === "high" && !lead.upgrade_prompt_sent) {
       await sendEmail(
         email,
-        `You're getting great results with Crowdstake`,
-        `Hey ${lead.founder_name}, you've been crushing it — ${signals.projects_created} projects, ${signals.pages_published} landing pages generated!\n\nLooks like you're hitting the free tier limits. Core plan ($19/mo) gives you unlimited projects and credits. That's less than the cost of one hour of freelance marketing help.\n\nUpgrade here: crowdstake.com/pricing`
+        `You're getting great results`,
+        `Hey ${lead.founder_name}, you've been crushing it — ${signals.projects_created} projects, ${signals.pages_published} landing pages generated!\n\nLooks like you're hitting the free tier limits. Upgrading gives you unlimited projects and credits.\n\nCheck pricing at your dashboard.`
       );
       updateLeadStatus(lead.id, {
         upgrade_prompt_sent: true,
@@ -140,8 +133,5 @@ export async function POST() {
     }
   }
 
-  return NextResponse.json({
-    message: "Conversion check complete",
-    results,
-  });
+  return NextResponse.json({ message: "Conversion check complete", results });
 }

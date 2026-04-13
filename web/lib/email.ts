@@ -4,14 +4,20 @@ const SMTP_HOST = process.env.SMTP_HOST;
 const SMTP_PORT = parseInt(process.env.SMTP_PORT || "587", 10);
 const SMTP_USER = process.env.SMTP_USER;
 const SMTP_PASS = process.env.SMTP_PASS;
+const SENDER_NAME = process.env.SENDER_NAME || "GrowthClaw";
+const PHYSICAL_ADDRESS = process.env.PHYSICAL_ADDRESS || "Austin, TX";
 
-const CAN_SPAM_FOOTER = `\n\n—\nCrowdstake AI | Austin, TX\nReply "stop" to unsubscribe from future emails.`;
-
-const isConfigured = Boolean(SMTP_HOST && SMTP_USER && SMTP_PASS);
+const CAN_SPAM_FOOTER = `\n\n—\n${SENDER_NAME} | ${PHYSICAL_ADDRESS}\nReply "stop" to unsubscribe from future emails.`;
 
 let transporter: nodemailer.Transporter | null = null;
 
 function getTransporter(): nodemailer.Transporter {
+  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
+    throw new Error(
+      "SMTP not configured. Set SMTP_HOST, SMTP_USER, and SMTP_PASS in .env.local"
+    );
+  }
+
   if (!transporter) {
     transporter = nodemailer.createTransport({
       host: SMTP_HOST,
@@ -25,9 +31,7 @@ function getTransporter(): nodemailer.Transporter {
 
 interface SendResult {
   success: boolean;
-  method: "smtp" | "logged";
-  messageId?: string;
-  error?: string;
+  messageId: string;
 }
 
 export async function sendEmail(
@@ -37,33 +41,12 @@ export async function sendEmail(
 ): Promise<SendResult> {
   const fullBody = body + CAN_SPAM_FOOTER;
 
-  if (!isConfigured) {
-    // Fallback: log the email instead of sending
-    const logEntry = {
-      to,
-      subject,
-      body: fullBody,
-      timestamp: new Date().toISOString(),
-      method: "logged" as const,
-    };
-    console.info("[email] SMTP not configured, logging:", logEntry.to, logEntry.subject);
-    return { success: true, method: "logged" };
-  }
+  const info = await getTransporter().sendMail({
+    from: `"${SENDER_NAME}" <${SMTP_USER}>`,
+    to,
+    subject,
+    text: fullBody,
+  });
 
-  try {
-    const info = await getTransporter().sendMail({
-      from: SMTP_USER,
-      to,
-      subject,
-      text: fullBody,
-    });
-    return { success: true, method: "smtp", messageId: info.messageId };
-  } catch (err) {
-    const message = err instanceof Error ? err.message : String(err);
-    return { success: false, method: "smtp", error: message };
-  }
-}
-
-export function isEmailConfigured(): boolean {
-  return isConfigured;
+  return { success: true, messageId: info.messageId };
 }
