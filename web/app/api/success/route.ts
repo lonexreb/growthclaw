@@ -53,29 +53,31 @@ export async function POST(request: Request) {
     const days = lead.converted_at ? daysSince(lead.converted_at) : 0;
     const stage = lead.onboarding_stage || "";
 
-    if (days >= 0 && days < 1 && stage !== "day-0") {
-      await sendEmail(email, `Welcome, ${lead.founder_name}!`,
-        `Congrats on upgrading! Here's how to get the most out of your first week:\n\n1. Start your first project for ${lead.product_name}\n2. Generate a landing page with conversion-optimized copy\n3. Set up demand capture to start collecting emails\n\nQuestions? Just reply to this email.`
-      );
-      updateLeadStatus(lead.id, { onboarding_stage: "day-0", status: "onboarding" });
-      results.onboarding_emails++;
-    } else if (days >= 3 && days < 4 && stage === "day-0") {
-      const gap = lead.outreach_hero_gap || "your marketing";
-      await sendEmail(email, `Have you tried the AI Marketing Consultant yet?`,
-        `Hey ${lead.founder_name}, the AI Marketing Consultant would be perfect for fixing ${gap}. Give it a try — it takes about 2 minutes.`
-      );
-      updateLeadStatus(lead.id, { onboarding_stage: "day-3" });
-      results.onboarding_emails++;
-    } else if (days >= 7 && days < 8 && stage === "day-3") {
-      await sendEmail(email, `How's it going?`,
-        `Hey ${lead.founder_name}, you're one week in! Just wanted to check — have you had a chance to generate a landing page for ${lead.product_name}? If you're stuck on anything, reply here and I'll help.`
-      );
-      updateLeadStatus(lead.id, { onboarding_stage: "day-7" });
-      results.onboarding_emails++;
-    } else if (days >= 14 && stage === "day-7") {
-      updateLeadStatus(lead.id, { onboarding_stage: "complete", status: "active" });
-      results.onboarding_emails++;
-    }
+    try {
+      if (days >= 0 && days < 1 && stage !== "day-0") {
+        await sendEmail(email, `Welcome, ${lead.founder_name}!`,
+          `Congrats on upgrading! Here's how to get the most out of your first week:\n\n1. Start your first project for ${lead.product_name}\n2. Generate a landing page with conversion-optimized copy\n3. Set up demand capture to start collecting emails\n\nQuestions? Just reply to this email.`
+        );
+        updateLeadStatus(lead.id, { onboarding_stage: "day-0", status: "onboarding" });
+        results.onboarding_emails++;
+      } else if (days >= 3 && days < 4 && stage === "day-0") {
+        const gap = lead.outreach_hero_gap || "your marketing";
+        await sendEmail(email, `Have you tried the AI Marketing Consultant yet?`,
+          `Hey ${lead.founder_name}, the AI Marketing Consultant would be perfect for fixing ${gap}. Give it a try — it takes about 2 minutes.`
+        );
+        updateLeadStatus(lead.id, { onboarding_stage: "day-3" });
+        results.onboarding_emails++;
+      } else if (days >= 7 && days < 8 && stage === "day-3") {
+        await sendEmail(email, `How's it going?`,
+          `Hey ${lead.founder_name}, you're one week in! Just wanted to check — have you had a chance to generate a landing page for ${lead.product_name}? If you're stuck on anything, reply here and I'll help.`
+        );
+        updateLeadStatus(lead.id, { onboarding_stage: "day-7" });
+        results.onboarding_emails++;
+      } else if (days >= 14 && stage === "day-7") {
+        updateLeadStatus(lead.id, { onboarding_stage: "complete", status: "active" });
+        results.onboarding_emails++;
+      }
+    } catch { /* onboarding email failed — continue with next lead */ }
   }
 
   // 2. Health scoring for active customers
@@ -138,10 +140,12 @@ export async function POST(request: Request) {
     if (!email) continue;
 
     if (days >= 30 && days < 31) {
-      await sendEmail(email, `Quick question`,
-        `Hey ${lead.founder_name}, quick question: On a scale of 0-10, how likely are you to recommend us to a fellow founder?\n\nReply with just a number. We read every response.`
-      );
-      results.nps_sent++;
+      try {
+        await sendEmail(email, `Quick question`,
+          `Hey ${lead.founder_name}, quick question: On a scale of 0-10, how likely are you to recommend us to a fellow founder?\n\nReply with just a number. We read every response.`
+        );
+        results.nps_sent++;
+      } catch { /* NPS email failed — continue */ }
     }
   }
 

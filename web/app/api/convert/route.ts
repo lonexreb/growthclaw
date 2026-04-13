@@ -66,12 +66,14 @@ export async function POST(request: Request) {
       daysSince(lead.sent_at) >= 7 &&
       !lead.signup_nudge_sent
     ) {
-      await sendEmail(
-        email,
-        `Did you get a chance to try it?`,
-        `Hey ${lead.founder_name}, just checking in — did you get a chance to sign up? The free tier takes about 5 minutes to set up.`
-      );
-      updateLeadStatus(lead.id, { signup_nudge_sent: true });
+      try {
+        await sendEmail(
+          email,
+          `Did you get a chance to try it?`,
+          `Hey ${lead.founder_name}, just checking in — did you get a chance to sign up? The free tier takes about 5 minutes to set up.`
+        );
+        updateLeadStatus(lead.id, { signup_nudge_sent: true });
+      } catch { /* nudge failed — non-critical, continue */ }
     }
   }
 
@@ -100,16 +102,18 @@ export async function POST(request: Request) {
 
     // High PQL + not yet prompted → send upgrade email
     if (pqlScore === "high" && !lead.upgrade_prompt_sent) {
-      await sendEmail(
-        email,
-        `You're getting great results`,
-        `Hey ${lead.founder_name}, you've been crushing it — ${signals.projects_created} projects, ${signals.pages_published} landing pages generated!\n\nLooks like you're hitting the free tier limits. Upgrading gives you unlimited projects and credits.\n\nCheck pricing at your dashboard.`
-      );
-      updateLeadStatus(lead.id, {
-        upgrade_prompt_sent: true,
-        upgrade_prompt_at: new Date().toISOString(),
-      });
-      results.upgrade_prompts++;
+      try {
+        await sendEmail(
+          email,
+          `You're getting great results`,
+          `Hey ${lead.founder_name}, you've been crushing it — ${signals.projects_created} projects, ${signals.pages_published} landing pages generated!\n\nLooks like you're hitting the free tier limits. Upgrading gives you unlimited projects and credits.\n\nCheck pricing at your dashboard.`
+        );
+        updateLeadStatus(lead.id, {
+          upgrade_prompt_sent: true,
+          upgrade_prompt_at: new Date().toISOString(),
+        });
+        results.upgrade_prompts++;
+      } catch { /* upgrade email failed — continue processing */ }
     }
   }
 
