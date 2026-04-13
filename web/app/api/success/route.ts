@@ -4,12 +4,9 @@ import { getUsageSignals } from "@/lib/integration";
 import { calculateHealthScore } from "@/lib/health-score";
 import { sendEmail } from "@/lib/email";
 import { requireAuth, handleAuthError } from "@/lib/auth";
+import { daysSince } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
-
-function daysSince(isoDate: string): number {
-  return (Date.now() - new Date(isoDate).getTime()) / (1000 * 60 * 60 * 24);
-}
 
 export async function GET() {
   const data = readLeads();

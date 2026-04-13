@@ -173,7 +173,7 @@ export default function Dashboard() {
   });
 
   return (
-    <div className="min-h-screen bg-gc-bg">
+    <div className="min-h-screen">
       <Header onRun={handleRunPipeline} isRunning={isRunning} />
       <PipelineStatus
         stage={pipeline.stage}

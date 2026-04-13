@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Loader2, Play, Send, CreditCard, Heart, Zap } from "lucide-react";
+import { Loader2, Play, Send, CreditCard, Heart } from "lucide-react";
 
 type PipelineAction = "scout" | "follow-up" | "convert" | "success" | "full";
 

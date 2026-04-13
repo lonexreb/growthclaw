@@ -3,13 +3,10 @@ import { readLeads, updateLeadStatus } from "@/lib/leads";
 import { sendEmail } from "@/lib/email";
 import { checkReplies, classifySentiment } from "@/lib/imap";
 import { requireAuth, handleAuthError } from "@/lib/auth";
+import { daysSince, MAX_EMAILS_PER_BATCH } from "@/lib/utils";
 import type { Lead, FollowUp } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
-
-function daysSince(isoDate: string): number {
-  return (Date.now() - new Date(isoDate).getTime()) / (1000 * 60 * 60 * 24);
-}
 
 function lastFollowUpDate(lead: Lead): string | null {
   if (!lead.follow_ups || lead.follow_ups.length === 0) return lead.sent_at || null;
@@ -49,7 +46,7 @@ export async function POST(request: Request) {
     (l) => l.outreach_status === "approved" && l.status === "outreach-drafted"
   );
 
-  for (const lead of approvedLeads.slice(0, 10)) {
+  for (const lead of approvedLeads.slice(0, MAX_EMAILS_PER_BATCH)) {
     const email = lead.contact_email;
     if (!email) {
       results.errors.push(`${lead.product_name}: no contact_email`);
@@ -76,7 +73,7 @@ export async function POST(request: Request) {
   const needsFU1 = data.leads.filter(
     (l) => l.status === "outreach-sent" && l.sent_at && daysSince(l.sent_at) >= 3
   );
-  for (const lead of needsFU1.slice(0, 10)) {
+  for (const lead of needsFU1.slice(0, MAX_EMAILS_PER_BATCH)) {
     if (!lead.contact_email) { results.errors.push(`${lead.product_name}: no contact_email for FU1`); continue; }
     const gap = lead.outreach_hero_gap || lead.top_gaps?.[0] || "your landing page";
     const body = `Hey ${lead.founder_name} — just wanted to make sure you saw my note about ${lead.product_name}. The issue with ${gap} is likely costing you signups. Happy to show you how we can fix that in minutes.`;
@@ -98,7 +95,7 @@ export async function POST(request: Request) {
   const needsFU2 = data.leads.filter(
     (l) => l.status === "follow-up-1" && lastFollowUpDate(l) && daysSince(lastFollowUpDate(l)!) >= 4
   );
-  for (const lead of needsFU2.slice(0, 10)) {
+  for (const lead of needsFU2.slice(0, MAX_EMAILS_PER_BATCH)) {
     if (!lead.contact_email) { results.errors.push(`${lead.product_name}: no contact_email for FU2`); continue; }
     const body = `One quick tip for ${lead.product_name}: try moving your CTA above the fold and making it action-oriented ("Start free" instead of "Learn more"). That alone can lift conversions 20-30%.`;
 
@@ -119,7 +116,7 @@ export async function POST(request: Request) {
   const needsFU3 = data.leads.filter(
     (l) => l.status === "follow-up-2" && lastFollowUpDate(l) && daysSince(lastFollowUpDate(l)!) >= 3
   );
-  for (const lead of needsFU3.slice(0, 10)) {
+  for (const lead of needsFU3.slice(0, MAX_EMAILS_PER_BATCH)) {
     if (!lead.contact_email) { results.errors.push(`${lead.product_name}: no contact_email for FU3`); continue; }
     const body = `Last note from me, ${lead.founder_name} — no worries if this isn't a fit right now. The free tier is there whenever you're ready to level up ${lead.product_name}'s marketing. Wishing you the best with the launch!`;
 
