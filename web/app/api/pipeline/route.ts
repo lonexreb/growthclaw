@@ -51,6 +51,17 @@ function writeState(state: PipelineStatus): void {
 
 let currentProcess: ChildProcess | null = null;
 
+// Clean up child process on server shutdown
+function cleanupChild() {
+  if (currentProcess && currentProcess.pid) {
+    try { process.kill(currentProcess.pid); } catch { /* already dead */ }
+    currentProcess = null;
+    try { fs.unlinkSync(PID_FILE); } catch { /* ignore */ }
+  }
+}
+process.on("SIGTERM", cleanupChild);
+process.on("SIGINT", cleanupChild);
+
 function setState(
   stage: PipelineStage,
   message: string,
@@ -239,8 +250,14 @@ export async function POST(request: Request) {
       ],
       {
         cwd: projectRoot,
-        env: { ...process.env },
-        detached: true,
+        env: {
+          PATH: process.env.PATH || "",
+          HOME: process.env.HOME || "",
+          SHELL: process.env.SHELL || "",
+          ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY || "",
+          LANG: process.env.LANG || "",
+          NODE_ENV: process.env.NODE_ENV || "production",
+        } as NodeJS.ProcessEnv,
       },
     );
 
